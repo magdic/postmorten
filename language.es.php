@@ -1,0 +1,50 @@
+<?php 
+
+
+$LANG = array(
+    "tasktodo" => "Tareas / Por hacer",
+    "addtask" => "Agregar tarea",
+    "task" => "Tarea",
+    "daysopen" => "Días abierto",
+    "duedate" => "Vencimiento",
+    "priority" => "Prioridad",
+    "action" => "Acción",
+    "edit" => "Editar",
+    "delete" => "Borrar",
+    "high" => "Alta",
+    "normal" => "Normal",
+    "low" => "Baja",
+    "onhold" => "En espera",
+    "tasks" => "Tareas",
+    "taskupdated" => "Tarea actualizada",
+    "redirected" => "Ahora serás redireccionado a la lista de tareas. <br /><a href=\"index.php\">Si eso no ocurre, por favor da click aquí.</a>",
+    "eupdatetask" => "Error: la tarea no pudo ser actualizada.",
+    "etasknotfound" => "Error: Tarea no encontrada.",
+    "taskadded" => "Tarea agregada.",
+    "etasknotadded" => "La tarea no pudo ser agregada. Por favor revisa los permisos de JSON.",
+    "taskdone" => "La tarea fue marcada como terminada. ",
+    "etasknotdone" => "Error: la tarea no pudo ser marcada como terminada. Por favor revisa los permisos de JSON. ",
+    "etasknotdeleted" => "Error: la tarea no pudo ser borrada. Por favor revisa los permisos de JSON.",
+    "taskdeleted" => "La tarea ha sido borrada.",
+    "noactiongiven" => "Error: no fue indicada una acción. ",
+    "thrash" => "Papelera",
+    "backtohomepage" => "Regresar a la página principal",
+    "tobin" => "Papelera",
+    "updatetask" => "Actualizar tarea",
+    "notasks" => "No hay tareas.",
+    "todo" => "Por hacer",
+    "daysleft" => " días restantes",
+    "dayslate" => " días tarde",
+    "today" => "Hoy!",
+    "infotext" => 'Esta lista de tareas y cosas por hacer está escrita en PHP. Utiliza un archivo de texto JSON para las tareas (<a href="task.json">da click aquí para ver el archivo</a>) y la parte visual fue creado con el <a href="http://99lime.com">excelente HTML5 Kickstart framework de Joshua Gatcke.</a><br />Este script fue escrito por <a href="https://raymii.org">Remy van Elst</a>.',
+    "info" => "Información",
+    "finishedtasks" => "Tareas termiandas",
+    "" => "",
+    "" => "",
+    "" => "",
+    "" => "",
+    "" => ""
+
+    );
+
+?>
