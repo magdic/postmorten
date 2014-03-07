@@ -24,7 +24,7 @@
 /*---------------------------------
 	HTML ELEMENTS
 -----------------------------------*/
-a{color:#4D99E0;background:#efefef;padding:10px;border-radius:2px solid transparent;text-decoration:none;margin:20px;}
+a{color:#4D99E0;background:#efefef;padding:5px;border-radius:2px solid transparent;text-decoration:none;margin:5px;}
 a:active{color:inherit;}
 a:visited{}
 a:hover{}
