@@ -81,10 +81,10 @@ function listtasks($json_a,$taskstatus,$outputformat) {
         echo "<table class=\"sortable striped\">";
         echo "<thead>";
         echo "<tr>";
-        echo "<th>First</th>";
+        echo "<th>Headline</th>";
         echo "<th>Timeline Date</th>";
         echo "<th>Days Open</th>";
-        echo "<th>Dueee</th>";
+        echo "<th>Text</th>";
 
         echo "<th> </th>";
         echo "</tr>";
