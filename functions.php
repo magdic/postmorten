@@ -13,7 +13,8 @@ $file="task.json";
 
 $jsonfile = file_get_contents($file);
 $json_b = json_decode($jsonfile, true);
-$json_a = $json_b["tasks"];
+$json_a = $json_b["timeline"]["date"];
+//print_r($json_a);die();
 $closed=0;
 $havetasks = 0;
 error_reporting(0);
@@ -46,7 +47,6 @@ function showinputform($actionpage) {
     echo "<input type=\"hidden\" name=\"action\" value=\"add\"></input>";
     echo "<input name=\"dateadded\" type=\"hidden\" value=\"${vandaag}\"></input>\n";
     echo "<input type=\"submit\" name=\"submit\" value=\"".$LANG["addtask"]."\"></input>";
-    echo "<a href=\"testing-timeline.html\">See the timeline process</a>";
     
     echo "</form>";
     //echo "</table>";
@@ -70,7 +70,6 @@ function dateDiff($start, $end) {
 
 
 
-
 function listtasks($json_a,$taskstatus,$outputformat) {
     global $LANG;
     $vandaag=date('d-m-Y');
@@ -83,131 +82,39 @@ function listtasks($json_a,$taskstatus,$outputformat) {
         echo "<tr>";
         echo "<th>Headline</th>";
         echo "<th>Timeline Date</th>";
-        echo "<th>Days Open</th>";
         echo "<th>Text</th>";
+        echo "<th>Options</th>";
 
         echo "<th> </th>";
         echo "</tr>";
         echo "</thead>";
      
-
-    if(is_array($json_a)) {     
+       
+    if(is_array($json_a)) {   
+     
         $tasknumber=1;
         $havetasks=NULL;
-        foreach ($json_a as $item => $task) {
-            if ($task['status'] == $taskstatus) {  
+
+        
+            for($i = 0; $i < count($json_a); ++$i) {
+        
+
             
-                $havetasks=1;
 
-                    echo "<tr>";
-                                    #Prio
-                    echo "<td>";
+            echo "<tr>";
+                    
+            echo "<td>".$json_a[$i]['startDate']."</td>";
+            echo "<td>".$json_a[$i]['headline']."</td>";
+            echo "<td>".$json_a[$i]['text']."</td>";
 
-                    switch ($task["priority"]) {
-                        case 1:
-                            echo "<font color = \"red\" >".$LANG["high"]."</font>";
-                            break;
-                        case 2:
-                            echo $LANG["normal"];
-                            break;
-                        case 3:
-                            echo $LANG["low"];
-                            break;
-                        case 4:
-                            echo "<font color = \"#0011ee\" >".$LANG["onhold"]."</font>";
-                            break;
-                    }
+            echo "</tr>";
+            }
+            foreach ($json_a as $item => $task) {
 
-                    echo "</td>";
-                    $dayopen = NULL;
-                                    #task
-                    echo "<td>".$task['startDate']."</td>";
-                    if ($taskstatus == "open") {
-                        $dayopen = dateDiff(str_replace('-', '/',$task["dateadded"]),$vandaag);
-                    } elseif ($taskstatus == "closed"  || $taskstatus == "deleted" && preg_match('/([0-9]{2}-[0-9]{2}-[0-9]{4})/',$task["donedate"])) {
-                        $dayopen = dateDiff(str_replace('-', '/',$task["dateadded"]),str_replace('-', '/',$task["donedate"]));
-                       
-                    } elseif ($taskstatus == "closed" || $taskstatus == "deleted" && !preg_match('/([0-9]{2}-[0-9]{2}-[0-9]{4})/',$task["donedate"])) {
-                        $dayopen = "-";
-                    }
-
-                    echo "<td>".$dayopen."</td>";
-
-                    #due date
-                    echo "<td>";
-                    $dayclosed = $task["duedate"];
-                    switch ($task["duedate"]) {
-                        case '-':
-                            echo "-";
-                            break;
-                       
-                        default:
-                            $matches=NULL;
-
-                            if (preg_match('/([0-9]{2}-[0-9]{2}-[0-9]{4})/', $task["duedate"],$matches)) {
-                                $taskduedate=$matches[0];
-                                $daysclosed = dateDiff($vandaag,str_replace('-', '/',$taskduedate));
-                                
-
-                                if ($daysclosed < 0) {
-                                    $daysclosed = "<u>" .abs($daysclosed) . $LANG["dayslate"] . " (".date('D d M',strtotime(str_replace('-', '/',$taskduedate))).")</u>";
-                                } elseif ($daysclosed == 0) {
-                                    $daysclosed = "<b>".$LANG["today"]." (".date('D d M',strtotime(str_replace('-', '/',$taskduedate))).")</b>";
-
-
-                                } else {
-                                        $daysclosed = $daysclosed . $LANG["daysleft"] ." (".date('D d M',strtotime(str_replace('-', '/',$taskduedate))).")";
-                                }
-                            }                            
-
-                            if ($taskstatus == "closed" || $taskstatus == "deleted") {
-
-                                echo date('D d M',strtotime(str_replace('-', '/',$taskduedate)));
-                            } else {
-                                echo $daysclosed;
-                            }
-
-                            
-                            break;
-
-                    }
-
-                    echo "</td>";
-                                    #action:
-                    echo "<td>";
-
-                    switch ($taskstatus) {
-                        case 'open':
-                                            #done
-                        echo "<a href=\"action.php?id=" .$item. "&action=done\"><span class=\"icon small darkgray\" data-icon=\"C\"></span></a>";
-                                            #edit
-                        echo "  ";
-                        echo "<a href=\"action.php?id=" .$item. "&action=edit\"><span class=\"icon small darkgray\" data-icon=\"7\"></span></a>";
-                                            #delete
-                        echo "  ";
-                        echo "<a href=\"action.php?id=" . $item . "&action=delete\"><span class=\"icon small darkgray\" data-icon=\"T\"></span></a>";
-                        break;
-
-                        case 'closed':
-                        echo "<a href=\"action.php?id=" .$item. "&action=delete\"><span class=\"icon small darkgray\" data-icon=\"T\"></span></a>";
-                        break;
-                    }                                        
-                    echo "</td>";
-                    echo "</tr>";
-                 
-                $tasknumber+=1;
-            }   
-        }
-        if($havetasks == 0) {
-               
-                echo "<tr><td colspan=6>No Data</td></tr>";  
              
         }
-    } else { 
-     
-       echo "<tr><td colspan=6>No Data</td></tr>";  
-    
-}
+       
+    }
 
 
     

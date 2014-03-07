@@ -32,26 +32,26 @@ echo "</div> <!-- tab div -->";
 
 
 
-echo "<div class=\"tab-content\" id=\"finishedtab\">";
+// echo "<div class=\"tab-content\" id=\"finishedtab\">";
 
-echo "<h2>".$LANG["finishedtasks"]."</h2>";
-	listtasks($json_a,"closed","table");
+// echo "<h2>".$LANG["finishedtasks"]."</h2>";
+// 	listtasks($json_a,"closed","table");
 
-echo "</div> <!-- tab div -->";
+// echo "</div> <!-- tab div -->";
 
-echo "<div class=\"tab-content\" id=\"thrashtab\">";
-echo "<h2>".$LANG["thrash"]."</h2>";
+// echo "<div class=\"tab-content\" id=\"thrashtab\">";
+// echo "<h2>".$LANG["thrash"]."</h2>";
 
-listtasks($json_a,"deleted","table");
+// listtasks($json_a,"deleted","table");
 
-echo "</div> <!-- tab div -->";
+// echo "</div> <!-- tab div -->";
 
 echo "</div><!--col_12 -->";
 
 echo "<div class=\"col_6\">";
 
 echo "<h2>Info</h2><p>Timeline Post Morten, using Php code and save data to Json file, 
-requiere by the plugin TimelineJS.
+requiered by the plugin TimelineJS.
 <a href=\"http://timeline.knightlab.com/\" target=\"_blank\">http://timeline.knightlab.com/</a></p><p><b>Startup Intern Project version: 1.0</b></p>";
 
 echo "</div> <!-- col_ -->";
