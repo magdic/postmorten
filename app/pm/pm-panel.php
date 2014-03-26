@@ -3,10 +3,10 @@
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('config/dbconfig.php');
+include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "config/functions.php";
+include "../../config/functions.php";
 
 ?>
 
@@ -42,7 +42,7 @@ include "config/functions.php";
 			<li><a href="">My Profile</a></li>
 			<li><a href="timelines-to-me.php">Timelines Added to Me</a></li>
 			<li><a href="">Hook User to Project</a></li>
-			<li><a href="logout.php">Log Out</a></li>
+			<li><a href="../../logout.php">Log Out</a></li>
 		</ul>
 
 

@@ -3,32 +3,10 @@
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('config/dbconfig.php');
+include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "config/functions.php";
-
-//Array to store validation errors
-$errmsg_arr = array();
-if (!isset($_SESSION)) {
-session_start();
-
-}
-
-
- 
-//Validacion de bandera de error
-$errflag = false;
-//Funcion para recibir valores del form. Previene SQL injection
-function clean($str)
-	{
-		$str = @trim($str);
-		if(get_magic_quotes_gpc())
-			{
-			$str = stripslashes($str);
-			}
-		return mysql_real_escape_string($str);
-	}
+include "../../config/functions.php";
 
 ?>
 
@@ -36,7 +14,7 @@ function clean($str)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lead Create a Project | my App</title>
+	<title>Welcome Lead User | my App</title>
 </head>
 <body>
 	<?php
@@ -59,15 +37,15 @@ function clean($str)
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			
 			?>
-	<h1>Create a Project</h1>
-		<a href="lead-panel.php">Lead Panel</a>
-		<form action="controllers/addproject.php" method="post">
-		<p>Project Name:   <input type="text" placeholder="This is the Headline" id="projectname" name="projectname"></input></p>
-		<p>Type:           <input type="text" value="default" name="type" readonly></input></p>
-		<p>Reference Text: <input type="text" placeholder="Reference Text" id="reference" name="reference"></input></p>
-		<p>Start Date:     <input type="text" placeholder="yyyy,mm,dd" id="startdate" name="startdate"></input></p>
-		<p><input type="submit" name="submit" value="Create Project"></input></p>
-		</form>
+	<h1>Welcome Lead Panel</h1>
+
+		<ul>
+			<li><a href="">My Profile</a></li>
+			<li><a href="lead-add-project.php">Create Project</a></li>
+			<li><a href="add-pm-to-project.php">Hook PM to Project</a></li>
+			<li><a href="../../logout.php">Log Out</a></li>
+		</ul>
+
 
 
 <?php

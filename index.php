@@ -77,14 +77,14 @@ include "config/functions.php";
 							//update the online field to 50 seconds into the future
 							$time = date('U')+50;
 							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-							echo '<script>window.location.href="lead-panel.php"</script>';
+							echo '<script>window.location.href="app/lead/lead-panel.php"</script>';
 						}
 						else {
 							$_SESSION['uid'] = $row['id'];
 							//update the online field to 50 seconds into the future
 							$time = date('U')+50;
 							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-							echo '<script>window.location.href="pm-panel.php"</script>';
+							echo '<script>window.location.href="app/pm/pm-panel.php"</script>';
 						}
 							
 							//update the online field to 50 seconds into the future

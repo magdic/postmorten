@@ -3,10 +3,10 @@
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('config/dbconfig.php');
+include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "config/functions.php";
+include "../../config/functions.php";
 
 //Array to store validation errors
 $errmsg_arr = array();
@@ -63,7 +63,7 @@ function clean($str)
 	<h2>Assign PM to Project</h2>
 		<a href="lead-panel.php">Lead Panel</a>
 
-		<form action="controllers/hook-pm-to-project.php" method="post">
+		<form action="../../controllers/hook-pm-to-project.php" method="post">
 		<p>Select the Project: 
 		<?php
 			$result = mysql_query("SELECT * FROM projectTB");
