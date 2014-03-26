@@ -3,10 +3,10 @@
 		session_start();
 
 		//connect to the database so we can check, edit, or insert data to our users table
-		include "./dbconfig.php";
+		include "../config/dbconfig.php";
 
 		//include out functions file giving us access to the protect() function
-		include "./functions.php";
+		include "../config/functions.php";
 		
 		//Check to see if the form has been submitted
 		if(isset($_POST['submit'])){
@@ -21,7 +21,7 @@
 			if(!$username || !$password || !$passconf || !$email){
 				//if any weren't display the error message
 				$msg =md5("Fill all");
-				header("location: register.php?message=$msg");
+				header("location: ../register.php?message=$msg");
 			}else{
 				//if all were filled in continue checking
 				
@@ -29,7 +29,7 @@
 				if(strlen($username) > 32 || strlen($username) < 3){
 					//if it is display error message
 					$msg =md5("USer lenght");
-					header("location: register.php?message=$msg");
+					header("location: ../register.php?message=$msg");
 				}else{
 					//if not continue checking
 					
@@ -41,7 +41,7 @@
 					if($num == 1){
 						//if yes the username is taken so display error message
 						$msg =md5("username taken");
-						header("location: register.php?message=$msg");
+						header("location: ../register.php?message=$msg");
 					}else{
 						//otherwise continue checking
 						
@@ -49,7 +49,7 @@
 						if(strlen($password) < 5 || strlen($password) > 32){
 							//if it is display error message
 							$msg =md5("Pass lenght");
-							header("location: register.php?message=$msg");
+							header("location: ../register.php?message=$msg");
 						}else{
 							//else continue checking
 							
@@ -57,7 +57,7 @@
 							if($password != $passconf){
 								//if not display error message
 								$msg =md5("Pass not matches");
-								header("location: register.php?message=$msg");
+								header("location: ../register.php?message=$msg");
 							}else{
 								//otherwise continue checking
 								
@@ -70,7 +70,7 @@
 					            if(!in_array(substr($email, strrpos($email, '@') + 1), $acceptedDomains)){
 					            	//if not display error message
 					            	$msg =md5("You are not member");
-									header("location: register.php?message=$msg");
+									header("location: ../register.php?message=$msg");
 					            }else{
 					            	//if they do, continue checking
 					            	
@@ -82,7 +82,7 @@
 					            	if($num1 == 1){
 					            		//the email address supplied is taken so display error message
 					            		$msg =md5("The E-mail address you supplied is already taken!");
-										header("location: register.php?message=$msg");
+										header("location: ../register.php?message=$msg");
 									}else{
 										//finally, otherwise register there account
 										
@@ -101,7 +101,7 @@
 										
 										//display the success message
 										$msg =md5("You have successfully registered, please visit you inbox to activate your account!");
-										header("location: register.php?message=$msg");
+										header("location: ../register.php?message=$msg");
 									}
 								}
 							}

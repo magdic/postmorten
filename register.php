@@ -3,10 +3,10 @@
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include "./dbconfig.php";
+include "config/dbconfig.php";
 
 //include out functions file giving us access to the protect() function
-include "./functions.php";
+include "config/functions.php";
 
 ?>
 <html>
@@ -44,7 +44,7 @@ include "./functions.php";
 			// echo '<center>'.$msg.'</center>';			
 		?>
 		<div id="border">
-			<form action="regAction.php" method="post">
+			<form action="controllers/regAction.php" method="post">
 				<table cellpadding="2" cellspacing="0" border="0">
 					<tr>
 						<td>Username: </td>

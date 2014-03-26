@@ -4,10 +4,10 @@
 //session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('dbconfig.php');
+include('../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "./functions.php";
+include "../config/functions.php";
 
 
 //Array to store validation errors
@@ -31,20 +31,14 @@ function clean($str)
 	}
 
 //Sanitize the POST values
-$projectname= clean($_POST['projectname']);
-$reference = clean($_POST['reference']);
-$startdate = clean($_POST['startdate']);
-//$id = substr(md5(rand()), 0, 20);
+$idP= clean($_POST['idProjectJO']);
+$idUser = clean($_POST['idUsernameJO']);
 
-$id = time() + (7 * 24 * 60 * 60);
-$idEncryped = md5($id);
-//echo md5($id);die();
-//echo 'Project Name: '.$projectname;die();
 
-$resultf = mysql_query("SELECT * FROM projectTB where projectname='$projectname' AND reference='$reference' AND startdate='$startdate'");
+$resultf = mysql_query("SELECT * FROM joinedTB where idProjectJO='$idP' AND idUsernameJO='$idUser'");
 while($rowf = mysql_fetch_array($resultf))
 	{
-	$cccvvv=$rowf['projectname'];
+	$cccvvv=$rowf['idProjectJO'];
 	if ($cccvvv!=''){
 	//Login failed
 	$errmsg_arr[] = 'Project Allready Added';
@@ -53,11 +47,11 @@ while($rowf = mysql_fetch_array($resultf))
 	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 	session_write_close();
 	//header("location: login_ok.php");
-	echo "Error";
+	echo "Project added to PM user";
 	exit();
 	}
 	}
 	}
-mysql_query("INSERT INTO projectTB (idP, projectname, reference, startdate)
-VALUES ('$idEncryped','$projectname','$reference','$startdate')");
-header("location: lead-panel.php");
+mysql_query("INSERT INTO joinedTB (idProjectJO, idUsernameJO)
+VALUES ('$idP','$idUser')");
+header("location: ../add-pm-to-project.php");
