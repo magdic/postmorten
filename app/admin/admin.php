@@ -3,10 +3,10 @@
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('config/dbconfig.php');
+include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "config/functions.php";
+include "../../config/functions.php";
 
 ?>
 

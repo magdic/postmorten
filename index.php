@@ -70,7 +70,7 @@ include "config/functions.php";
 								//update the online field to 50 seconds into the future
 							$time = date('U')+50;
 							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-							echo '<script>window.location.href="admin.php"</script>';
+							echo '<script>window.location.href="app/admin/admin.php"</script>';
 
 						} else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 2) {
 							$_SESSION['uid'] = $row['id'];
