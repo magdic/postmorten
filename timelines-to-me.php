@@ -18,20 +18,7 @@ session_start();
 $pmuid = $_SESSION['uid'];
 $result = mysql_query("SELECT * FROM projectTB AS a, users AS b, joinedTB AS c WHERE a.idP = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$pmuid'");
 
-// $id=$_GET['id'];
-// $result = mysql_query("SELECT * FROM member where idmember='$id'");
 
-// while($row = mysql_fetch_array($result))
-//   {
-// 	$idmember=$row['idmember'];
-// 	$mbname=$row['mbname'];
-// 	$mbsurname=$row['mbsurname'];
-// 	$mbdate	=$row['mbdate'];
-// 	$mbemail =$row['mbemail'];
-// 	$mbphone=$row['mbphone'];
-// 	$mbasistencia=$row['mbasistencia'];
-// 	$mbverses=$row['mbverses'];
-// }
 
 
  
