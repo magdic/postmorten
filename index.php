@@ -1,60 +1,124 @@
 <?php
+//allow sessions to be passed so we can see if the user is logged in
+session_start();
 
+//connect to the database so we can check, edit, or insert data to our users table
+include('dbconfig.php');
 
-include("header.php");
+//include out functions file giving us access to the protect() function made earlier
+include "./functions.php";
 
+?>
+<html>
+	<head>
+		<title>Login Page | My App</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<?php
+		
+		//If the user has submitted the form
+		if($_POST['submit']){
+			//protect the posted value then store them to variables
+			$username = protect($_POST['username']);
+			$password = protect($_POST['password']);
+			
+			//Check if the username or password boxes were not filled in
+			if(!$username || !$password){
+				//if not display an error message
+				echo "<center>You need to fill in a <b>Username</b> and a <b>Password</b>!</center>";
+			}else{
+				//if the were continue checking
+				
+				//select all rows from the table where the username matches the one entered by the user
+				$res = mysql_query("SELECT * FROM `users` WHERE `username` = '".$username."'");
+				$num = mysql_num_rows($res);
+				
+				//check if there was not a match
+				if($num == 0){
+					//if not display an error message
+					echo "<center>The <b>Username</b> you supplied does not exist!</center>";
+				}else{
+					//if there was a match continue checking
+					
+					//select all rows where the username and password match the ones submitted by the user
+					$res = mysql_query("SELECT * FROM `users` WHERE `username` = '".$username."' AND `password` = '".md5($password)."'");
+					$num = mysql_num_rows($res);
+					
+					//check if there was not a match
+					if($num == 0){
+						//if not display error message
+						echo "<center>The <b>Password</b> you supplied does not match the one for that username!</center>";
+					}else{
+						//if there was continue checking
+						
+						//split all fields fom the correct row into an associative array
+						$row = mysql_fetch_assoc($res);
+						
+						//check to see if the user has not activated their account yet
+						if($row['active'] != 1){
+							//if not display error message
+							echo "<center>You have not yet <b>Activated</b> your account!</center>";
+						}else{
+							//if they have log them in
+							$_SESSION['uid'] = $row['id'];
+							//set the login session storing there id - we use this to see if they are logged in or not
+							if ($_SESSION['uid'] = $row['id'] && $row['role'] == 1){
+									$_SESSION['uid'] = $row['id'];
+							//if($row['role'] == 1) {
+							//Redirect to the user page
+								//update the online field to 50 seconds into the future
+							$time = date('U')+50;
+							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+							echo '<script>window.location.href="admin.php"</script>';
 
-echo "<ul class=\"tabs left\">";
-echo "<li><a href=\"#maintab\">Timelines</a></li>";
-// echo "<li><a href=\"#finishedtab\">".$LANG["finishedtasks"]."</a></li>";
-// echo "<li><a href=\"#thrashtab\">".$LANG["thrash"]."</a></li>";
-echo "</ul>";
-
-
-echo "<div id=\"maintab\" class=\"tab-content\">";
-echo "<h2>Add Timelines</h2>";
-
-echo "<p>";
-
-showinputform("action.php");
-
-echo "</p>";
-
-echo "<p>";
-echo "<h2>".$LANG["todo"]."</h2>";
-
-listtasks($json_a,"open","table");
-
-echo "</p>";
-
-
-echo "</div> <!-- tab div -->";
-
-
-
-// echo "<div class=\"tab-content\" id=\"finishedtab\">";
-
-// echo "<h2>".$LANG["finishedtasks"]."</h2>";
-// 	listtasks($json_a,"closed","table");
-
-// echo "</div> <!-- tab div -->";
-
-// echo "<div class=\"tab-content\" id=\"thrashtab\">";
-// echo "<h2>".$LANG["thrash"]."</h2>";
-
-// listtasks($json_a,"deleted","table");
-
-// echo "</div> <!-- tab div -->";
-
-echo "</div><!--col_12 -->";
-
-echo "<div class=\"col_6\">";
-
-echo "<h2>Info</h2><p>Timeline Post Morten, using Php code and save data to Json file, 
-requiered by the plugin TimelineJS.
-<a href=\"http://timeline.knightlab.com/\" target=\"_blank\">http://timeline.knightlab.com/</a></p><p><b>Startup Intern Project version: 1.0</b></p>";
-
-echo "</div> <!-- col_ -->";
-
-
-include("footer.php");
+						} else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 2) {
+							$_SESSION['uid'] = $row['id'];
+							//update the online field to 50 seconds into the future
+							$time = date('U')+50;
+							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+							echo '<script>window.location.href="lead-panel.php"</script>';
+						}
+						else {
+							$_SESSION['uid'] = $row['id'];
+							//update the online field to 50 seconds into the future
+							$time = date('U')+50;
+							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+							echo '<script>window.location.href="pm-panel.php"</script>';
+						}
+							
+							//update the online field to 50 seconds into the future
+							$time = date('U')+50;
+							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+							
+							//redirect them to the usersonline page
+							header('Location: usersOnline.php');
+						}
+					}
+				}
+			}
+		}
+		
+		?>
+		<form action="index.php" method="post">
+			<div id="border">
+				<table cellpadding="2" cellspacing="0" border="0">
+					<tr>
+						<td>Username:</td>
+						<td><input type="text" name="username" /></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" name="password" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input type="submit" name="submit" value="Login" /></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2"><a href="register.php">Register</a> | <a href="forgot.php">Forgot Pass</a></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</body>
+</html>
