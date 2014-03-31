@@ -1,10 +1,10 @@
 
 <?php
 //allow sessions to be passed so we can see if the user is logged in
-
+//asjdf;lasjdflaksjdf;lakdjfa;slkdjf;alksjf;lajf
 session_start();
 
-//testing git asdfasd
+
 //connect to the database so we can check, edit, or insert data to our users table
 include('config/dbconfig.php');
 
