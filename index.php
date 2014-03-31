@@ -120,5 +120,6 @@ include "config/functions.php";
 				</table>
 			</div>
 		</form>
+		
 	</body>
 </html>

@@ -56,7 +56,7 @@ include "config/functions.php";
 						$row = mysql_fetch_assoc($res);
 						
 						//send email containing their password to their email address
-						mail($email, 'Forgotten Password', "Here is your password: ".$row['password']."\n\nPlease try not too lose it again!", 'From: noreply@yourwebsitehere.co.uk');
+						mail($email, 'Forgotten Password', "Here is your password: ".$row['password']."\n\nPlease try not too lose it again!", 'From: noreply@thehang.net');
 						
 						//display success message
 						echo "<center>An email has been sent too your email address containing your password!</center>";
