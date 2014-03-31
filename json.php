@@ -91,8 +91,8 @@ function disconnectDB($conexion){
 
 
         $print = json_encode($array);
-        $search = array("{\"date\"",$row\[\'caption\'\]);
-        $replace = array('"date"','"CAPULINA');
+        $search = array("{\"date\"",'"'.$row['caption'].'"}}]}');
+        $replace = array('"date"','"CAPULINA",');
         echo str_replace($search, $replace, $print);
 
         // $rawdata[$i] = $row;
