@@ -1,0 +1,18 @@
+{
+  "name": "postmorten",
+  "version": "0.1.0",
+  "homepage": "https://github.com/magdic/postmorten",
+  "authors": [
+    "Mauricio Ramirez <mau.ram.ro@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/js/vendors",
+    "test",
+    "tests"
+  ]
+}

@@ -7,16 +7,16 @@
 
 		//include out functions file giving us access to the protect() function
 		include "../config/functions.php";
-		
+
 		//Check to see if the form has been submitted
 		if(isset($_POST['submit'])){
-			
+
 			//protect and then add the posted data to variables
 			$username = protect($_POST['username']);
 			$password = protect($_POST['password']);
 			$passconf = protect($_POST['passconf']);
 			$email = protect($_POST['email']);
-			
+
 			//check to see if any of the boxes were not filled in
 			if(!$username || !$password || !$passconf || !$email){
 				//if any weren't display the error message
@@ -24,7 +24,7 @@
 				header("location: ../register.php?message=$msg");
 			}else{
 				//if all were filled in continue checking
-				
+
 				//Check if the wanted username is more than 32 or less than 3 charcters long
 				if(strlen($username) > 32 || strlen($username) < 3){
 					//if it is display error message
@@ -32,11 +32,11 @@
 					header("location: ../register.php?message=$msg");
 				}else{
 					//if not continue checking
-					
+
 					//select all the rows from out users table where the posted username matches the username stored
 					$res = mysql_query("SELECT * FROM `users` WHERE `username` = '".$username."'");
 					$num = mysql_num_rows($res);
-					
+
 					//check if theres a match
 					if($num == 1){
 						//if yes the username is taken so display error message
@@ -44,7 +44,7 @@
 						header("location: ../register.php?message=$msg");
 					}else{
 						//otherwise continue checking
-						
+
 						//check if the password is less than 5 or more than 32 characters long
 						if(strlen($password) < 5 || strlen($password) > 32){
 							//if it is display error message
@@ -52,7 +52,7 @@
 							header("location: ../register.php?message=$msg");
 						}else{
 							//else continue checking
-							
+
 							//check if the password and confirm password match
 							if($password != $passconf){
 								//if not display error message
@@ -60,11 +60,11 @@
 								header("location: ../register.php?message=$msg");
 							}else{
 								//otherwise continue checking
-								
+
 								//Set the format we want to check out email address against
 								// $checkemail = "/^[a-z0-9]+([_\\.-][a-z0-9]+)*@(thehang)+\\.net$/i";
 								// $checkemailCM = "/^[a-z0-9]+([_\\.-][a-z0-9]+)*@(soup)+\\.com$/i";
-								
+
 								$acceptedDomains = array('thehangar.cr', 'soup.com');
 								//check if the formats match
 					            if(!in_array(substr($email, strrpos($email, '@') + 1), $acceptedDomains)){
@@ -73,11 +73,11 @@
 									header("location: ../register.php?message=$msg");
 					            }else{
 					            	//if they do, continue checking
-					            	
+
 					            	//select all rows from our users table where the emails match
 					            	$res1 = mysql_query("SELECT * FROM `users` WHERE `email` = '".$email."'");
 					            	$num1 = mysql_num_rows($res1);
-					            	
+
 					            	//if the number of matchs is 1
 					            	if($num1 == 1){
 					            		//the email address supplied is taken so display error message
@@ -85,20 +85,20 @@
 										header("location: ../register.php?message=$msg");
 									}else{
 										//finally, otherwise register there account
-										
+
 										//time of register (unix)
 						            	$registerTime = date('U');
-						            	
+
 						            	//make a code for our activation key
 						            	$code = md5($username).$registerTime;
-						            	
+
 						            	//insert the row into the database
 										$res2 = mysql_query("INSERT INTO `users` (`username`, `password`, `email`, `rtime`) VALUES('".$username."','".md5($password)."','".$email."','".$registerTime."')");
-										
+
 										//send the email with an email containing the activation link to the supplied email address
 										mail($email, $INFO['chatName'].
-											' registration confirmation', "Thank you for registering to us ".$username.",\n\nHere is your activation link. If the link doesn't work copy and paste it into your browser address bar.\n\nhttp://localhost:8888/phpcodes/login/full_login/activate.php?code=".$code,'From: noreply@thehang.net');
-										
+											' registration confirmation', "Thank you for registering to us ".$username.",\n\nHere is your activation link. If the link doesn't work copy and paste it into your browser address bar.\n\nhttp://localhost:8888/postmorten/activate.php?code=".$code,'From: noreply@thehang.net');
+
 										//display the success message
 										$msg =md5("You have successfully registered, please visit you inbox to activate your account!");
 										header("location: ../register.php?message=$msg");
@@ -110,5 +110,5 @@
 				}
 			}
 		}
-		
+
 		?>
