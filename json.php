@@ -80,7 +80,7 @@ function disconnectDB($conexion){
         $print = json_encode($array);
 
         setcookie("TestCookie", $print, time()+120);
-        echo str_replace('}}{', '}},{', $print);
+        echo str_replace("\\{", '}},{', $print);
 
         // $rawdata[$i] = $row;
         // $i++;
