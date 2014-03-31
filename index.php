@@ -1,3 +1,4 @@
+
 <?php
 //allow sessions to be passed so we can see if the user is logged in
 session_start();
@@ -423,3 +424,4 @@ include "config/functions.php";
         <!--[if !IE]> -->
 	</body>
 </html>
+
