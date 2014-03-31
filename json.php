@@ -56,31 +56,44 @@ function disconnectDB($conexion){
     $i=0;
 
     $testarr = array(
-            'firstname'=>'name',
-            'lastname'=>'lastname'
+            'headline'=>'name',
+            'type'=>'default',
+            'text'=>'Lorem ipsum ip amen',
+            'startDate'=>'2000,09,28'
         );
 
+        $firstArray = json_encode($testarr);
+
+        echo '{"timeline":'.str_replace("\"}", ',', $firstArray);
+
+        //echo '{"timeline":'.json_encode($testarr);
     while($row = mysqli_fetch_array($result))
     {       
          $rawdata[$i] = $row;
             $i++;
 
         $array = array(
+            // 'headline' => $row['headlineP'],
+            // 'type' => 'default',
+            // 'text' => $row['textP'],
+            // 'startDate' => $row['startDateP'],
+            'date' => array(array(
                 'startDate'=>$row['startDate'], 
                 'headline'=>$row['headline'], 
                 'text'=>$row['text'], 
                 'asset'=>array(
                 'media'=>$row['media'],
                 'credit'=>$row['credit'],
-                'caption'=>$row['caption'],
+                'caption'=>$row['caption']
+                ),),
             )
         );
 
 
         $print = json_encode($array);
-
-        setcookie("TestCookie", $print, time()+120);
-        echo str_replace("\\{", '}},{', $print);
+        $search = array("{\"date\"",$row\[\'caption\'\]);
+        $replace = array('"date"','"CAPULINA');
+        echo str_replace($search, $replace, $print);
 
         // $rawdata[$i] = $row;
         // $i++;
@@ -119,8 +132,6 @@ function disconnectDB($conexion){
         
         
     }
-
-   // echo 'Otra VEZ '.$_COOKIE["TestCookie"];
 
     
 
