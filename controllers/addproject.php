@@ -41,10 +41,10 @@ $idEncryped = md5($id);
 //echo md5($id);die();
 //echo 'Project Name: '.$projectname;die();
 
-$resultf = mysql_query("SELECT * FROM projectTB where projectname='$projectname' AND reference='$reference' AND startdate='$startdate'");
+$resultf = mysql_query("SELECT * FROM timeProject where headlineP='$projectname' AND textP='$reference' AND startDateP='$startdate'");
 while($rowf = mysql_fetch_array($resultf))
 	{
-	$cccvvv=$rowf['projectname'];
+	$cccvvv=$rowf['headlineP'];
 	if ($cccvvv!=''){
 	//Login failed
 	$errmsg_arr[] = 'Project Allready Added';
@@ -58,6 +58,6 @@ while($rowf = mysql_fetch_array($resultf))
 	}
 	}
 	}
-mysql_query("INSERT INTO projectTB (idP, projectname, reference, startdate)
+mysql_query("INSERT INTO timeProject (idtimeLine, headlineP, textP, startDateP)
 VALUES ('$idEncryped','$projectname','$reference','$startdate')");
-header("location: ../lead-panel.php");
+header("location: ../app/lead/lead-panel.php");

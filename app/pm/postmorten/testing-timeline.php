@@ -47,7 +47,7 @@ $json_id = $idProject;
         var timeline_config = {
          width: "100%",
          height: "80%",
-         source: "json_files/<?php echo $json_id;?>.json"
+         source: "../../../json.php?id=<?php echo $json_id;?>"
         }
       </script>
       <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
