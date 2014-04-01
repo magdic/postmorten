@@ -54,6 +54,9 @@ module.exports = function(grunt) {
                 },
                 files: [
                 '**.php',
+                'app/admin/{,*/}*.php',
+                'app/lead/{,*/}*.php',
+                'app/pm/{,*/}*.php',
                 'app/assets/*.html',
                 'app/assets/css/{,*/}*.css',
                 'app/assets/scss/{,*/}*.scss',

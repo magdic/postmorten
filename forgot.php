@@ -46,7 +46,6 @@ include "config/functions.php";
 			//check if the email box was not filled in
 			if(!$email){
 				//if it wasn't display error message
-				/*echo "<center>You need to fill in your <b>E-mail</b> address!</center>";*/
 
                 echo    "<div class='row'>
                             <div class='col-sm-6 col-sm-offset-3'>
@@ -56,7 +55,7 @@ include "config/functions.php";
                                    </button>
                                    <strong>
                                         <i class='icon-remove'></i>
-                                           Oh snap!
+
                                    </strong>
                                    You need to fill in your <b>E-mail</b> address!
                                        <br />
@@ -72,7 +71,6 @@ include "config/functions.php";
 				//check if the email doesnt match the required format
 	            if(!preg_match($checkemail, $email)){
 	            	//if not then display error message
-	                /*echo "<center><b>E-mail</b> is not valid, must be name@server.tld!</center>";*/
 
                     echo "<div class='row'>
                             <div class='col-sm-6 col-sm-offset-3'>
@@ -82,7 +80,7 @@ include "config/functions.php";
                                    </button>
                                    <strong>
                                         <i class='icon-remove'></i>
-                                           Oh snap!
+
                                    </strong>
                                    <b>E-mail</b> is not valid, must be name@server.tld!
                                        <br />
@@ -99,7 +97,6 @@ include "config/functions.php";
 	            	//check if the number of row matched is equal to 0
 	            	if($num == 0){
 	            		//if it is display error message
-						/*echo "<center>The <b>E-mail</b> you supplied does not exist in our database!</center>";*/
 
                             echo "<div class='row'>
                                     <div class='col-sm-6 col-sm-offset-3'>
@@ -109,7 +106,7 @@ include "config/functions.php";
                                            </button>
                                            <strong>
                                                 <i class='icon-remove'></i>
-                                                   Oh snap!
+
                                            </strong>
                                            The <b>E-mail</b> you supplied does not exist in our database!
                                                <br />
@@ -126,7 +123,6 @@ include "config/functions.php";
 						mail($email, 'Forgotten Password', "Here is your password: ".$row['password']."\n\nPlease try not too lose it again!", 'From: noreply@yourwebsitehere.co.uk');
 
 						//display success message
-						/*echo "<center>An email has been sent too your email address containing your password!</center>";*/
 
                         echo    "<div class='row'>
                                     <div class='col-sm-6 col-sm-offset-3'>
@@ -158,8 +154,6 @@ include "config/functions.php";
                         <div class="login-container">
                              <div class="center">
                                 <h1>
-                                    <!-- <i class="icon-leaf green"></i> -->
-                                  <!--   <span class="red">Ace</span> -->
                                     <span class="white">PostMorten</span>
                                 </h1>
                                 <h4 class="blue">&copy; Hangar</h4>

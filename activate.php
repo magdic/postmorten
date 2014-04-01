@@ -56,7 +56,6 @@ include "config/functions.php";
 				if($code == md5($row['username']).$row['rtime']){
 					//if it does then activate there account and display success message
 					$res1 = mysql_query("UPDATE `users` SET `active` = '1', `name` = '".$row['nameFDB']."', `lastname` = '".$row['lastNameFDB']."', `role` = '".$row['position']."' WHERE `id` = '".$row['id']."'");
-					/*echo "<center>You have successfully activated your account!</center>";*/
 
                     echo "<div class='row'>
                                <div class='col-sm-6 col-sm-offset-3'>

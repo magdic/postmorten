@@ -65,8 +65,8 @@ include "config/functions.php";
                                         <i class='icon-remove'></i>
                                     </button>
                                     <strong>
-                                         <i class='icon-remove'></i>
-                                            Oh snap!
+                                         <i class='icon-ban-circle'></i>
+
                                     </strong>
                                         You need to fill in a <b>Username</b> and a <b>Password</b>!
                                         <br />
@@ -83,7 +83,6 @@ include "config/functions.php";
 				//check if there was not a match
 				if($num == 0){
 					//if not display an error message
-					/*echo "<center>The <b>Username</b> you supplied does not exist!</center>";*/
 
                     echo "<div class='row'>
                              <div class='col-sm-6 col-sm-offset-3'>
@@ -92,8 +91,8 @@ include "config/functions.php";
                                         <i class='icon-remove'></i>
                                     </button>
                                     <strong>
-                                         <i class='icon-remove'></i>
-                                            Oh snap!
+                                         <i class='icon-ban-circle'></i>
+
                                     </strong>
                                         The <b>Username</b> you supplied does not exist!
                                         <br />
@@ -110,7 +109,6 @@ include "config/functions.php";
 					//check if there was not a match
 					if($num == 0){
 						//if not display error message
-						/*echo "<center>The <b>Password</b> you supplied does not match the one for that username!</center>";*/
 
                         echo "<div class='row'>
                                  <div class='col-sm-6 col-sm-offset-3'>
@@ -119,8 +117,8 @@ include "config/functions.php";
                                             <i class='icon-remove'></i>
                                         </button>
                                         <strong>
-                                             <i class='icon-remove'></i>
-                                                Oh snap!
+                                             <i class='icon-ban-circle'></i>
+
                                         </strong>
                                             The <b>Password</b> you supplied does not match the one for that username!
                                             <br />
@@ -136,7 +134,6 @@ include "config/functions.php";
 						//check to see if the user has not activated their account yet
 						if($row['active'] != 1){
 							//if not display error message
-							/*echo "<center>You have not yet <b>Activated</b> your account!</center>";*/
 
                             echo "<div class='row'>
                                      <div class='col-sm-6 col-sm-offset-3'>
@@ -145,8 +142,8 @@ include "config/functions.php";
                                                 <i class='icon-remove'></i>
                                             </button>
                                             <strong>
-                                                 <i class='icon-remove'></i>
-                                                    Oh snap!
+                                                 <i class='icon-ban-circle'></i>
+
                                             </strong>
                                                 You have not yet <b>Activated</b> your account!
                                                 <br />
@@ -202,8 +199,6 @@ include "config/functions.php";
                         <div class="login-container">
                             <div class="center">
                                 <h1>
-                                    <!-- <i class="icon-leaf green"></i> -->
-                                  <!--   <span class="red">Ace</span> -->
                                     <span class="white">PostMorten</span>
                                 </h1>
                                 <h4 class="blue">&copy; Hangar</h4>
@@ -219,62 +214,40 @@ include "config/functions.php";
                                                 <i class="icon-coffee green"></i>
                                                 Please Enter Your Information
                                             </h4>
-
                                             <div class="space-6"></div>
+                                                <form action="index.php" method="post">
+                                                    <fieldset>
+                                                        <label class="block clearfix">
+                                                            <span class="block input-icon input-icon-right">
+                                                                <input type="text" name="username" class="form-control" placeholder="Username" />
+                                                                <i class="icon-user"></i>
+                                                            </span>
+                                                        </label>
 
+                                                        <label class="block clearfix">
+                                                            <span class="block input-icon input-icon-right">
+                                                                <input type="password" name="password" class="form-control" placeholder="Password" />
+                                                                <i class="icon-lock"></i>
+                                                            </span>
+                                                        </label>
 
+                                                        <div class="space"></div>
 
-        <form action="index.php" method="post">
-            <fieldset>
-                <label class="block clearfix">
-                    <span class="block input-icon input-icon-right">
-                        <input type="text" name="username" class="form-control" placeholder="Username" />
-                        <i class="icon-user"></i>
-                    </span>
-                </label>
+                                                        <div class="clearfix">
+                                                            <label class="inline">
+                                                                <input type="checkbox" class="ace" />
+                                                                <span class="lbl"> Remember Me</span>
+                                                            </label>
 
-                <label class="block clearfix">
-                    <span class="block input-icon input-icon-right">
-                        <input type="password" name="password" class="form-control" placeholder="Password" />
-                        <i class="icon-lock"></i>
-                    </span>
-                </label>
+                                                            <input name="submit" type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+                                                                <i class="icon-key"></i>
+                                                              <!--   Login -->
+                                                        </div>
 
-                <div class="space"></div>
-
-                <div class="clearfix">
-                    <label class="inline">
-                        <input type="checkbox" class="ace" />
-                        <span class="lbl"> Remember Me</span>
-                    </label>
-
-                    <input name="submit" type="submit" class="width-35 pull-right btn btn-sm btn-primary">
-                        <i class="icon-key"></i>
-                      <!--   Login -->
-                </div>
-
-                <div class="space-4"></div>
-            </fieldset>
-        </form>
-
-<!--
-                                            <div class="social-or-login center">
-                                                <span class="bigger-110">Or Login Using</span>
+                                                        <div class="space-4"></div>
+                                                    </fieldset>
+                                                </form>
                                             </div>
-
-                                            <div class="social-login center">
-                                                <a class="btn btn-primary">
-                                                    <i class="icon-facebook"></i>
-                                                </a>
-
-                                                <a class="btn btn-info">
-                                                    <i class="icon-twitter"></i>
-                                                </a>
-
-                                                <a class="btn btn-danger">
-                                                    <i class="icon-google-plus"></i>
-                                                </a>
-                                            </div> -->
                                         </div><!-- /widget-main -->
 
                                         <div class="toolbar clearfix">
@@ -295,9 +268,9 @@ include "config/functions.php";
                                     </div><!-- /widget-body -->
                                 </div><!-- /login-box -->
 
-                                <?php
-                                include('forgot.php');
-                                ?>
+                               <!--  <?php
+                                //include('forgot.php');
+                                ?> -->
 
 
                             </div><!-- /position-relative -->

@@ -35,7 +35,6 @@ include "config/functions.php";
 	<body class="login-layout">
 		<?php
 			if($_GET['message'] == 'edeb734ec075b20cd9e995a05888270e'){
-			/*echo '<center>Revisar email</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -52,7 +51,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == 'a23e3efffdd987d1ef098e1d25199b38'){
-			/*echo '<center>The <b>E-mail</b> address you supplied is already taken</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -62,7 +60,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                   The <b>E-mail</b> address you supplied is already taken
                                   <br />
@@ -71,7 +69,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == '903ad7fca286e13199c0aedb9c5f4081'){
-			/*echo '<center>You are <b>NOT member</b> of our company, you must have a company email like that name@thehang.net or name@soup.com!!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -81,7 +78,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                   You are <b>NOT member</b> of our company, you must have a company email like that name@thehang.net or name@soup.com!!
                                   <br />
@@ -90,7 +87,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == '288a62414db78c24149f396d8e4d6bc2'){
-			/*echo '<center>The <b>Password</b> you supplied did not math the confirmation password!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -100,7 +96,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                   The <b>Password</b> you supplied did not match the confirmation password!
                                   <br />
@@ -109,7 +105,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == '08bfefacdbd9b8dc8d8f3f2cba0645e3'){
-			/*echo '<center>You need to fill in all of the required filds!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -119,7 +114,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                   You need to fill in all of the required filds!
                                   <br />
@@ -128,7 +123,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == '6c864db20a09afec2e00ce46feeca264'){
-			/*echo '<center>Your <b>Username</b> must be between 3 and 32 characters long!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -138,7 +132,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                  Your <b>Username</b> must be between 3 and 32 characters long!
                                   <br />
@@ -147,7 +141,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == 'b93ba93cb03d581227432da187c629c3'){
-			/*echo '<center>The <b>Username</b> you have chosen is already taken!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -157,7 +150,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                  The <b>Username</b> you have chosen is already taken!
                                   <br />
@@ -166,7 +159,6 @@ include "config/functions.php";
                   </div>";
 			}
 			if($_GET['message'] == 'f601b5d64fec441496b4f4899cd5aba4'){
-			/*echo '<center>The <b>password</b> must be between 5 and 32 characters long!</center>';*/
 
             echo "<div class='row'>
                        <div class='col-sm-6 col-sm-offset-3'>
@@ -176,7 +168,7 @@ include "config/functions.php";
                               </button>
                               <strong>
                                    <i class='icon-remove'></i>
-                                      Oh snap!
+
                               </strong>
                                 The <b>password</b> must be between 5 and 32 characters long!
                                   <br />
@@ -187,36 +179,6 @@ include "config/functions.php";
 			// $msg=$_GET['message'];
 			// echo '<center>'.$msg.'</center>';
 		?>
-		<!-- <div id="border">
-			<form action="controllers/regAction.php" method="post">
-				<table cellpadding="2" cellspacing="0" border="0">
-					<tr>
-						<td>Username: </td>
-						<td><input type="text" name="username" /></td>
-					</tr>
-					<tr>
-						<td>Password: </td>
-						<td><input type="password" name="password" /></td>
-					</tr>
-					<tr>
-						<td>Confirm Password: </td>
-						<td><input type="password" name="passconf" /></td>
-					</tr>
-					<tr>
-						<td>Email: </td>
-						<td><input type="text" name="email" size="25"/></td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center"><input type="submit" name="submit" value="Register" /></td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center"><a href="./">Login</a> | <a href="forgot.php">Forgot Pass</a></a></td>
-					</tr>
-				</table>
-			</form>
-		</div> -->
-
-
         <div class="main-container">
             <div class="main-content">
                 <div class="row">
@@ -224,8 +186,6 @@ include "config/functions.php";
                         <div class="login-container">
                              <div class="center">
                                 <h1>
-                                    <!-- <i class="icon-leaf green"></i> -->
-                                  <!--   <span class="red">Ace</span> -->
                                     <span class="white">PostMorten</span>
                                 </h1>
                                 <h4 class="blue">&copy; Hangar</h4>
@@ -274,14 +234,6 @@ include "config/functions.php";
                                                             <i class="icon-retweet"></i>
                                                         </span>
                                                     </label>
-
-                                                  <!--   <label class="block">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl">
-                                                            I accept the
-                                                            <a href="#">User Agreement</a>
-                                                        </span>
-                                                    </label> -->
 
                                                     <div class="space-24"></div>
 
