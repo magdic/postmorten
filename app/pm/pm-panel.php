@@ -294,7 +294,7 @@ include "../../config/functions.php";
                                 <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />
                                 <span class="user-info">
                                     <small>Welcome,</small>
-                                    Mauricio
+                                    <?php echo $row['name'].' '.$row['lastname']; ?>
                                 </span>
 
                                 <i class="icon-caret-down"></i>
