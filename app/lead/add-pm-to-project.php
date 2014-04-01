@@ -66,14 +66,14 @@ function clean($str)
 		<form action="../../controllers/hook-pm-to-project.php" method="post">
 		<p>Select the Project: 
 		<?php
-			$result = mysql_query("SELECT * FROM projectTB");
+			$result = mysql_query("SELECT * FROM timeProject");
 		?>
 		<select name="idProjectJO">
 			<?php
 				$i=0;
 				while($row = mysql_fetch_array($result)) {
 			?>
-		<option value="<?=$row["idP"];?>"><?=$row["projectname"];?></option>
+		<option value="<?=$row["idtimeLine"];?>"><?=$row["headlineP"];?></option>
 			<?php
 				$i++;
 				}
@@ -109,12 +109,12 @@ function clean($str)
           </thead>
           <tbody>
            
-			<?php $query = mysql_query("SELECT * FROM projectTB AS a, users AS b, joinedTB AS c WHERE a.idP = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
+			<?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
             	while ($row = mysql_fetch_array($query)) {
-            		$id = $row['idP']; ?>
+            		$id = $row['idtimeLine']; ?>
 
             <tr>
-                <td><?php echo $row['projectname']; ?></td>
+                <td><?php echo $row['headlineP']; ?></td>
                 <td><?php echo $row['name']; echo ' '.$row['lastname'];  ?></td>
             </tr>
 			<?php } ?>

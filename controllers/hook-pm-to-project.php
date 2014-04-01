@@ -54,4 +54,4 @@ while($rowf = mysql_fetch_array($resultf))
 	}
 mysql_query("INSERT INTO joinedTB (idProjectJO, idUsernameJO)
 VALUES ('$idP','$idUser')");
-header("location: ../add-pm-to-project.php");
+header("location: ../app/lead/add-pm-to-project.php");

@@ -61,7 +61,7 @@ function clean($str)
 			?>
 	<h1>Create a Project</h1>
 		<a href="lead-panel.php">Lead Panel</a>
-		<form action="controllers/addproject.php" method="post">
+		<form action="../../controllers/addproject.php" method="post">
 		<p>Project Name:   <input type="text" placeholder="This is the Headline" id="projectname" name="projectname"></input></p>
 		<p>Type:           <input type="text" value="default" name="type" readonly></input></p>
 		<p>Reference Text: <input type="text" placeholder="Reference Text" id="reference" name="reference"></input></p>
