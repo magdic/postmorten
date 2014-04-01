@@ -381,7 +381,7 @@ include "../../config/functions.php";
                             </a>
                         </li>
                         <li>
-                            <a href="index.html">
+                            <a href="#">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
