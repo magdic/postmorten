@@ -64,7 +64,9 @@ function disconnectDB($conexion){
 
         $firstArray = json_encode($testarr);
 
-        echo '{"timeline":'.str_replace("\"}", ',', $firstArray);
+        $Regex = str_replace("\"}", '",', $firstArray);
+
+        echo '{"timeline":'.$Regex.'"date":[';
 
         //echo '{"timeline":'.json_encode($testarr);
     while($row = mysqli_fetch_array($result))
@@ -77,7 +79,6 @@ function disconnectDB($conexion){
             // 'type' => 'default',
             // 'text' => $row['textP'],
             // 'startDate' => $row['startDateP'],
-            'date' => array(array(
                 'startDate'=>$row['startDate'], 
                 'headline'=>$row['headline'], 
                 'text'=>$row['text'], 
@@ -85,14 +86,13 @@ function disconnectDB($conexion){
                 'media'=>$row['media'],
                 'credit'=>$row['credit'],
                 'caption'=>$row['caption']
-                ),),
             )
         );
 
 
         $print = json_encode($array);
-        $search = array("{\"date\"",'"'.$row['caption'].'"}}]}');
-        $replace = array('"date"','"CAPULINA",');
+        $search = array("{\"date\"","}}");
+        $replace = array('"date"','}},');
         echo str_replace($search, $replace, $print);
 
         // $rawdata[$i] = $row;
@@ -131,18 +131,6 @@ function disconnectDB($conexion){
             );
         
         
-    }
+    } echo ']}}';
 
-    
-
-   // disconnectDB($conexion); //desconectamos la base de datos
-
-   // return $rawdata; //devolvemos el array
-//}
-        //global $headline;
-        //echo 'This Headline: '.$headline;
-        $myArray = getArraySQL($sql);
-        //echo $sql['headline'];
-        $value =  json_encode($myArray);
-        //echo '<pre>';var_dump($value);echo '</pre>';
        
