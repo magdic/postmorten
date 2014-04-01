@@ -8,17 +8,25 @@ include('../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
 
+$idProject=$_REQUEST['id'];
+$result = mysql_query("SELECT * FROM timeProject where idtimeLine='$idProject'");
+
+while($row = mysql_fetch_array($result))
+  {
+	$idproject=$row['idtimeLine'];
+	$prjctName=$row['headlineP'];
+	$prjctType=$row['typeP'];
+	$prjctText=$row['textP'];
+	$prjctStartDate=$row['startDateP'];
+}
+
+
 //Array to store validation errors
 $errmsg_arr = array();
 if (!isset($_SESSION)) {
 session_start();
 
 }
-
-$pmuid = $_SESSION['uid'];
-$result = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$pmuid'");
-
-
 
 
  
@@ -41,7 +49,7 @@ function clean($str)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Timelines to Me | my App</title>
+	<title>Adding Timelines | my App</title>
 </head>
 <body>
 	<?php
@@ -55,7 +63,7 @@ function clean($str)
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
 		}else if ($row['role'] != 3){
-			echo "<center>You are not an <b>Lead User</b> site!</center>";
+			echo "<center>You are not an <b>PM User</b> site!</center>";
 		} else {
 			//otherwise continue the page
 
@@ -64,46 +72,25 @@ function clean($str)
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			
 			?>
-	<h1>PostMorten Timeline App</h1>
-	<h2>Assign PM to Project</h2>
+	<h1>Adding Timeline</h1>
 		<a href="pm-panel.php">PM Panel</a>
-
-		<ul>
-			<li><a href="">My Profile</a></li>
-			<li><a href="timelines-to-me.php">Timelines Added to Me</a></li>
-			<li><a href="">Hook User to Project</a></li>
-			<li><a href="../../logout.php">Log Out</a></li>
-		</ul>
+		<h3>Your project is: <?php echo $prjctName; ?> </h3>
+		<p> <?php echo $prjctText; ?> </br> <?php echo $prjctStartDate; ?> </p>	
+		<form action="../../controllers/addtimeline.php" method="post">
+		<input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly></input>
+		<p>Timeline Start Date:<input type="text" placeholder="format yyyy,mm,dd" id="startDate" name="startDate"></input></p>
+		<p>Headline:<input type="text" name="headline" id="headline" placeholder="Headline for the timeline"></input></p>
+		<p>Text: <input type="text" placeholder="Reference Text" id="text" name="text"></input></p>
+		<p>Media URL:<input type="text" placeholder="Media Url" id="media" name="media"></input></p>
+		<p>Media Credit:<input type="text" placeholder="Credit" id="credit" name="credit"></input></p>
+		<p>Media Caption:<input type="text" placeholder="Caption" id="caption" name="caption"></input></p>
+		<p><input type="submit" name="submit" value="Add Timeline"></input></p>
 		</form>
-
-
-		<!-- Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-           
-			<?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$uid'") or die(mysql_error());
-            	while ($row = mysql_fetch_array($query)) {
-            		$id = $row['idtimeLine']; ?>
-
-            <tr>
-                <td><?php echo $row['headlineP']; ?></td>
-                <td><a href="add-timeline.php?id=<?php echo $id?>">Edit</a></td>
-            </tr>
-			<?php } ?>
-
-          </tbody>
-        </table>
 
 
 <?php
 		
-		//MAKE SURE YOU CLOSE THE CHECK IF THEIR ONLINE
+		//make sure you close the check if their online
 		}
 		
 		?>
