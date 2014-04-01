@@ -89,10 +89,16 @@ function disconnectDB($conexion){
             )
         );
 
+       // echo 'Raw data is '.$i;
+
+        if($i!=1){
+            echo ',';
+        }
+
 
         $print = json_encode($array);
         $search = array("{\"date\"","}}");
-        $replace = array('"date"','}},');
+        $replace = array('"date"','}}');
         echo str_replace($search, $replace, $print);
 
         // $rawdata[$i] = $row;
