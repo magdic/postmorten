@@ -332,6 +332,9 @@ include "../../config/functions.php";
 
         <div class="main-container" id="main-container">
             <div class="main-container-inner">
+                <a class="menu-toggler" id="menu-toggler" href="#">
+                    <span class="menu-text"></span>
+                </a>
                 <div class="sidebar" id="sidebar">
                     <script type="text/javascript">
                         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
