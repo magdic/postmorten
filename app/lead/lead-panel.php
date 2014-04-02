@@ -8,16 +8,9 @@ include('../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
 
-?>
 
+include("header.php");
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Welcome Lead User | my App</title>
-</head>
-<body>
-	<?php
 	    $uid = $_SESSION['uid'];
 		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
 		//split all fields fom the correct row into an associative array
@@ -26,9 +19,9 @@ include "../../config/functions.php";
 		//if the login session does not exist therefore meaning the user is not logged in
 		if(!$_SESSION['uid']){
 			//display and error message
-			echo "<center>You need to be logged in to user this feature!</center>";
+			include("error-login.php");
 		}else if ($row['role'] != 2){
-			echo "<center>You are not an <b>Lead User</b> site!</center>";
+			include("error-not-lead.php");
 		} else {
 			//otherwise continue the page
 
@@ -36,19 +29,11 @@ include "../../config/functions.php";
 			$time = date('U')+50;
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			
-			?>
-	<h1>Welcome Lead Panel</h1>
+include("header-succes.php");
 
-		<ul>
-			<li><a href="">My Profile</a></li>
-			<li><a href="lead-add-project.php">Create Project</a></li>
-			<li><a href="add-pm-to-project.php">Hook PM to Project</a></li>
-			<li><a href="../../logout.php">Log Out</a></li>
-		</ul>
+include("down.php");
 
 
-
-<?php
 		
 		//make sure you close the check if their online
 		}
