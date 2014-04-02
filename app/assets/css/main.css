@@ -1,0 +1,4 @@
+/* line 1, ../scss/main.scss */
+.breadcrumb .active {
+  color: red !important;
+}

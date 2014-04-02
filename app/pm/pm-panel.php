@@ -34,7 +34,10 @@ include "../../config/functions.php";
         <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
         <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
 
-        <!-- inline styles related to this page -->
+        <!-- overwrite -->
+
+        <link rel="stylesheet" href="../assets/css/main.css"/>
+
 
         <!-- ace settings handler -->
 
@@ -175,7 +178,7 @@ include "../../config/functions.php";
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="add-timeline.php">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
@@ -222,7 +225,7 @@ include "../../config/functions.php";
                                 <div class="page-content">
                                     <div class="page-header">
                                         <h1>
-                                            Dashboard
+                                            PM Dashboard
                                             <small>
                                                 <i class="icon-double-angle-right"></i>
                                                 overview &amp; stats

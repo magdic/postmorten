@@ -34,19 +34,10 @@ module.exports = function(grunt) {
         },
 
     },
-    /*connect: {
-        server: {
-            options: {
-                port: 8080,
-                open: true,
-                livereload: true
-            }
-        }
-    },*/
      watch: {
             compass: {
-            files: ['app/assets/scss/{,*/}*.{scss,sass}'],
-            tasks: ['compass:server']
+                files: ['app/assets/scss/{,*/}*.scss'],
+                tasks: ['compass:server']
             },
             livereload: {
                 options: {
@@ -65,6 +56,29 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
+           //Compass
+    compass: {
+        options: {
+            sassDir: 'app/assets/scss',
+            cssDir: 'app/assets/css',
+            generatedImagesDir: 'app/img',
+            imagesDir: 'app/img',
+            javascriptsDir: 'app/assets/js',
+            fontsDir: 'app/font',
+           /* importPath: 'app/js/vendor',*/
+            httpImagesPath: 'app/img',
+            httpGeneratedImagesPath: 'app/img',
+            httpFontsPath: 'app/fonts',
+           /* relativeAssets: true,*/
+            noLineComments: false
+        },
+        server: {
+            options: {
+              debugInfo: false
+            }
+        }
+    },
 
     exec: {
       serverup: {
