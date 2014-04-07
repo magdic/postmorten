@@ -40,6 +40,9 @@ function clean($str)
 </head>
 <body>
 	<?php
+
+		include("header.php");
+
 	    $uid = $_SESSION['uid'];
 		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
 		//split all fields fom the correct row into an associative array
@@ -58,7 +61,19 @@ function clean($str)
 			$time = date('U')+50;
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			
+
+			include("header-succes.php");
+
+
+			include("down.php");
+
+
 			?>
+
+
+
+			
+			<div class="main-content">
 	<h1>Create a Project</h1>
 		<a href="lead-panel.php">Lead Panel</a>
 		<form action="../../controllers/addproject.php" method="post">
@@ -68,6 +83,7 @@ function clean($str)
 		<p>Start Date:     <input type="text" placeholder="yyyy,mm,dd" id="startdate" name="startdate"></input></p>
 		<p><input type="submit" name="submit" value="Create Project"></input></p>
 		</form>
+	</div>
 
 
 <?php
