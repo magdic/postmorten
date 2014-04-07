@@ -278,25 +278,30 @@ function clean($str)
                             </form>
                         </div><!-- #nav-search -->
                     </div>
-                                <div class="page-content">
-                                    <div class="page-header">
-                                        <h1>
-                                            PM Dashboard
-                                            <small>
-                                                <i class="icon-double-angle-right"></i>
-                                                adding timeline
-                                            </small>
-                                        </h1>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-
-                                        </div><!-- /span -->
-                                    </div><!-- /row -->
-                                </div>
+                        <div class="page-content">
+                            <div class="page-header">
+                                <h1>
+                                    PM Dashboard
+                                    <small>
+                                        <i class="icon-double-angle-right"></i>
+                                        adding timeline
+                                    </small>
+                                </h1>
                             </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form action="../../controllers/addtimeline.php" method="post" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                </form>
+                            <div class="space-4"></div>
+                                </div><!-- /span -->
+                            </div><!-- /row -->
                         </div>
                      </div>
             </div>
