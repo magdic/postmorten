@@ -38,10 +38,10 @@
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
                     <a href="#" class="navbar-brand">
-                        <small>
+                        <!-- <small>
                             <i class="icon-leaf"></i>
                             Hangar
-                        </small>
+                        </small> -->
                     </a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
