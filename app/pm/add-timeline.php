@@ -331,7 +331,7 @@ function clean($str)
         <table class="table">
           <thead>
             <tr>
-              <th>Headline</th>
+              <th>Start Date</th>
               <th>Headline</th>
               <th>Text</th>
               <th>Media</th>
