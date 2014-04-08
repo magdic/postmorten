@@ -1,10 +1,16 @@
+
+                     </div>
+            </div>
+        </div>
+
+
         <script src='../assets/js/jquery-2.0.3.min.js'></script>
         <script src='../assets/js/jquery.mobile.custom.min.js'></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/typeahead-bs2.min.js"></script>
 
         <!-- page specific plugin scripts -->
-
+        
         <script src="../assets/js/bootstrap-tag.min.js"></script>
         <script src="../assets/js/jquery.hotkeys.min.js"></script>
         <script src="../assets/js/bootstrap-wysiwyg.min.js"></script>
