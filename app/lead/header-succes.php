@@ -451,69 +451,6 @@
 
                                                                     <div class="itemdiv memberdiv">
                                                                         <div class="user">
-                                                                            <img alt="Alex Doe's avatar" src="assets/avatars/avatar5.png" />
-                                                                        </div>
-
-                                                                        <div class="body">
-                                                                            <div class="name">
-                                                                                <a href="#">Alex Doe</a>
-                                                                            </div>
-
-                                                                            <div class="time">
-                                                                                <i class="icon-time"></i>
-                                                                                <span class="green">3 hour</span>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <span class="label label-danger label-sm">blocked</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="itemdiv memberdiv">
-                                                                        <div class="user">
-                                                                            <img alt="Bob Doe's avatar" src="assets/avatars/avatar2.png" />
-                                                                        </div>
-
-                                                                        <div class="body">
-                                                                            <div class="name">
-                                                                                <a href="#">Bob Doe</a>
-                                                                            </div>
-
-                                                                            <div class="time">
-                                                                                <i class="icon-time"></i>
-                                                                                <span class="green">6 hour</span>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <span class="label label-success label-sm arrowed-in">approved</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="itemdiv memberdiv">
-                                                                        <div class="user">
-                                                                            <img alt="Susan's avatar" src="assets/avatars/avatar3.png" />
-                                                                        </div>
-
-                                                                        <div class="body">
-                                                                            <div class="name">
-                                                                                <a href="#">Susan</a>
-                                                                            </div>
-
-                                                                            <div class="time">
-                                                                                <i class="icon-time"></i>
-                                                                                <span class="green">yesterday</span>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <span class="label label-success label-sm arrowed-in">approved</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="itemdiv memberdiv">
-                                                                        <div class="user">
                                                                             <img alt="Phil Doe's avatar" src="assets/avatars/avatar4.png" />
                                                                         </div>
 
