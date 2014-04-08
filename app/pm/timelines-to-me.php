@@ -205,8 +205,14 @@ function clean($str)
                                 <span class="menu-text"> Timelines added to me </span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="add-timeline.php">
+                                <i class="icon-plus"></i>
+                                <span class="menu-text"> Add timeline feedback </span>
+                            </a>
+                        </li> -->
+                         <li>
+                            <a href="#">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
