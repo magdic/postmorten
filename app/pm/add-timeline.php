@@ -81,6 +81,7 @@ function clean($str)
         <link rel="stylesheet" href="../assets/css/ace.min.css" />
         <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
         <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
 
         <!--[if lte IE 8]>
           <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -122,19 +123,14 @@ function clean($str)
 
 			?>
 
-            <div class="navbar navbar-default" id="navbar">
+        <div class="navbar navbar-default" id="navbar">
             <script type="text/javascript">
                 try{ace.settings.check('navbar' , 'fixed')}catch(e){}
             </script>
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand">
-                        <small>
-                            <i class="icon-leaf"></i>
-                            Hangar
-                        </small>
-                    </a><!-- /.brand -->
+                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">
@@ -221,8 +217,8 @@ function clean($str)
                     </div><!-- #sidebar-shortcuts -->
 
                     <ul class="nav nav-list">
-                        <li class="active">
-                            <a href="#">
+                        <li>
+                            <a href="pm-panel.php">
                                 <i class="icon-user"></i>
                                 <span class="menu-text"> My Profile </span>
                             </a>
@@ -231,10 +227,20 @@ function clean($str)
                             <a href="timelines-to-me.php">
                                 <i class="icon-sitemap"></i>
                                 <span class="menu-text"> Timelines added to me </span>
+                                <b class="arrow icon-angle-down"></b>
                             </a>
+                            <ul style="display: block;" class="submenu">
+                                <li class="active">
+                                    <a href="add-timeline.php">
+                                        <i class="icon-plus"></i>
+                                        <span class="menu-text"> Add timeline feedback </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         </li>
                         <li>
-                            <a href="add-timeline.php">
+                            <a href="#">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
@@ -284,26 +290,120 @@ function clean($str)
                                     PM Dashboard
                                     <small>
                                         <i class="icon-double-angle-right"></i>
-                                        adding timeline
+                                        adding timeline feedback
                                     </small>
                                 </h1>
                             </div>
-
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <form action="../../controllers/addtimeline.php" method="post" class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5" />
-                                        </div>
-                                    </div>
-                                </form>
-                            <div class="space-4"></div>
+                                <div class="col-sm-12 center">
+                                    <h3>Your project is: <?php echo $prjctName; ?> </h3>
+                                    <p> Project Description: <?php echo $prjctText; ?> </br> Start Date: <?php echo $prjctStartDate; ?> </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7 col-sm-offset-2">
+                                    <div id="accordion" class="accordion-style1 panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                            <i class="icon-angle-down bigger-110" data-icon-hide="icon-angle-down" data-icon-show="icon-angle-right"></i>
+                                                           Add timeline feedback
+                                                        </a>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="panel-collapse collapse" id="collapseOne">
+                                                    <div class="panel-body">
+                                                        <form action="../../controllers/addtimeline.php" method="post" class="form-horizontal" role="form">
+                                                            <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly />
+                                                            <fieldset>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Timeline Start Date: </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-1 startDate" name="startDate" placeholder="YYYY/MM/DD" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-2"> Headline:  </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-2 headline" name="headline" placeholder="Headline for the timeline" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-3"> Text: </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-3 text" name="text" placeholder="Reference text" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-4"> Media URL: </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-4 media" name="media" placeholder="Media URL" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-5"> Media Credit: </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-5 credit" name="credit" placeholder="Credit" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-6"> Media Caption: </label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" id="form-field-6 caption" name="caption" placeholder="Caption" class="col-xs-10 col-sm-10" />
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                                <div class="form-actions center">
+                                                                    <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" />
+                                                                       <!--  Submit
+                                                                        <i class="icon-arrow-right icon-on-right bigger-110"></i> -->
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="space-4"></div>
                                 </div><!-- /span -->
                             </div><!-- /row -->
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="table-responsive">
+                                                <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Start Date</th>
+                                                            <th>Headline</th>
+                                                            <th class="hidden-480">Text</th>
+                                                            <th class="hidden-480">Media</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <?php $query = mysql_query("SELECT * FROM timelines WHERE idFromProject='$idProject'") or die(mysql_error());
+                                                            while ($row = mysql_fetch_array($query)) {
+                                                                $id = $row['idtimelines']; ?>
+                                                        <tr>
+                                                            <td><?php echo $row['startDate']; ?></td>
+                                                            <td><?php echo $row['headline']; ?></td>
+                                                            <td><?php echo $row['text'];?></td>
+                                                            <td><?php echo $row['media']; ?></td>
+                                                        </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div><!-- /.table-responsive -->
+                                        </div><!-- /span -->
+                                    </div><!-- /row -->
+                                </div>
+                            </div>
                         </div>
-                     </div>
+                </div>
             </div>
         </div>
 
@@ -312,7 +412,7 @@ function clean($str)
 
 
 
-        <h1>Adding Timeline</h1>
+        <!-- <h1>Adding Timeline</h1>
         <a href="pm-panel.php">PM Panel</a>
         <h3>Your project is: <?php echo $prjctName; ?> </h3>
         <p> <?php echo $prjctText; ?> </br> <?php echo $prjctStartDate; ?> </p>
@@ -325,10 +425,10 @@ function clean($str)
           <p>Media Credit:<input type="text" placeholder="Credit" id="credit" name="credit"></input></p>
           <p>Media Caption:<input type="text" placeholder="Caption" id="caption" name="caption"></input></p>
           <p><input type="submit" name="submit" value="Add Timeline"></input></p>
-        </form>
+        </form> -->
 
         <!-- Table -->
-        <table class="table">
+       <!--  <table class="table">
           <thead>
             <tr>
               <th>Start Date</th>
@@ -338,7 +438,7 @@ function clean($str)
             </tr>
           </thead>
           <tbody>
-           
+
             <?php $query = mysql_query("SELECT * FROM timelines WHERE idFromProject='$idProject'") or die(mysql_error());
                 while ($row = mysql_fetch_array($query)) {
                     $id = $row['idtimelines']; ?>
@@ -352,7 +452,7 @@ function clean($str)
             <?php } ?>
 
           </tbody>
-        </table>
+        </table> -->
 
 
 

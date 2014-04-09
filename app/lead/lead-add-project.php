@@ -37,8 +37,7 @@ function clean($str)
 <html>
 <head>
 	<title>Lead Create a Project | my App</title>
-</head>
-<body>
+
 	<?php
 
 		include("header.php");
@@ -212,7 +211,7 @@ function clean($str)
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<textarea class="input-xlarge" name="reference" id="reference"></textarea>
+																			<textarea class="col-xs-12 col-sm-6" name="reference" id="reference"></textarea>
 																		</div>
 																	</div>
 																</div>

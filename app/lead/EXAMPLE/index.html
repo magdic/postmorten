@@ -1,0 +1,61 @@
+<!DOCTYPE html>	
+<html>
+<head>
+	<title>Example Chart</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+	<script src="highcharts.js"></script>
+
+	<style type="text/css">
+
+	</style>
+
+</head>
+<body>
+
+
+
+<div id="container" style="height: 400px"></div>
+
+<script type="text/javascript">
+
+	$(function () {
+    $('#container').highcharts({
+        chart: {
+            borderColor: '#EBBA95',
+            borderWidth: 3,
+            type: 'line'
+        },
+        xAxis: {
+            categories: ['Creative', 'Technology', 'QA']
+        },
+        yAxis: {   
+        },
+        legend: {
+            layout: 'vertical',
+            backgroundColor: '#FFFFFF',
+            floating: true,
+            align: 'left',
+            x: 100,
+            verticalAlign: 'top',
+            y: 70
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>Projects on </b><br/>'+
+                    this.x +': '+ this.y;
+            }
+        },
+        plotOptions: {
+        },
+        series: [{
+            data: [4, 5, 3]        
+        }]
+    });
+});
+
+</script>
+
+</body>
+</html>

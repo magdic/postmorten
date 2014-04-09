@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
-	<title>Lead Panel | My App</title>
+	<title>Lead Panel | My App</title> -->
  <!-- <script src="//localhost:35729/livereload.js"></script> -->
 
         <!-- basic styles -->
@@ -26,6 +26,7 @@
         <!-- ace settings handler -->
 
         <script src="../assets/js/ace-extra.min.js"></script>
+        <script src='../assets/js/jquery-2.0.3.min.js'></script>
 
 </head>
 <body>

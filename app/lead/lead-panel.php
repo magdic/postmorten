@@ -7,9 +7,16 @@ include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
+?>
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lead Panel | my App</title>
 
-include("header.php");
+	<?php
+
+		include("header.php");
 
 	    $uid = $_SESSION['uid'];
 		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
@@ -121,102 +128,108 @@ include("header.php");
 		include("header-succes.php");
 
 		?>
+		<div class="page-content">
+			<div class="page-header">
+				<h1>
+					Lead Panel
+				</h1>
+			</div><!-- /.page-header -->
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-flat">
+						<h4 class="lighter">
+							<i class="icon-bar-chart"></i>
+							Projects Created Stats
+						</h4>
 
-			
+						<div class="widget-toolbar">
+							<a href="#" data-action="collapse">
+								<i class="icon-chevron-up"></i>
+							</a>
+						</div>
+					</div>
 
-											<div class="row">
+					<div class="widget-body"><div class="widget-body-inner" style="display: block;">
+						<div class="widget-main padding-4">
 
-											<div class="col-sm-5">
-										<div class="widget-box">
-											<div class="widget-header widget-header-flat widget-header-small">
-												<h5>
-													<i class="icon-signal"></i>
-													Traffic Sources
-												</h5>
+							<script src="EXAMPLE/highcharts.js"></script>
+							<script src="EXAMPLE/exporting.js"></script>
 
-												<div class="widget-toolbar no-border">
-													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-														This Week
-														<i class="icon-angle-down icon-on-right bigger-110"></i>
-													</button>
+							<div id="projectsChart" style="height: 100%"></div>
 
-													<ul class="dropdown-menu pull-right dropdown-125 dropdown-lighter dropdown-caret">
-														<li class="active">
-															<a href="#" class="blue">
-																<i class="icon-caret-right bigger-110">&nbsp;</i>
-																This Week
-															</a>
-														</li>
+									<script type="text/javascript">
+									$(function () {
+									        $('#projectsChart').highcharts({
+									            chart: {
+									                type: 'line'
+									            },
+									            title: {
+									                text: 'Postmorten App'
+									            },
+									            subtitle: {
+									                text: 'Projects by year'
+									            },
+									            xAxis: {
+									                categories: [
 
-														<li>
-															<a href="#">
-																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
-																Last Week
-															</a>
-														</li>
+									                            <?php 
+									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
+									                                //split all fields fom the correct row into an associative array
+									                                while($rowie = mysql_fetch_array($test)) {                    
+									                                echo "'Year ".$rowie["year"]."',";
+									                                }
+									                            ?>
 
-														<li>
-															<a href="#">
-																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
-																This Month
-															</a>
-														</li>
+									                ]
+									            },
+									            yAxis: {
+									                title: {
+									                    text: 'Qty of Projects'
+									                }
+									            },
+									            tooltip: {
+									                enabled: false,
+									                formatter: function() {
+									                    return '<b>'+ this.series.name +'</b><br/>'+
+									                        this.x +': '+ this.y +'°C';
+									                }
+									            },
+									            plotOptions: {
+									                line: {
+									                    dataLabels: {
+									                        enabled: true,
+									                        style: {
+									                            textShadow: '0 0 3px white, 0 0 3px white'
+									                        }
+									                    },
+									                    enableMouseTracking: true
+									                }
+									            },
+									            series: [{
+									                name: 'Projects',
+									                data: [
+									                    <?php 
 
-														<li>
-															<a href="#">
-																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
-																Last Month
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main">
-													<div id="piechart-placeholder" style="width: 90%; min-height: 150px; padding: 0px; position: relative;"><canvas class="flot-base" width="417" height="150" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 417px; height: 150px;"></canvas><canvas class="flot-overlay" width="417" height="150" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 417px; height: 150px;"></canvas><div class="legend"><div style="position: absolute; width: 95px; height: 110px; top: 15px; right: -30px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:15px;right:-30px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #68BC31;overflow:hidden"></div></div></td><td class="legendLabel">social networks</td></tr><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #2091CF;overflow:hidden"></div></div></td><td class="legendLabel">search engines</td></tr><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #AF4E96;overflow:hidden"></div></div></td><td class="legendLabel">ad campaigns</td></tr><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #DA5430;overflow:hidden"></div></div></td><td class="legendLabel">direct traffic</td></tr><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #FEE074;overflow:hidden"></div></div></td><td class="legendLabel">other</td></tr></tbody></table></div></div>
-
-													<div class="hr hr8 hr-double"></div>
-
-													<div class="clearfix">
-														<div class="grid3">
-															<span class="grey">
-																<i class="icon-facebook-sign icon-2x blue"></i>
-																&nbsp; likes
-															</span>
-															<h4 class="bigger pull-right">1,255</h4>
-														</div>
-
-														<div class="grid3">
-															<span class="grey">
-																<i class="icon-twitter-sign icon-2x purple"></i>
-																&nbsp; tweets
-															</span>
-															<h4 class="bigger pull-right">941</h4>
-														</div>
-
-														<div class="grid3">
-															<span class="grey">
-																<i class="icon-pinterest-sign icon-2x red"></i>
-																&nbsp; pins
-															</span>
-															<h4 class="bigger pull-right">1,050</h4>
-														</div>
-													</div>
-												</div><!-- /widget-main -->
-											</div><!-- /widget-body -->
-										</div><!-- /widget-box -->
-									</div>
-
-									</div>
+									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
+									                    //split all fields fom the correct row into an associative array
+									                    while($rowie = mysql_fetch_array($test)) {
+									                    echo $rowie['qty'].',';
+									                     }
+									                 ?>
+									                ]
+									            }]
+									        });
+									    });
+								</script>
+						</div><!-- /widget-main -->
+				</div></div><!-- /widget-body -->
+			</div><!-- /widget-box -->			
+		</div>									
 
 
 		<?php
 
-		include("down.php");	
+		include("down.php");
 
-
-		
 		//make sure you close the check if their online
 		}
 		

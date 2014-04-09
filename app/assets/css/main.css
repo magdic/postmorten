@@ -2,3 +2,16 @@
 .breadcrumb .active {
   color: red !important;
 }
+
+/* line 4, ../scss/main.scss */
+.navbar .navbar-brand {
+  background: url(../images/thi-logos.png) 0 -65px no-repeat;
+  width: 165px;
+  height: 60px;
+  margin-top: -15px;
+}
+
+/* line 10, ../scss/main.scss */
+.form-actions {
+  border: none;
+}
