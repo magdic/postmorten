@@ -73,12 +73,7 @@ include "../../config/functions.php";
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand">
-                        <small>
-                            <i class="icon-leaf"></i>
-                            Hangar
-                        </small>
-                    </a><!-- /.brand -->
+                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">

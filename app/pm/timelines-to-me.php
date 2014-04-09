@@ -101,12 +101,7 @@ function clean($str)
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand">
-                        <small>
-                            <i class="icon-leaf"></i>
-                            Hangar
-                        </small>
-                    </a><!-- /.brand -->
+                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">
@@ -260,11 +255,11 @@ function clean($str)
                                 <div class="page-content">
                                     <div class="page-header">
                                         <h1>
-                                            Timelines
-                                            <!-- <small>
+                                            PM Dashboard
+                                            <small>
                                                 <i class="icon-double-angle-right"></i>
-                                                overview &amp; stats
-                                            </small> -->
+                                               Timelines
+                                            </small>
                                         </h1>
                                     </div>
 
