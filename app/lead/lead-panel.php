@@ -13,7 +13,6 @@ include "../../config/functions.php";
 <html>
 <head>
 	<title>Lead Panel | my App</title>
-
 	<?php
 
 		include("header.php");
@@ -37,7 +36,8 @@ include "../../config/functions.php";
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			?>
 
-			 
+			<script src="../assets/charts/highcharts.js"></script>
+			<script src="../assets/charts/exporting.js"></script>		 
 <div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
@@ -99,19 +99,19 @@ include "../../config/functions.php";
  <ul class="nav nav-list">
     <li class="active">
         <a href="lead-panel.php">
-            <i class="icon-user"></i>
+            <i class="icon-dashboard"></i>
             <span class="menu-text"> Lead Panel </span>
         </a>
     </li>
     <li>
         <a href="lead-add-project.php">
-            <i class="icon-sitemap"></i>
+            <i class="icon-save"></i>
             <span class="menu-text"> Create Project </span>
         </a>
     </li>
     <li>
         <a href="add-pm-to-project.php">
-            <i class="icon-plus"></i>
+            <i class="icon-group"></i>
             <span class="menu-text"> Add PM to project </span>
         </a>
     </li>
@@ -122,117 +122,22 @@ include "../../config/functions.php";
         </a>
     </li>
 </ul><!-- /.nav-list -->
-
-
-		<?php	
-		include("header-succes.php");
-
-		?>
+		<?php include("header-succes.php");	?>
 		<div class="page-content">
 			<div class="page-header">
 				<h1>
 					Lead Panel
 				</h1>
 			</div><!-- /.page-header -->
-				<div class="widget-box transparent">
-					<div class="widget-header widget-header-flat">
-						<h4 class="lighter">
-							<i class="icon-bar-chart"></i>
-							Projects Created Stats
-						</h4>
+					
+				<?php include("../graphs-charts/year-graph.php"); ?>		
 
-						<div class="widget-toolbar">
-							<a href="#" data-action="collapse">
-								<i class="icon-chevron-up"></i>
-							</a>
-						</div>
-					</div>
-
-					<div class="widget-body"><div class="widget-body-inner" style="display: block;">
-						<div class="widget-main padding-4">
-
-							<script src="EXAMPLE/highcharts.js"></script>
-							<script src="EXAMPLE/exporting.js"></script>
-
-							<div id="projectsChart" style="height: 100%"></div>
-
-									<script type="text/javascript">
-									$(function () {
-									        $('#projectsChart').highcharts({
-									            chart: {
-									                type: 'line'
-									            },
-									            title: {
-									                text: 'Postmorten App'
-									            },
-									            subtitle: {
-									                text: 'Projects by year'
-									            },
-									            xAxis: {
-									                categories: [
-
-									                            <?php 
-									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
-									                                //split all fields fom the correct row into an associative array
-									                                while($rowie = mysql_fetch_array($test)) {                    
-									                                echo "'Year ".$rowie["year"]."',";
-									                                }
-									                            ?>
-
-									                ]
-									            },
-									            yAxis: {
-									                title: {
-									                    text: 'Qty of Projects'
-									                }
-									            },
-									            tooltip: {
-									                enabled: false,
-									                formatter: function() {
-									                    return '<b>'+ this.series.name +'</b><br/>'+
-									                        this.x +': '+ this.y +'°C';
-									                }
-									            },
-									            plotOptions: {
-									                line: {
-									                    dataLabels: {
-									                        enabled: true,
-									                        style: {
-									                            textShadow: '0 0 3px white, 0 0 3px white'
-									                        }
-									                    },
-									                    enableMouseTracking: true
-									                }
-									            },
-									            series: [{
-									                name: 'Projects',
-									                data: [
-									                    <?php 
-
-									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
-									                    //split all fields fom the correct row into an associative array
-									                    while($rowie = mysql_fetch_array($test)) {
-									                    echo $rowie['qty'].',';
-									                     }
-									                 ?>
-									                ]
-									            }]
-									        });
-									    });
-								</script>
-						</div><!-- /widget-main -->
-				</div></div><!-- /widget-body -->
-			</div><!-- /widget-box -->			
-		</div>									
+				<?php include("../graphs-charts/months-graph.php"); ?>	
 
 
-		<?php
-
-		include("down.php");
-
+		</div>						
+		<?php include("down.php");
 		//make sure you close the check if their online
-		}
-		
-		?>
+		}	?>
 </body>
 </html>

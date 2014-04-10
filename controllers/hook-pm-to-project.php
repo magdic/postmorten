@@ -34,7 +34,6 @@ function clean($str)
 $idP= clean($_POST['idProjectJO']);
 $idUser = clean($_POST['idUsernameJO']);
 
-
 $resultf = mysql_query("SELECT * FROM joinedTB where idProjectJO='$idP' AND idUsernameJO='$idUser'");
 while($rowf = mysql_fetch_array($resultf))
 	{

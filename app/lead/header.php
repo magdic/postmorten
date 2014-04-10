@@ -8,6 +8,7 @@
 
         <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
 
         <!-- page specific plugin styles -->
 

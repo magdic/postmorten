@@ -1,0 +1,30 @@
+<p>Select the Project: 
+		<?php
+			$result = mysql_query("SELECT * FROM timeProject");
+		?>
+		<select name="idProjectJO">
+			<?php
+				$i=0;
+				while($row = mysql_fetch_array($result)) {
+			?>
+		<option value="<?=$row["idtimeLine"];?>"><?=$row["headlineP"];?></option>
+			<?php
+				$i++;
+				}
+			?>
+		</select></p>
+		<p>Select Project Manager: 
+		<?php
+			$result = mysql_query("SELECT * FROM users");
+		?>
+		<select name="idUsernameJO">
+			<?php
+				$i=0;
+				while($row = mysql_fetch_array($result)) {
+			?>
+		<option value="<?=$row["id"];?>"><?=$row["name"];echo ' '.$row['lastname'];?></option>
+			<?php
+				$i++;
+				}
+			?>
+		</select></p>

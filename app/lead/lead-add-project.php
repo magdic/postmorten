@@ -121,19 +121,19 @@ function clean($str)
  <ul class="nav nav-list">
     <li>
         <a href="lead-panel.php">
-            <i class="icon-user"></i>
+            <i class="icon-dashboard"></i>
             <span class="menu-text"> Lead Panel</span>
         </a>
     </li>
     <li class="active">
         <a href="lead-add-project.php">
-            <i class="icon-sitemap"></i>
+            <i class="icon-save"></i>
             <span class="menu-text"> Create Project </span>
         </a>
     </li>
     <li>
         <a href="add-pm-to-project.php">
-            <i class="icon-plus"></i>
+            <i class="icon-group"></i>
             <span class="menu-text"> Add PM to project </span>
         </a>
     </li>
