@@ -179,7 +179,7 @@ include "../../config/functions.php";
                             </a>
                         </li> -->
                          <li>
-                            <a href="#">
+                            <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>

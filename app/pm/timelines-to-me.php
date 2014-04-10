@@ -207,7 +207,7 @@ function clean($str)
                             </a>
                         </li> -->
                          <li>
-                            <a href="#">
+                            <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
@@ -283,7 +283,10 @@ function clean($str)
 
                                                     <tr>
                                                         <td><?php echo $row['headlineP']; ?></td>
-                                                        <td><a class="btn btn-xs btn-info" href="add-timeline.php?id=<?php echo $id?>"><i class="icon-edit bigger-120"></i></a></td>
+                                                        <td>
+                                                            <a class="btn btn-xs btn-success" href="#">See Timeline <i class="icon-bar-chart bigger-120"></i></a>
+                                                            <a class="btn btn-xs btn-info" href="add-timeline.php?id=<?php echo $id?>">See/add feedback <i class="icon-edit bigger-120"></i></a>
+                                                        </td>
                                                     </tr>
                                                 <?php } ?>
                                                 </tbody>

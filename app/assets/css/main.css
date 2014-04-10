@@ -24,5 +24,5 @@
 
 /* line 17, ../scss/main.scss */
 .row:before, .row:after {
-  display: none;
+  /*display: none;*/
 }

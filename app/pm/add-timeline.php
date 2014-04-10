@@ -240,7 +240,7 @@ function clean($str)
                         </li>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
                                 <span class="menu-text"> Add user to project </span>
                             </a>
@@ -295,13 +295,13 @@ function clean($str)
                                 </h1>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 center">
+                                <div class="col-sm-12 center centered">
                                     <h3>Your project is: <?php echo $prjctName; ?> </h3>
                                     <p> Project Description: <?php echo $prjctText; ?> </br> Start Date: <?php echo $prjctStartDate; ?> </p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-7 centered">
+                                <div class="col-sm-12 col-lg-9 centered">
                                     <div id="accordion" class="accordion-style1 panel-group">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
@@ -318,42 +318,42 @@ function clean($str)
                                                         <form action="../../controllers/addtimeline.php" method="post" class="form-horizontal" role="form">
                                                             <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly />
                                                             <fieldset>
-                                                                <div class="input-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Timeline Start Date: </label>
-                                                                    <div class="col-sm-6">
-                                                                        <input type="text" id="id-date-picker-1 startDate" name="startDate" placeholder="YYYY,MM,DD" class="col-xs-12 col-sm-10 form-control date-picker" data-date-format="yyyy,mm,dd" />
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Timeline Start Date: </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" id="id-date-picker-1 startDate" name="startDate" placeholder="YYYY,MM,DD" class="col-xs-12 col-sm-10 date-picker" data-date-format="yyyy,mm,dd" />
                                                                         <span class="input-group-addon">
                                                                             <i class="icon-calendar bigger-110"></i>
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-2"> Headline:  </label>
-                                                                    <div class="col-sm-6">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Headline:  </label>
+                                                                    <div class="col-sm-8">
                                                                         <input type="text" id="form-field-2 headline" name="headline" placeholder="Headline for the timeline" class="col-xs-12 col-sm-10" />
                                                                     </div>
                                                                 </div>
                                                                  <div class="form-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-3"> Text: </label>
-                                                                    <div class="col-sm-6">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> Text: </label>
+                                                                    <div class="col-sm-8">
                                                                         <input type="text" id="form-field-3 text" name="text" placeholder="Reference text" class="col-xs-12 col-sm-10" />
                                                                     </div>
                                                                 </div>
                                                                  <div class="form-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-4"> Media URL: </label>
-                                                                    <div class="col-sm-6">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> Media URL: </label>
+                                                                    <div class="col-sm-8">
                                                                         <input type="text" id="form-field-4 media" name="media" placeholder="Media URL" class="col-xs-12 col-sm-10" />
                                                                     </div>
                                                                 </div>
                                                                  <div class="form-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-5"> Media Credit: </label>
-                                                                    <div class="col-sm-6">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> Media Credit: </label>
+                                                                    <div class="col-sm-8">
                                                                         <input type="text" id="form-field-5 credit" name="credit" placeholder="Credit" class="col-xs-12 col-sm-10" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-sm-5 control-label no-padding-right" for="form-field-6"> Media Caption: </label>
-                                                                    <div class="col-sm-6">
+                                                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-6"> Media Caption: </label>
+                                                                    <div class="col-sm-8">
                                                                         <input type="text" id="form-field-6 caption" name="caption" placeholder="Caption" class="col-xs-12 col-sm-10" />
                                                                     </div>
                                                                 </div>
@@ -382,8 +382,8 @@ function clean($str)
                                                         <tr>
                                                             <th>Start Date</th>
                                                             <th>Headline</th>
-                                                            <th class="hidden-480">Text</th>
-                                                            <th class="hidden-480">Media</th>
+                                                            <th>Text</th>
+                                                            <th>Media</th>
                                                         </tr>
                                                     </thead>
 
