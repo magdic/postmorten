@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
-	<title>Lead Panel | My App</title>
+	<title>Lead Panel | My App</title> -->
  <!-- <script src="//localhost:35729/livereload.js"></script> -->
 
         <!-- basic styles -->
 
         <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
 
         <!-- page specific plugin styles -->
 
@@ -26,6 +27,7 @@
         <!-- ace settings handler -->
 
         <script src="../assets/js/ace-extra.min.js"></script>
+        <script src='../assets/js/jquery-2.0.3.min.js'></script>
 
 </head>
 <body>

@@ -24,5 +24,10 @@
 
 /* line 17, ../scss/main.scss */
 .row:before, .row:after {
+<<<<<<< HEAD
   /*display: none;*/
 }
+=======
+  display: none;
+}
+>>>>>>> bf69e51b61dc9e39620083d72ba23ed2f1aa7700

@@ -13,11 +13,11 @@ $result = mysql_query("SELECT * FROM timeProject where idtimeLine='$idProject'")
 
 while($row = mysql_fetch_array($result))
   {
-	$idproject=$row['idtimeLine'];
-	$prjctName=$row['headlineP'];
-	$prjctType=$row['typeP'];
-	$prjctText=$row['textP'];
-	$prjctStartDate=$row['startDateP'];
+    $idproject=$row['idtimeLine'];
+    $prjctName=$row['headlineP'];
+    $prjctType=$row['typeP'];
+    $prjctText=$row['textP'];
+    $prjctStartDate=$row['startDateP'];
 }
 
 
@@ -34,14 +34,14 @@ session_start();
 $errflag = false;
 //Funcion para recibir valores del form. Previene SQL injection
 function clean($str)
-	{
-		$str = @trim($str);
-		if(get_magic_quotes_gpc())
-			{
-			$str = stripslashes($str);
-			}
-		return mysql_real_escape_string($str);
-	}
+    {
+        $str = @trim($str);
+        if(get_magic_quotes_gpc())
+            {
+            $str = stripslashes($str);
+            }
+        return mysql_real_escape_string($str);
+    }
 
 ?>
 
@@ -49,7 +49,7 @@ function clean($str)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Adding Timelines | my App</title>
+    <title>Adding Timelines | my App</title>
      <script src="//localhost:35729/livereload.js"></script>
 
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -102,26 +102,26 @@ function clean($str)
 
 </head>
 <body>
-	<?php
-	    $uid = $_SESSION['uid'];
-		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
-		//split all fields fom the correct row into an associative array
-		$row = mysql_fetch_assoc($res);
+    <?php
+        $uid = $_SESSION['uid'];
+        $res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
+        //split all fields fom the correct row into an associative array
+        $row = mysql_fetch_assoc($res);
 
-		//if the login session does not exist therefore meaning the user is not logged in
-		if(!$_SESSION['uid']){
-			//display and error message
-			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 3){
-			echo "<center>You are not an <b>PM User</b> site!</center>";
-		} else {
-			//otherwise continue the page
+        //if the login session does not exist therefore meaning the user is not logged in
+        if(!$_SESSION['uid']){
+            //display and error message
+            echo "<center>You need to be logged in to user this feature!</center>";
+        }else if ($row['role'] != 3){
+            echo "<center>You are not an <b>PM User</b> site!</center>";
+        } else {
+            //otherwise continue the page
 
-			//this is out update script which should be used in each page to update the users online time
-			$time = date('U')+50;
-			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+            //this is out update script which should be used in each page to update the users online time
+            $time = date('U')+50;
+            $update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 
-			?>
+            ?>
 
         <div class="navbar navbar-default" id="navbar">
             <script type="text/javascript">
@@ -792,9 +792,9 @@ function clean($str)
 
 <?php
 
-		//make sure you close the check if their online
-		}
+        //make sure you close the check if their online
+        }
 
-		?>
+        ?>
 </body>
 </html>
