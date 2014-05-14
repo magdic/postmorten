@@ -39,7 +39,7 @@
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="./lead-panel.php" class="navbar-brand">
+                    <a href="../lead-panel.php" class="navbar-brand">
                         <!-- <small>
                             <i class="icon-leaf"></i>
                             Hangar
