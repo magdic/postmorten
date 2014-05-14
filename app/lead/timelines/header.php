@@ -6,28 +6,28 @@
 
         <!-- basic styles -->
 
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="../assets/css/main.css" />
+        <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../../assets/css/main.css" />
 
         <!-- page specific plugin styles -->
 
         <!-- fonts -->
 
-        <link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+        <link rel="stylesheet" href="../../assets/css/ace-fonts.css" />
 
         <!-- ace styles -->
 
-        <link rel="stylesheet" href="../assets/css/ace.min.css" />
-        <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
-        <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="../../assets/css/ace.min.css" />
+        <link rel="stylesheet" href="../../assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="../../assets/css/ace-skins.min.css" />
 
         <!-- inline styles related to this page -->
 
         <!-- ace settings handler -->
 
-        <script src="../assets/js/ace-extra.min.js"></script>
-        <script src='../assets/js/jquery-2.0.3.min.js'></script>
+        <script src="../../assets/js/ace-extra.min.js"></script>
+        <script src='../../assets/js/jquery-2.0.3.min.js'></script>
 
 </head>
 <body>

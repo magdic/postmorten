@@ -1,10 +1,20 @@
 ErrorDocument 404 /404.html
 options -indexes
 
-
+# Activar RewriteEngine
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^([A-Za-z0-9-]+)/?$ $1.php
+
+
+ 
+# Reescribir la URL solicitada por el usuario
+#   Entrada:  add-timeline.php/id/
+#   Salida: add-timeline.php?id=w4rf34tf34f
+
+RewriteRule ^app/pm/add-timeline/(\w+)/?$ app/pm/add-timeline.php?id=$1
+
+RewriteCond %{REQUEST_FILENAME} !/(app/assets/css|app/assets/images|app/assets/js)/

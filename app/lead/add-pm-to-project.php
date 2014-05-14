@@ -204,9 +204,6 @@ function clean($str)
 	
         <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-info" name="submit" value="Assign" /></p></div></div>
 		</form>
-    
-
-             
 
 		<!-- Table -->
         <table class="table">
