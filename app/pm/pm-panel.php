@@ -162,8 +162,8 @@ include "../../config/functions.php";
                     <ul class="nav nav-list">
                         <li class="active">
                             <a href="#">
-                                <i class="icon-user"></i>
-                                <span class="menu-text"> My Profile </span>
+                                <i class="icon-dashboard"></i>
+                                <span class="menu-text"> PM Dashboard </span>
                             </a>
                         </li>
                         <li>
