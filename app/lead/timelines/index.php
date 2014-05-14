@@ -10,10 +10,6 @@ include('../../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../../config/functions.php";
 
-
-//SET JSON NAME TO CALL TIMELINE 
-$idProject=$_REQUEST['id'];
-$json_id = $idProject; 
 ?>
 
 <!DOCTYPE html>
@@ -32,22 +28,13 @@ $json_id = $idProject;
   	                                                            888P              
   	 -->
   <head>
-    <title>Timeline JS Example</title>
+    <title>Timelines | Postmorten App</title>
     <meta charset="utf-8">
     <meta name="description" content="TimelineJS example">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <!-- Style-->
-    <style>
-      html, body { 
-       height:100%;
-       padding: 0px;
-       margin: 0px;
-      }
-      #demo {width: 100%;height: 600px;}
 
-    </style>
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <?php
@@ -62,8 +49,10 @@ $json_id = $idProject;
     //if the login session does not exist therefore meaning the user is not logged in
     if(!$_SESSION['uid']){
       //display and error message
-      include("error-login.php");
-    }else {
+      include("../error-login.php");
+    }else if ($row['role'] != 2){
+			include("../error-not-lead.php");
+		} else {
       //otherwise continue the page
 
       //this is out update script which should be used in each page to update the users online time
@@ -168,20 +157,9 @@ $json_id = $idProject;
       </div> -->
       <div class="page-content">
           <div class="page-header">
-            <h1>Timeline</h1>
+            <h1>Timelines Created</h1>
         </div><!-- /.page-header -->
-          <div id="demo">
-              <div id="timeline-embed"></div>
-          </div>
-      </div>
-      <script type="text/javascript">
-        var timeline_config = {
-         width: "100%",
-         height: "80%",
-         source: "../../../json.php?id=<?php echo $json_id;?>",
-         font: "PTSerif-PTSans"
-        }
-      </script>
+
       <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
       <!-- END Timeline Embed-->
           <?php include("down.php");
