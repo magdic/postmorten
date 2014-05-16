@@ -73,14 +73,14 @@ include "../../config/functions.php";
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
+                    <a href="pm-panel.php" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />
+                               <!--  <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
                                 <span class="user-info">
                                     <small>Welcome,</small>
                                     <?php echo $row['name'].' '.$row['lastname']; ?>
@@ -169,7 +169,7 @@ include "../../config/functions.php";
                         <li>
                             <a href="timelines-to-me.php">
                                 <i class="icon-sitemap"></i>
-                                <span class="menu-text"> Timelines added to me </span>
+                                <span class="menu-text"> Timelines assigned </span>
                             </a>
                         </li>
                        <!--  <li>
@@ -181,7 +181,7 @@ include "../../config/functions.php";
                          <li>
                             <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
-                                <span class="menu-text"> Add user to project </span>
+                                <span class="menu-text"> Add user </span>
                             </a>
                         </li>
                         <li>
@@ -209,7 +209,7 @@ include "../../config/functions.php";
                         <ul class="breadcrumb">
                             <li>
                                 <i class="icon-home home-icon"></i>
-                                <a href="#">Home</a>
+                                <a href="pm-panel.php">Home</a>
                             </li>
                             <li class="active">Dashboard</li>
                         </ul><!-- .breadcrumb -->

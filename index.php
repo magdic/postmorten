@@ -21,6 +21,7 @@ include "config/functions.php";
 
         <link href="app/assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="app/assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="app/assets/css/main.css">
 
 
 
@@ -201,7 +202,7 @@ include "config/functions.php";
                                 <h1>
                                     <span class="white">PostMorten</span>
                                 </h1>
-                                <h4 class="blue">&copy; Hangar</h4>
+                                <h4 class="form-logo centered"></h4>
                             </div>
 
                             <div class="space-6"></div>

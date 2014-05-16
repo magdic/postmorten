@@ -1,33 +1,73 @@
-/* line 1, ../scss/main.scss */
+/* line 2, ../scss/main.scss */
 .breadcrumb .active {
   color: red !important;
 }
 
-/* line 4, ../scss/main.scss */
-.navbar .navbar-brand {
+/* line 5, ../scss/main.scss */
+.navbar, .nav-list li.active a {
+  background: #000;
+  color: #fff;
+}
+/* line 8, ../scss/main.scss */
+.navbar:hover, .nav-list li.active a:hover {
+  color: #000;
+}
+/* line 11, ../scss/main.scss */
+.navbar:after, .nav-list li.active a:after {
+  border-right-color: #D1D1D1;
+}
+
+/* line 15, ../scss/main.scss */
+.ace-nav li.light-blue > a {
+  background: #000;
+}
+
+/* line 18, ../scss/main.scss */
+.nav-list li a {
+  background: #d1d1d1;
+  color: #000;
+}
+/* line 21, ../scss/main.scss */
+.nav-list li a:hover {
+  color: grey;
+}
+/* line 23, ../scss/main.scss */
+.nav-list li a:hover:before {
+  background-color: #000;
+}
+
+/* line 28, ../scss/main.scss */
+.navbar-brand {
   background: url(../images/thi-logos.png) 0 -65px no-repeat;
   width: 165px;
   height: 60px;
   margin-top: -15px;
 }
 
-/* line 10, ../scss/main.scss */
+/* line 34, ../scss/main.scss */
+.form-logo {
+  background: url(../images/thi-logos.png) 0 -65px no-repeat;
+  width: 190px;
+  height: 60px;
+}
+
+/* line 39, ../scss/main.scss */
 .form-actions {
   border: none;
 }
 
-/* line 13, ../scss/main.scss */
+/* line 42, ../scss/main.scss */
 .centered {
   float: none;
   margin: 0 auto;
 }
 
-/* line 17, ../scss/main.scss */
+/* line 46, ../scss/main.scss */
 .row:before, .row:after {
-<<<<<<< HEAD
   /*display: none;*/
-}
-=======
   display: none;
 }
->>>>>>> bf69e51b61dc9e39620083d72ba23ed2f1aa7700
+
+/*.ace-nav li.light-blue a {
+    background: #000;
+}*/

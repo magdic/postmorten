@@ -1,11 +1,40 @@
+$logo : url(../images/thi-logos.png) 0 -65px no-repeat;
 .breadcrumb .active{
     color: red !important;
 }
-.navbar .navbar-brand{
-    background:url(../images/thi-logos.png) 0 -65px no-repeat;
+.navbar , .nav-list li.active a{
+    background: #000;
+    color: #fff;
+    &:hover{
+        color: #000;
+    }
+    &:after{
+        border-right-color: #D1D1D1;
+    }
+}
+.ace-nav li.light-blue > a {
+    background: #000;
+}
+.nav-list li a{
+    background: #d1d1d1;
+    color: #000;
+        &:hover{
+            color : grey;
+            &:before{
+                background-color: #000;
+            }
+        }
+}
+.navbar-brand{
+    background: $logo;
     width:165px;
     height:60px;
-    margin-top:-15px
+    margin-top:-15px;
+}
+.form-logo{
+    background: $logo;
+    width: 190px;
+    height: 60px;
 }
 .form-actions {
     border:none;
@@ -15,10 +44,10 @@
     margin: 0 auto;
 }
 .row:before, .row:after {
-<<<<<<< HEAD
     /*display: none;*/
-}
-=======
     display: none;
 }
->>>>>>> bf69e51b61dc9e39620083d72ba23ed2f1aa7700
+/*.ace-nav li.light-blue a {
+    background: #000;
+}*/
+

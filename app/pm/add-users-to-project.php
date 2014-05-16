@@ -34,7 +34,7 @@ function clean($str)
 
 
 <!DOCTYPE html>
-<html>
+<html ng-app="demo">
 <head>
     <title>Add users to project | my App</title>
 
@@ -102,7 +102,7 @@ function clean($str)
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
+                    <a href="pm-panel.php" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">
@@ -191,20 +191,20 @@ function clean($str)
                     <ul class="nav nav-list">
                         <li>
                             <a href="pm-panel.php">
-                                <i class="icon-user"></i>
-                                <span class="menu-text"> My Profile </span>
+                                <i class="icon-dashboard"></i>
+                                <span class="menu-text"> PM Dashboard </span>
                             </a>
                         </li>
                         <li>
                             <a href="timelines-to-me.php">
                                 <i class="icon-sitemap"></i>
-                                <span class="menu-text"> Timelines added to me </span>
+                                <span class="menu-text"> Timelines assigned </span>
                             </a>
                         </li>
                          <li class="active">
                             <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
-                                <span class="menu-text"> Add user to project </span>
+                                <span class="menu-text"> Add user </span>
                             </a>
                         </li>
                         <li>
@@ -232,10 +232,10 @@ function clean($str)
                         <ul class="breadcrumb">
                             <li>
                                 <i class="icon-home home-icon"></i>
-                                <a href="#">Home</a>
+                                <a href="pm-panel.php">Home</a>
                             </li>
                             <li>Dashboard</li>
-                            <li class="active">Timelines</li>
+                            <!-- <li class="active">Timelines</li> -->
                         </ul><!-- .breadcrumb -->
 
                         <div class="nav-search" id="nav-search">
@@ -261,693 +261,83 @@ function clean($str)
                                     <div class="row">
                                         <div class="col-xs-12">
 
-                                        <h3 class="header smaller lighter blue">Users</h3>
-                                        <div class="table-header">
-                                            Results for "Users"
-                                        </div>
 
-                                        <div class="table-responsive">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-                                                        <th>Name</th>
-                                                        <th>Last Name</th>
-                                                       <!--  <th class="hidden-480">Email</th>
 
-                                                        <th>
-                                                            <i class="icon-time bigger-110 hidden-480"></i>
-                                                            Update
-                                                        </th> -->
-                                                        <th class="hidden-480">Email</th>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.js"></script>
+    <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"> -->
+
+    <!-- ui-select files -->
+    <script src="plunk/select.js"></script>
+    <link rel="stylesheet" href="plunk/select.css">
+
+    <!--  IT'S THE SAME THAT YOU CALL AN EXTERNAL SCRIPT <script src="demo.js"></script> -->
+    <?php include("plunk/demojs.php"); ?>
+
+    <!-- Select2 theme -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+  <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
+
+        <form action="../../controllers/hook-users-to-project.php" method="post" ng-controller="DemoCtrl">
+       <!--  ANGULAR FORM WAY TO SEARCH AND SELECT PROJECTS AND USERS-->
+          <div class="form-group"><div class="col-sm-5">
+          <h3>User for the Project</h3>  <ui-select ng-model="user.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
+            <match placeholder="Select or search a username in the list...">{{$select.selected.name}}</match>
+            <choices repeat="user in users | filter: $select.search">
+              <span ng-bind-html="user.name | highlight: $select.search"></span>
+              <!-- <small ng-bind-html="user.id | highlight: $select.search"></small> -->
+            </choices></div></div>
+          </ui-select>
+           <div class="form-group">
+        <div class="col-sm-5">
+            <h3>Select Project</h3>  <ui-select ng-model="project.selected" theme="projects" ng-disabled="disabled" style="width: 300px;">
+            <match  placeholder="Select or search a project in the list...">{{$select.selected.name}}</match>
+            <choices repeat="project in projects | filter: $select.search">
+              <span ng-bind-html="project.name | highlight: $select.search"></span>
+              <!-- <small ng-bind-html="project.id | highlight: $select.search"></small> -->
+            </choices>
+          </ui-select></div></div>
+        <!-- </div> -->
+        <!-- <p>Selected Project: {{project.selected.id}}</p> -->
+        <input type="hidden" name="idUsernameJO" value="{{user.selected.id}}" required>
+        <input type="hidden" name="idProjectJO" value="{{project.selected.id}}" required>
+
+        <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-info" name="submit" value="Assign" /></p></div></div>
+        </form>
+
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>PM User</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
+                while ($row = mysql_fetch_array($query)) {
+                    $id = $row['idtimeLine']; ?>
+
+            <tr>
+                <td><?php echo $row['headlineP']; ?></td>
+                <td><?php echo $row['name']; echo ' '.$row['lastname'];  ?></td>
+            </tr>
+            <?php } ?>
+
+          </tbody>
+        </table>
+    </div>
 
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
 
-                                                <tbody>
-                                                    <?php $query = mysql_query("SELECT * FROM users") or die(mysql_error());
-                                                    while ($row = mysql_fetch_array($query)) {
-                                                        $id = $row['id']; ?>
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                 <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <a href="#"> <?php echo $row['name']; ?></a>
-                                                        </td>
-                                                        <td> <?php echo $row['lastname']; ?> </td>
-                                                        <td class="hidden-480"> <?php echo $row['email']; ?> </td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a href="#modal-form" role="button" class="red" data-toggle="modal">
-                                                                    <i class="icon-user bigger-130"></i>
-                                                                </a>
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                         <?php } ?>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">base.com</a>
-                                                        </td>
-                                                        <td>$35</td>
-                                                        <td class="hidden-480">2,595</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">max.com</a>
-                                                        </td>
-                                                        <td>$60</td>
-                                                        <td class="hidden-480">4,400</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">best.com</a>
-                                                        </td>
-                                                        <td>$75</td>
-                                                        <td class="hidden-480">6,500</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">pro.com</a>
-                                                        </td>
-                                                        <td>$55</td>
-                                                        <td class="hidden-480">4,250</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">team.com</a>
-                                                        </td>
-                                                        <td>$40</td>
-                                                        <td class="hidden-480">3,200</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">up.com</a>
-                                                        </td>
-                                                        <td>$95</td>
-                                                        <td class="hidden-480">8,520</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="center">
-                                                            <label>
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td>
-                                                            <a href="#">view.com</a>
-                                                        </td>
-                                                        <td>$45</td>
-                                                        <td class="hidden-480">4,100</td>
-
-
-                                                        <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                                                <a class="blue" href="#">
-                                                                    <i class="icon-zoom-in bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="green" href="#">
-                                                                    <i class="icon-pencil bigger-130"></i>
-                                                                </a>
-
-                                                                <a class="red" href="#">
-                                                                    <i class="icon-trash bigger-130"></i>
-                                                                </a>
-                                                            </div>
-
-                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                        <i class="icon-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i class="icon-zoom-in bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i class="icon-edit bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="icon-trash bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
                                     </div>
                                 </div>
-
-
-
-                                <!-- <div id="modal-form" class="modal" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Assign user to a project</h4>
-                                            </div>
-
-                                            <div class="modal-body overflow-visible">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-5">
-                                                        <div class="space"></div>
-
-                                                        <input type="file" />
-                                                    </div>
-
-                                                    <div class="col-xs-12 col-sm-7">
-                                                        <div class="form-group">
-                                                            <label for="form-field-select-5">Project</label>
-
-                                                            <div>
-                                                                <select class="chosen-select" data-placeholder="Choose a Project...">
-                                                                    <option value="">&nbsp;</option>
-                                                                    <option value="AL">Alabama</option>
-                                                                    <option value="AK">Alaska</option>
-                                                                    <option value="AZ">Arizona</option>
-                                                                    <option value="AR">Arkansas</option>
-                                                                    <option value="CA">California</option>
-                                                                    <option value="CO">Colorado</option>
-                                                                    <option value="CT">Connecticut</option>
-                                                                    <option value="DE">Delaware</option>
-                                                                    <option value="FL">Florida</option>
-                                                                    <option value="GA">Georgia</option>
-                                                                    <option value="HI">Hawaii</option>
-                                                                    <option value="ID">Idaho</option>
-                                                                    <option value="IL">Illinois</option>
-                                                                    <option value="IN">Indiana</option>
-                                                                    <option value="IA">Iowa</option>
-                                                                    <option value="KS">Kansas</option>
-                                                                    <option value="KY">Kentucky</option>
-                                                                    <option value="LA">Louisiana</option>
-                                                                    <option value="ME">Maine</option>
-                                                                    <option value="MD">Maryland</option>
-                                                                    <option value="MA">Massachusetts</option>
-                                                                    <option value="MI">Michigan</option>
-                                                                    <option value="MN">Minnesota</option>
-                                                                    <option value="MS">Mississippi</option>
-                                                                    <option value="MO">Missouri</option>
-                                                                    <option value="MT">Montana</option>
-                                                                    <option value="NE">Nebraska</option>
-                                                                    <option value="NV">Nevada</option>
-                                                                    <option value="NH">New Hampshire</option>
-                                                                    <option value="NJ">New Jersey</option>
-                                                                    <option value="NM">New Mexico</option>
-                                                                    <option value="NY">New York</option>
-                                                                    <option value="NC">North Carolina</option>
-                                                                    <option value="ND">North Dakota</option>
-                                                                    <option value="OH">Ohio</option>
-                                                                    <option value="OK">Oklahoma</option>
-                                                                    <option value="OR">Oregon</option>
-                                                                    <option value="PA">Pennsylvania</option>
-                                                                    <option value="RI">Rhode Island</option>
-                                                                    <option value="SC">South Carolina</option>
-                                                                    <option value="SD">South Dakota</option>
-                                                                    <option value="TN">Tennessee</option>
-                                                                    <option value="TX">Texas</option>
-                                                                    <option value="UT">Utah</option>
-                                                                    <option value="VT">Vermont</option>
-                                                                    <option value="VA">Virginia</option>
-                                                                    <option value="WA">Washington</option>
-                                                                    <option value="WV">West Virginia</option>
-                                                                    <option value="WI">Wisconsin</option>
-                                                                    <option value="WY">Wyoming</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="space-4"></div>
-
-                                                        <div class="form-group">
-                                                            <label for="form-field-username">Username: <?php echo $row['name']; ?></label>
-
-                                                        </div>
-
-                                                        <div class="space-4"></div>
-
-                                                        <div class="form-group">
-                                                            <label for="form-field-first">Name</label>
-
-                                                            <div>
-                                                                <input class="input-medium" type="text" id="form-field-first" placeholder="First Name" value="Alex" />
-                                                                <input class="input-medium" type="text" id="form-field-last" placeholder="Last Name" value="Doe" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button class="btn btn-sm" data-dismiss="modal">
-                                                    <i class="icon-remove"></i>
-                                                    Cancel
-                                                </button>
-
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="icon-ok"></i>
-                                                    Save
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --><!-- PAGE CONTENT ENDS -->
-
-
-
                                         </div>
                                     </div>
                                 </div>

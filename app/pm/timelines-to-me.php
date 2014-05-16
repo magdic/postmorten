@@ -101,7 +101,7 @@ function clean($str)
 
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand"></a><!-- /.brand -->
+                    <a href="pm-panel.php" class="navbar-brand"></a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 
                 <div class="navbar-header pull-right" role="navigation">
@@ -190,14 +190,14 @@ function clean($str)
                     <ul class="nav nav-list">
                         <li>
                             <a href="pm-panel.php">
-                                <i class="icon-user"></i>
-                                <span class="menu-text"> My Profile </span>
+                                <i class="icon-dashboard"></i>
+                                <span class="menu-text"> PM Dashboard </span>
                             </a>
                         </li>
                         <li class="active">
                             <a href="timelines-to-me.php">
                                 <i class="icon-sitemap"></i>
-                                <span class="menu-text"> Timelines added to me </span>
+                                <span class="menu-text"> Timelines assigned </span>
                             </a>
                         </li>
                         <!-- <li>
@@ -209,7 +209,7 @@ function clean($str)
                          <li>
                             <a href="add-users-to-project.php">
                                 <i class="icon-plus"></i>
-                                <span class="menu-text"> Add user to project </span>
+                                <span class="menu-text"> Add user </span>
                             </a>
                         </li>
                         <li>
@@ -237,10 +237,10 @@ function clean($str)
                         <ul class="breadcrumb">
                             <li>
                                 <i class="icon-home home-icon"></i>
-                                <a href="#">Home</a>
+                                <a href="pm-panel.php">Home</a>
                             </li>
                             <li>Dashboard</li>
-                            <li class="active">Timelines</li>
+                           <!--  <li class="active">Timelines assigned</li> -->
                         </ul><!-- .breadcrumb -->
 
                         <div class="nav-search" id="nav-search">
@@ -258,7 +258,7 @@ function clean($str)
                                             PM Dashboard
                                             <small>
                                                 <i class="icon-double-angle-right"></i>
-                                               Timelines
+                                               Timelines assigned
                                             </small>
                                         </h1>
                                     </div>
@@ -284,7 +284,7 @@ function clean($str)
                                                     <tr>
                                                         <td><?php echo $row['headlineP']; ?></td>
                                                         <td>
-                                                            <a class="btn btn-xs btn-success" href="#">See Timeline <i class="icon-bar-chart bigger-120"></i></a>
+                                                            <a class="btn btn-xs btn-success" href="timelines/timeline.php?id=<?php echo $id?>">See Timeline <i class="icon-bar-chart bigger-120"></i></a>
                                                             <a class="btn btn-xs btn-info" href="add-timeline.php?id=<?php echo $id?>">See/add feedback <i class="icon-edit bigger-120"></i></a>
                                                         </td>
                                                     </tr>
