@@ -17,9 +17,9 @@
                         <ul class="breadcrumb">
                             <li>
                                 <i class="icon-home home-icon"></i>
-                                <a href="./lead-panel.php">Home</a>
+                                <a href="../lead-panel.php">Home</a>
                             </li>
-                            <li class="active">Dashboard</li>
+                            <!-- <li class="active">Dashboard</li> -->
                         </ul><!-- .breadcrumb -->
 
                         <div class="nav-search" id="nav-search">

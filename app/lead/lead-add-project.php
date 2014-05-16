@@ -138,6 +138,12 @@ function clean($str)
         </a>
     </li>
     <li>
+        <a href="./timelines">
+            <i class="icon-eye-open"></i>
+            <span class="menu-text"> See Timelines </span>
+        </a>
+    </li>
+    <li>
         <a href="../../logout.php">
             <i class="icon-mail-reply"></i>
             <span class="menu-text"> Log Out </span>

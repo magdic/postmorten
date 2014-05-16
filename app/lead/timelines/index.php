@@ -10,14 +10,10 @@ include('../../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../../config/functions.php";
 
-
-//SET JSON NAME TO CALL TIMELINE 
-$idProject=$_REQUEST['id'];
-$json_id = $idProject; 
 ?>
 
 <!DOCTYPE html>
-<html lang="en"><!--
+<html data-ng-app="myApp" lang="en"><!--
   	 
   	88888888888 d8b                        888 d8b                888888   d8888b  
   	    888     Y8P                        888 Y8P                   88b d88P  Y88b 
@@ -32,22 +28,16 @@ $json_id = $idProject;
   	                                                            888P              
   	 -->
   <head>
-    <title>Timeline JS Example</title>
+    <title>Timelines | Postmorten App</title>
     <meta charset="utf-8">
     <meta name="description" content="TimelineJS example">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <!-- Style-->
-    <style>
-      html, body { 
-       height:100%;
-       padding: 0px;
-       margin: 0px;
-      }
-      #demo {width: 100%;height: 600px;}
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/ng-infinite-scroll.js"></script> -->
 
-    </style>
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <?php
@@ -62,8 +52,10 @@ $json_id = $idProject;
     //if the login session does not exist therefore meaning the user is not logged in
     if(!$_SESSION['uid']){
       //display and error message
-      include("error-login.php");
-    }else {
+      include("../error-login.php");
+    }else if ($row['role'] != 2){
+			include("../error-not-lead.php");
+		} else {
       //otherwise continue the page
 
       //this is out update script which should be used in each page to update the users online time
@@ -166,48 +158,71 @@ $json_id = $idProject;
      <!--  <div><h1>Timeline App</h1>
         <a href="./?id=<?php echo $idProject;?>">Back</a>
       </div> -->
-      <?php 
-           $res = mysql_query("SELECT * FROM loginTut.timelines where idFromProject = '$json_id'");
-          //split all fields fom the correct row into an associative array
-          $row = mysql_fetch_assoc($res);
-          if(empty($row['idtimelines'])){
-            echo '
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">
-                  <i class="icon-remove"></i>
-                </button>
+      <div class="page-content"  >
+<div ng-controller="customersCrtl">
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">Qty of Results:
+            <select data-ng-model="entryLimit" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+        </div>
+        <div class="col-md-3">Filter:
+            <input type="text" ng-model="search" ng-change="filter()" placeholder="Search a timeline..." class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total timeline projects</h5>
+        </div>
+    </br> 
+    </br> 
+    </br> 
+    </br> 
+    <div class="row">
+        <div class="col-md-12" data-ng-show="filteredItems > 0">
+            <table class="table table-striped table-bordered">
+            <thead>
+            <th>Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
+            <th>Description&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
+            <th>Start date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-magic"></i></a></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                    <td><a href="timeline.php?id={{data.idtimeLine}}">{{data.headlineP}}</a></td>
+                    <td>{{data.textP}}</td>
+                    <td>{{data.startDateP}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="col-md-12" data-ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>Timeline not found</h4>
+            </div>
+        </div>
+        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+            
+            
+        </div>
+    </div>
+</div>
+</div>
+</div>
+  
 
-                    <strong>
-                      <i class="icon-remove"></i>
-                      This is not an error!
-                    </strong>
 
-                The timeline still haven\'t been created.
-                <br>
-            </div>';die();
-          } 
-
-      ?>
-      <div class="page-content">
-          <div class="page-header">
-            <h1>Timeline</h1>
-        </div><!-- /.page-header -->
-          <div id="demo">
-              <div id="timeline-embed"></div>
-          </div>
       </div>
-      <script type="text/javascript">
-        var timeline_config = {
-         width: "100%",
-         height: "80%",
-         source: "../../../json.php?id=<?php echo $json_id;?>",
-         font: "PTSerif-PTSans"
-        }
-      </script>
-      <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
+
       <!-- END Timeline Embed-->
           <?php include("down.php");
     //make sure you close the check if their online
     } ?>
+    <script src="js/angular.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="js/app.js"></script>    
   </body>
 </html>

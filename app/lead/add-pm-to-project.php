@@ -139,6 +139,12 @@ function clean($str)
         </a>
     </li>
     <li>
+        <a href="./timelines">
+            <i class="icon-eye-open"></i>
+            <span class="menu-text"> See Timelines </span>
+        </a>
+    </li>
+    <li>
         <a href="../../logout.php">
             <i class="icon-mail-reply"></i>
             <span class="menu-text"> Log Out </span>
@@ -183,7 +189,7 @@ function clean($str)
        <div class="form-group">
         <div class="col-sm-5">
 		    <h3>Select Project</h3>  <ui-select ng-model="project.selected" theme="projects" ng-disabled="disabled" style="width: 300px;">
-            <match  placeholder="Select or search a project in the list...">{{$select.selected.name}}</match>
+            <match  placeholder="Select or search a project in the list..." >{{$select.selected.name}}</match>
             <choices repeat="project in projects | filter: $select.search">
               <span ng-bind-html="project.name | highlight: $select.search"></span>
               <!-- <small ng-bind-html="project.id | highlight: $select.search"></small> -->
@@ -198,15 +204,83 @@ function clean($str)
             </choices></div></div>
           </ui-select>
         <!-- </div> -->
-        <!-- <p>Selected Project: {{project.selected.id}}</p> -->
+      
+
+
+<div ng-controller="customersCrtl">
+<div class="container">
+    <div class="row">
+<!-- <select name="selection">
+<option>hangar</option>
+<option>godaddy</option>
+<option>citi</option>
+</select> -->
+<br/>
+<br/>
+
+        <p id="project">{{project.selected.id}}</p> 
+
+        <div class="col-md-3">Filter:
+          <input ng-model="search" type="text" name="r1" id="radio_1" value="{{project.selected.id}}" /><br>
+       
+            <!-- <input type="text" id="projectiso" name="hid" value="{{project.selected.id}}" ng-model="search" ng-change="filter()" placeholder="Search a timeline..." class="form-control"/> -->
+        </div>
+
+          
+        <div class="col-md-4">
+            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total timeline projects</h5>
+        </div>
+    </br> 
+    </br> 
+    </br> 
+    </br> 
+    <div class="row">
+        <div class="col-md-12" data-ng-show="filteredItems > 0">
+            <table class="table table-striped table-bordered">
+            <thead>
+            <th>Project&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
+            <th>Assigned User&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                    <td>{{data.headlineP}}</td>
+                    <td>{{data.name}}&nbsp;{{data.lastname}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="col-md-12" data-ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>No users for this project</h4>
+            </div>
+        </div>
+        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+            
+            
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
         <input type="hidden" name="idProjectJO" value="{{project.selected.id}}" required>
         <input type="hidden" name="idUsernameJO" value="{{user.selected.id}}" required>
 	
         <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-info" name="submit" value="Assign" /></p></div></div>
-		</form>
 
 		<!-- Table -->
-        <table class="table">
+
+
+
+
+</form>
+
+
+
+<!--         <table class="table">
           <thead>
             <tr>
               <th>Project</th>
@@ -226,7 +300,7 @@ function clean($str)
 			<?php } ?>
 
           </tbody>
-        </table>
+        </table> -->
     </div>
 
 
@@ -240,5 +314,17 @@ function clean($str)
 		}
 		
 		?>
+    <script type="text/javascript">
+
+var allElems = document.getElementsByTagName('input');
+for (i = 0; i < allElems.length; i++) {
+    if (allElems[i].type == 'radio' && allElems[i].name == 'r1') {
+        allElems[i].checked = true;
+
+    }
+}
+
+</script>
+  <script src="timelines/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
 </body>
 </html>
