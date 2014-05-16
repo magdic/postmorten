@@ -166,6 +166,28 @@ $json_id = $idProject;
      <!--  <div><h1>Timeline App</h1>
         <a href="./?id=<?php echo $idProject;?>">Back</a>
       </div> -->
+      <?php 
+           $res = mysql_query("SELECT * FROM loginTut.timelines where idFromProject = '$json_id'");
+          //split all fields fom the correct row into an associative array
+          $row = mysql_fetch_assoc($res);
+          if(empty($row['idtimelines'])){
+            echo '
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">
+                  <i class="icon-remove"></i>
+                </button>
+
+                    <strong>
+                      <i class="icon-remove"></i>
+                      This is not an error!
+                    </strong>
+
+                The timeline still haven\'t been created.
+                <br>
+            </div>';die();
+          } 
+
+      ?>
       <div class="page-content">
           <div class="page-header">
             <h1>Timeline</h1>
