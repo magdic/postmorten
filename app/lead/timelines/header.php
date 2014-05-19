@@ -8,7 +8,6 @@
 
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="../../assets/css/main.css" />
 
         <!-- page specific plugin styles -->
 
@@ -23,6 +22,8 @@
         <link rel="stylesheet" href="../../assets/css/ace-skins.min.css" />
 
         <!-- inline styles related to this page -->
+        
+        <link rel="stylesheet" href="../../assets/css/main.css" />
 
         <!-- ace settings handler -->
 

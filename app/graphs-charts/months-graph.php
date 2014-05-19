@@ -28,7 +28,7 @@
 									                text: 'Postmorten App'
 									            },
 									            subtitle: {
-									                text: 'Projects by year'
+									                text: 'Projects by Month'
 									            },
 									            xAxis: {
 									                categories: [
@@ -80,10 +80,10 @@
 									                }
 									            },
 									            tooltip: {
-									                enabled: false,
+									                enabled: true,
 									                formatter: function() {
 									                    return '<b>'+ this.series.name +'</b><br/>'+
-									                        this.x +': '+ this.y +'°C';
+									                        this.x +': '+ this.y +' Projects';
 									                }
 									            },
 									            plotOptions: {
@@ -98,7 +98,7 @@
 									                }
 									            },
 									            series: [{
-									                name: 'Months',
+									                name: 'Monthy Average',
 									                data: [
 									                    <?php 
 

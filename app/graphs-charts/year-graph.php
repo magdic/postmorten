@@ -47,10 +47,10 @@
 									                }
 									            },
 									            tooltip: {
-									                enabled: false,
+									                enabled: true,
 									                formatter: function() {
 									                    return '<b>'+ this.series.name +'</b><br/>'+
-									                        this.x +': '+ this.y +'°C';
+									                        this.x +': '+ this.y +' projects';
 									                }
 									            },
 									            plotOptions: {
@@ -65,7 +65,7 @@
 									                }
 									            },
 									            series: [{
-									                name: 'Year',
+									                name: 'Year Average',
 									                data: [
 									                    <?php 
 
