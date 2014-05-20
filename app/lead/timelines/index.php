@@ -93,7 +93,7 @@ include "../../../config/functions.php";
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="../../../logout.php">
+                                    <a href="../../../../logout.php">
                                         <i class="icon-off"></i>
                                         Logout
                                     </a>
@@ -186,14 +186,14 @@ include "../../../config/functions.php";
             <table class="table table-striped table-bordered">
             <thead>
             <th>Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
-            <th>Description&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
-            <th>Start date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-magic"></i></a></th>
+            <th>Description/Date&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
+            <th>Options&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-magic"></i></a></th>
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td><a href="timeline.php?id={{data.idtimeLine}}">{{data.headlineP}}</a></td>
-                    <td>{{data.textP}}</td>
-                    <td>{{data.startDateP}}</td>
+                    <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td>
+                    <td><a href="edit.php?id={{data.idtimeLine}}">Edit</a></td>
                 </tr>
             </tbody>
             </table>

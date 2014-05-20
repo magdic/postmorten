@@ -13,7 +13,7 @@ app.controller('customersCrtl', function ($scope, $http, $timeout) {
     $http.get('ajax/getProjects.php').success(function(data){
         $scope.list = data;
         $scope.currentPage = 1; //current page
-        $scope.entryLimit = 5; //max no of items to display in a page
+        $scope.entryLimit = 10; //max no of items to display in a page
         $scope.filteredItems = $scope.list.length; //Initially for no filter  
         $scope.totalItems = $scope.list.length;
     });

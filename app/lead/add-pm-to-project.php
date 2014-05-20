@@ -159,7 +159,7 @@ function clean($str)
 		<div class="page-content">
 			<div class="page-header">
 				<h1>
-					Assign Project to PM
+					Assign PM User to Project
 				</h1>
 			</div><!-- /.page-header -->
 
@@ -204,32 +204,17 @@ function clean($str)
             </choices></div></div>
           </ui-select>
         <!-- </div> -->
-      
-
 
 <div ng-controller="customersCrtl">
 <div class="container">
     <div class="row">
-<!-- <select name="selection">
-<option>hangar</option>
-<option>godaddy</option>
-<option>citi</option>
-</select> -->
-<br/>
-<br/>
 
-        <p id="project">{{project.selected.id}}</p> 
-
-        <div class="col-md-3">Filter:
-          <input ng-model="search" type="text" name="r1" id="radio_1" value="{{project.selected.id}}" /><br>
-       
-            <!-- <input type="text" id="projectiso" name="hid" value="{{project.selected.id}}" ng-model="search" ng-change="filter()" placeholder="Search a timeline..." class="form-control"/> -->
-        </div>
+    <div class="col-md-3">Filter:
+        <input name="idProjectJO" ng-model="search" type="radio" name="r1" id="radio_1" value="{{project.selected.id}}" checked readonly/><br>
+    </div>
 
           
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total timeline projects</h5>
-        </div>
+
     </br> 
     </br> 
     </br> 
@@ -239,7 +224,7 @@ function clean($str)
             <table class="table table-striped table-bordered">
             <thead>
             <th>Project&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
-            <th>Assigned User&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
+            <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-magic"></i></a></th>
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
@@ -253,6 +238,9 @@ function clean($str)
             <div class="col-md-12">
                 <h4>No users for this project</h4>
             </div>
+        </div>
+        <div class="col-md-4">
+            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total timeline projects</h5>
         </div>
         <div class="col-md-12" data-ng-show="filteredItems > 0">    
             <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
@@ -279,39 +267,15 @@ function clean($str)
 </form>
 
 
-
-<!--         <table class="table">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>PM User</th>
-            </tr>
-          </thead>
-          <tbody>
-           
-			<?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
-            	while ($row = mysql_fetch_array($query)) {
-            		$id = $row['idtimeLine']; ?>
-
-            <tr>
-                <td><?php echo $row['headlineP']; ?></td>
-                <td><?php echo $row['name']; echo ' '.$row['lastname'];  ?></td>
-            </tr>
-			<?php } ?>
-
-          </tbody>
-        </table> -->
     </div>
 
 
-<?php
+        <?php    
 
-        
-
-		include("down.php");
-		
-		//make sure you close the check if their online
-		}
+    		include("down.php");
+    		
+    		//make sure you close the check if their online
+    		}
 		
 		?>
     <script type="text/javascript">

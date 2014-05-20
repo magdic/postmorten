@@ -234,6 +234,36 @@ function clean($str)
 																	</div>
 																</div>
 
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="media">Main Image/Video:</label>
+
+																	<div class="col-xs-12 col-sm-9">
+																		<div class="clearfix">
+																			<input type="text" name="main-media" id="main-media" class="col-xs-12 col-sm-6">
+																		</div>
+																	</div>
+																</div>
+
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="mediacredit">Credit Media:</label>
+
+																	<div class="col-xs-12 col-sm-9">
+																		<div class="clearfix">
+																			<input type="text" name="credit-media" id="credit-media" class="col-xs-12 col-sm-6">
+																		</div>
+																	</div>
+																</div>
+
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="mediacaption">Caption Media:</label>
+
+																	<div class="col-xs-12 col-sm-9">
+																		<div class="clearfix">
+																			<input type="text" name="caption-media" id="caption-media" class="col-xs-12 col-sm-6">
+																		</div>
+																	</div>
+																</div>																																
+
 																<div class="space-2"></div>
 
 													<div class="row-fluid wizard-actions">

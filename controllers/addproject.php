@@ -34,6 +34,9 @@ function clean($str)
 $projectname= clean($_POST['projectname']);
 $reference = clean($_POST['reference']);
 $startdate = clean($_POST['startdate']);
+$mainmedia = clean($_POST['main-media']);
+$creditmedia = clean($_POST['credit-media']);
+$captionmedia = clean($_POST['caption-media']);
 //$id = substr(md5(rand()), 0, 20);
 
 $id = time() + (7 * 24 * 60 * 60);
@@ -41,7 +44,7 @@ $idEncryped = md5($id);
 //echo md5($id);die();
 //echo 'Project Name: '.$projectname;die();
 
-$resultf = mysql_query("SELECT * FROM timeProject where headlineP='$projectname' AND textP='$reference' AND startDateP='$startdate'");
+$resultf = mysql_query("SELECT * FROM timeProject where headlineP='$projectname' AND textP='$reference' AND startDateP='$startdate' AND mediaP='$mainmedia'");
 while($rowf = mysql_fetch_array($resultf))
 	{
 	$cccvvv=$rowf['headlineP'];
@@ -58,6 +61,6 @@ while($rowf = mysql_fetch_array($resultf))
 	}
 	}
 	}
-mysql_query("INSERT INTO timeProject (idtimeLine, headlineP, textP, startDateP)
-VALUES ('$idEncryped','$projectname','$reference','$startdate')");
+mysql_query("INSERT INTO timeProject (idtimeLine, headlineP, textP, startDateP, mediaP, creditP, captionP)
+VALUES ('$idEncryped','$projectname','$reference','$startdate','$mainmedia','$creditmedia','$captionmedia')");
 header("location: ../app/lead/lead-panel.php");

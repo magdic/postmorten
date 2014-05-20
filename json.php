@@ -26,7 +26,8 @@ $sql2 = "SELECT * FROM timeProject AS a, timelines AS b WHERE b.idFromProject = 
                 "headline":"'.$row['headlineP'].'",
                 "type":"'.$row['typeP'].'",
                 "text":"'.$row['textP'].'",
-                "startDate":"'.$row['startDateP'].'","date":[';
+                "startDate":"'.$row['startDateP'].'","asset":{"media":"'.$row['mediaP'].'","credit":"'.$row['creditP'].'","caption":"'.$row['captionP'].'"},
+                "date":[';
         }
 
         $array = array( //PRINT EACH TIMELIME ADDED
