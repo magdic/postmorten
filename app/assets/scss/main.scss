@@ -2,6 +2,9 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
 .breadcrumb .active{
     color: red !important;
 }
+.navbar , .nav-list li.active:after{
+    border: none;
+}
 .navbar , .nav-list li.active a{
     background: #000;
     color: #fff;
@@ -14,6 +17,32 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
 }
 .ace-nav li.light-blue > a {
     background: #000;
+    &:hover{
+        color: #000;
+        background-color: #fff;
+    }
+    &:hover i{
+        color: #000;
+    }
+}
+.ace-nav>li.open.light-blue>a{
+    background-color: #fff !important;
+    color: #000 !important;
+    i{
+        color: #000;
+    }
+}
+/*.ace-nav>li.light-blue>a:hover, .ace-nav>li.light-blue>a:focus{
+    background-color: #000 !important;
+}*/
+.menu-min .nav-list>li.active>a {
+    color: #FFFFFF;
+}
+/*.menu-min .nav-list>li.focus>a {
+    color: #FFFFFF;
+}*/
+.menu-min .nav-list>li:hover>a{
+    color: #000;
 }
 .nav-list li a{
     background: #d1d1d1;
@@ -24,6 +53,13 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
                 background-color: #000;
             }
         }
+}
+.nav-list>li>.submenu>li:first-child>a{
+    color: #fff;
+}
+.nav-list>li .submenu>li.active>a>[class*="icon-"]:first-child{
+    color: #fff;
+    background-color: #000;
 }
 .navbar-brand{
     background: $logo;
