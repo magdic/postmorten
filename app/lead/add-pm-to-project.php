@@ -229,7 +229,7 @@ function clean($str)
             <tbody>
                 <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.headlineP}}</td>
-                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a type="button" class="delete" href="delete_PM.php?id={{data.idJO}}">Delete</a></td>
+                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a class="delete" id="bootbox-confirm" href="#">Confirm</a></td>
                 </tr>
             </tbody>
             </table>
@@ -251,13 +251,25 @@ function clean($str)
 </div>
 </div>
 </div>
+<table class="table table-striped table-bordered">
+            <thead>
+            <th>Project&nbsp;</th>
+            <th>Assigned User&nbsp;</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                    <td>{{data.headlineP}}</td>
+                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a class="delete" id="bootbox-confirm" href="#">Confirm</a></td>
+                </tr>
+            </tbody>
+            </table>
 
 
 
         <input type="hidden" name="idProjectJO" value="{{project.selected.id}}" required>
         <input type="hidden" name="idUsernameJO" value="{{user.selected.id}}" required>
 	
-        <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-info" name="submit" value="Assign" /></p></div></div>
+        <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-submit" name="submit" value="Assign" /></p></div></div>
 
 		<!-- Table -->
 
@@ -268,7 +280,7 @@ function clean($str)
 
 
     </div>
-<p><button class="btn btn-info" id="bootbox-confirm">Confirm</button></p>
+<a class="delete" id="bootbox-confirm" href="#">Confirm</a>
 
         <?php    
 
@@ -291,25 +303,7 @@ function clean($str)
     </script>
   <script src="timelines/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
     <script type="text/javascript">   
-    $(document).ready( function() {
-            $('.btn-danger').click( function() {
-        
-                var id = $(this).attr("id");
-         
-                if(confirm("Are you sure you want to delete this Member?")){
-                    $.ajax({
-                        type: "POST",
-                        url: "delete_PM.php",
-                        data: ({id: id}),
-                        cache: true,
-                        success: function(html){
-                            $(".del"+id).fadeOut('slow'); 
-                        } 
-                    }); 
-                }else{
-                    return true;}
-            });    
-        }); 
+
     </script>
 
 </body>
