@@ -14,6 +14,7 @@
         <script src="../assets/js/bootstrap-wysiwyg.min.js"></script>
         <script src="../assets/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="../assets/js/bootbox.min.js"></script>
         <script src="../assets/js/jquery.slimscroll.min.js"></script>
 
         <!-- ace scripts -->
@@ -218,5 +219,12 @@
 
 
             // })
+                        $("#bootbox-confirm").on(ace.click_event, function() {
+                              bootbox.confirm("Are you sure?", function(result) {
+                                    if(result) {
+                                          //
+                                    }
+                              });
+                        });
         </script>
 		

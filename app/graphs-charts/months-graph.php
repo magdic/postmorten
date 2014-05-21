@@ -39,6 +39,9 @@
 									                                if($rowie["month"] == '01'){
 									                                	echo "'Jan',";
 									                                }
+									                                if($rowie["month"] == '02'){
+									                                	echo "'Feb',";
+									                                }
 									                                if($rowie["month"] == '03'){
 									                                	echo "'Mar',";
 									                                }

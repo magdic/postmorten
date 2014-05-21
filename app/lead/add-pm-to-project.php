@@ -227,9 +227,9 @@ function clean($str)
             <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-magic"></i></a></th>
             </thead>
             <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.headlineP}}</td>
-                    <td>{{data.name}}&nbsp;{{data.lastname}}</td>
+                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a type="button" class="delete" href="delete_PM.php?id={{data.idJO}}">Delete</a></td>
                 </tr>
             </tbody>
             </table>
@@ -268,7 +268,7 @@ function clean($str)
 
 
     </div>
-
+<p><button class="btn btn-info" id="bootbox-confirm">Confirm</button></p>
 
         <?php    
 
@@ -280,15 +280,37 @@ function clean($str)
 		?>
     <script type="text/javascript">
 
-var allElems = document.getElementsByTagName('input');
-for (i = 0; i < allElems.length; i++) {
-    if (allElems[i].type == 'radio' && allElems[i].name == 'r1') {
-        allElems[i].checked = true;
+        var allElems = document.getElementsByTagName('input');
+        for (i = 0; i < allElems.length; i++) {
+            if (allElems[i].type == 'radio' && allElems[i].name == 'r1') {
+                allElems[i].checked = true;
 
-    }
-}
+            }
+        }
 
-</script>
+    </script>
   <script src="timelines/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script type="text/javascript">   
+    $(document).ready( function() {
+            $('.btn-danger').click( function() {
+        
+                var id = $(this).attr("id");
+         
+                if(confirm("Are you sure you want to delete this Member?")){
+                    $.ajax({
+                        type: "POST",
+                        url: "delete_PM.php",
+                        data: ({id: id}),
+                        cache: true,
+                        success: function(html){
+                            $(".del"+id).fadeOut('slow'); 
+                        } 
+                    }); 
+                }else{
+                    return true;}
+            });    
+        }); 
+    </script>
+
 </body>
 </html>
