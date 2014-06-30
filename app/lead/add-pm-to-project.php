@@ -189,7 +189,7 @@ function clean($str)
        <div class="form-group">
         <div class="col-sm-5">
 		    <h3>Select Project</h3>  <ui-select ng-model="project.selected" theme="projects" ng-disabled="disabled" style="width: 300px;">
-            <match  placeholder="Select or search a project in the list..." >{{$select.selected.name}}</match>
+            <match placeholder="Select or search a project in the list..." >{{$select.selected.name}}</match>
             <choices repeat="project in projects | filter: $select.search">
               <span ng-bind-html="project.name | highlight: $select.search"></span>
               <!-- <small ng-bind-html="project.id | highlight: $select.search"></small> -->
@@ -205,13 +205,12 @@ function clean($str)
           </ui-select>
         <!-- </div> -->
 
+        <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-submit" name="submit" value="Assign" /></p></div></div>
+
 <div ng-controller="customersCrtl">
 <div class="container">
     <div class="row">
 
-    <div class="col-md-3">Filter:
-        <input name="idProjectJO" ng-model="search" type="radio" name="r1" id="radio_1" value="{{project.selected.id}}" checked readonly/><br>
-    </div>
 
           
 
@@ -227,9 +226,9 @@ function clean($str)
             <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-magic"></i></a></th>
             </thead>
             <tbody>
-                <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:project.selected.id | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.headlineP}}</td>
-                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a class="delete" id="bootbox-confirm" href="#">Confirm</a></td>
+                    <td>{{data.name}}&nbsp;{{data.lastname}}</td>
                 </tr>
             </tbody>
             </table>
@@ -251,36 +250,18 @@ function clean($str)
 </div>
 </div>
 </div>
-<table class="table table-striped table-bordered">
-            <thead>
-            <th>Project&nbsp;</th>
-            <th>Assigned User&nbsp;</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.headlineP}}</td>
-                    <td>{{data.name}}&nbsp;{{data.lastname}}&nbsp;<a class="delete" id="bootbox-confirm" href="#">Confirm</a></td>
-                </tr>
-            </tbody>
-            </table>
-
-
 
         <input type="hidden" name="idProjectJO" value="{{project.selected.id}}" required>
         <input type="hidden" name="idUsernameJO" value="{{user.selected.id}}" required>
 	
-        <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-submit" name="submit" value="Assign" /></p></div></div>
-
 		<!-- Table -->
-
-
-
 
 </form>
 
 
+
+
     </div>
-<a class="delete" id="bootbox-confirm" href="#">Confirm</a>
 
         <?php    
 
@@ -292,13 +273,11 @@ function clean($str)
 		?>
     <script type="text/javascript">
 
-        var allElems = document.getElementsByTagName('input');
-        for (i = 0; i < allElems.length; i++) {
-            if (allElems[i].type == 'radio' && allElems[i].name == 'r1') {
-                allElems[i].checked = true;
-
-            }
-        }
+        $( document ).ready(function() {
+          $("#radio_1").prop("checked", true);
+          $("#radio_1").focus(); 
+          console.log("Al");
+        });
 
     </script>
   <script src="timelines/js/ui-bootstrap-tpls-0.10.0.min.js"></script>

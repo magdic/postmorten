@@ -59,17 +59,17 @@
 
 
 
-                $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-                    $(this).prev().focus();
-                });
+                // $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+                //     $(this).prev().focus();
+                // });
 
-                $('#timepicker1').timepicker({
-                    minuteStep: 1,
-                    showSeconds: true,
-                    showMeridian: false
-                }).next().on(ace.click_event, function(){
-                    $(this).prev().focus();
-                });
+                // $('#timepicker1').timepicker({
+                //     minuteStep: 1,
+                //     showSeconds: true,
+                //     showMeridian: false
+                // }).next().on(ace.click_event, function(){
+                //     $(this).prev().focus();
+                // });
 
 
 

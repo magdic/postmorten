@@ -50,6 +50,9 @@ $json_id = $idProject;
     </style>
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script type="text/javascript">
+
+    </script>
     <?php
 
     include("header.php");
@@ -58,6 +61,9 @@ $json_id = $idProject;
     $res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
     //split all fields fom the correct row into an associative array
     $row = mysql_fetch_assoc($res);
+    $nameUser = $row['name'];
+    $lastnameUser = $row['lastname'];
+    $fullnameUser = $nameUser.' '.$lastnameUser;
 
     //if the login session does not exist therefore meaning the user is not logged in
     if(!$_SESSION['uid']){
@@ -163,11 +169,8 @@ $json_id = $idProject;
 
 <?php include("header-succes.php"); ?>
       <!-- BEGIN Timeline Embed -->
-     <!--  <div><h1>Timeline App</h1>
-        <a href="./?id=<?php echo $idProject;?>">Back</a>
-      </div> -->
       <?php 
-           $res = mysql_query("SELECT * FROM loginTut.timelines where idFromProject = '$json_id'");
+           $res = mysql_query("SELECT * FROM timelines where idFromProject = '$json_id'");
           //split all fields fom the correct row into an associative array
           $row = mysql_fetch_assoc($res);
           if(empty($row['idtimelines'])){
@@ -195,6 +198,186 @@ $json_id = $idProject;
           <div id="demo">
               <div id="timeline-embed"></div>
           </div>
+          <div class="hr hr32 hr-dotted"></div>
+          <!-- COMMENTS -->
+          <div class="widget-box ">
+                      <div class="widget-header">
+                        <h4 class="lighter smaller">
+                          <i class="icon-comment blue"></i>
+                          Conversation
+                        </h4>
+                      </div>
+
+                      <div class="widget-body">
+                        <div class="widget-main no-padding">
+                          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
+                            
+
+                            <form action="comments/savemessage.php" method="post">
+                              <div class="form-actions">
+                                <small><?php echo $fullnameUser; ?></small>
+                                <div class="input-group">
+                                  <?php $idProject=$_REQUEST['id']; ?>
+                                  <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
+                                  <input name="userComment" type="hidden" value="<?php echo $fullnameUser ?>" />
+                                  <input placeholder="Type your message here ..." type="text" class="form-control" name="message">
+                                  <span class="input-group-btn">
+                                     <input class="btn btn-sm btn-info no-radius" type="submit" />
+                                  </span>
+                                </div>
+                              </div>
+                            </form>
+
+
+<!--                             <div class="itemdiv dialogdiv">
+                              <div class="user">
+                              </div>
+
+                              <div class="body">
+                                <div class="time">
+                                  <i class="icon-time"></i>
+                                  <span class="green">4 sec</span>
+                                </div>
+
+                                <div class="name">
+                                  <a href="#">Alexa</a>
+                                </div>
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+                                  <div class="form-actions">
+                                    <div class="input-group">
+                                      <input placeholder="Type your message here ..." type="text" class="form-control" name="message">
+                                      <span class="input-group-btn">
+                                        <input class="btn btn-sm btn-info no-radius" type="submit" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="tools">
+                                  <a href="#" class="btn btn-minier btn-info">
+                                    <i class="icon-only icon-share-alt"></i>
+                                  </a>
+                                </div>
+                              </div>
+                            </div> -->
+
+                           
+
+
+
+
+
+                            <?php
+                            $msql=mysql_query("SELECT * FROM comment WHERE idProject='$idProject' ORDER BY id DESC");
+                            while($messagecount=mysql_fetch_array($msql))
+                            {
+                            $id=$messagecount['id'];
+                            $msgcontent=$messagecount['bodycomment'];
+                            $dateToday=$messagecount['dateToday'];
+                            ?>
+
+                            <div class="egg_Body">
+                              <div class="itemdiv dialogdiv">
+                              <div class="itemdiv dialogdiv">
+                                <div class="body">
+                                  <div class="time">
+                                  <i class="icon-time"></i>
+                                  <span class="green"><?php echo $dateToday; ?></span>
+                                </div>
+                                <div class="name">
+                                  <a href=""><?php echo $nameUser.' '.$lastnameUser; ?></a>
+                                </div>
+                     
+                            <h3 class="text" >
+                            <span><?php echo $msgcontent; ?></span>
+                              
+
+                            <div style="margin-top:10px; margin-left: 58px;">
+                            <?php 
+
+                            $sql=mysql_query("SELECT * FROM subComment WHERE idComment='$id' ORDER BY idSubComment");
+                            $comment_count=mysql_num_rows($sql);
+
+                            if($comment_count>2)
+                            {
+                            $second_count=$comment_count-2;
+                            ?>
+                            <div class="comment_ui" id="view<?php echo $id; ?>">
+                            <div>
+                            <a href="#" class="view_comments" id="<?php echo $id; ?>"><i class="icon-comments"></i> <?php echo $comment_count; ?> comments.</a>
+                            </div>
+                            </div>
+                            <?php 
+                            } 
+                            else 
+                            {
+                            $second_count=0;
+                            }
+                            ?>
+
+                            <div id="view_comments<?php echo $id; ?>"></div>
+
+                            <div id="two_comments<?php echo $id; ?>">
+                            <?php
+                            $listsql=mysql_query("SELECT * FROM subComment WHERE idComment='$id' ORDER BY idSubComment LIMIT $second_count,2 ");
+                            while($rowsmall=mysql_fetch_array($listsql))
+                            { 
+                            $c_id=$rowsmall['idSubComment'];
+                            $comment=$rowsmall['subComment'];
+                            ?>
+
+                            <div class="comment_ui">
+
+                            <div class="comment_text">
+                            <div  class="comment_actual_text">
+                              <div id="sssss"><?php echo $comment; ?></div></div>
+                            </div>
+
+                            </div>
+
+                            <?php } ?>
+                            <div class="dddd">
+                            <div>
+                            
+                            <form action="comments/savecomment.php" method="post">
+                              <div class="form-actions">
+                                <small><?php echo $nameUser.' '.$lastnameUser; ?></small>
+                                    <div class="input-group">
+                                      <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
+                                      <input name="mesgid" type="hidden" value="<?php echo $id ?>" />
+                                      <input placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
+                                      <span class="input-group-btn">
+                                        <input class="btn btn-sm btn-info no-radius" type="submit">
+                                      </span>
+                                    </div>
+                                  </div>
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+
+
+                            </div>
+
+
+                                                            </div>
+                                                          </div>
+                              </div>
+
+                            </div>
+                            <?php
+                            }
+                            ?>
+                          <!-- </ol> -->
+
+
+                          </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 228.4263959390863px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+
+                          
+                        </div><!-- /widget-main -->
+                      </div><!-- /widget-body -->
+                    </div><!-- END FOR COMMENTS -->
+
       </div>
       <script type="text/javascript">
         var timeline_config = {
@@ -203,6 +386,23 @@ $json_id = $idProject;
          source: "../../../json.php?id=<?php echo $json_id;?>",
          font: "PTSerif-PTSans"
         }
+        $(function() { 
+          $(".view_comments").click(function() {
+            var ID = $(this).attr("id");
+              $.ajax({
+                type: "POST",
+                url: "comments/viewajax.php",
+                data: "msg_id="+ ID, 
+                cache: false,
+                success: function(html){
+                $("#view_comments"+ID).prepend(html);
+                $("#view"+ID).remove();
+                $("#two_comments"+ID).remove();
+              }
+            }); 
+              return false;
+          });
+        });
       </script>
       <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
       <!-- END Timeline Embed-->

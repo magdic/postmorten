@@ -328,6 +328,23 @@ function clean($str)
 		}
 		
 		?>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+
+                $('#timepicker1').timepicker({
+                    minuteStep: 1,
+                    showSeconds: true,
+                    showMeridian: false
+                }).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+            });
+
+
+		</script>
 		<script src="../assets/js/date-time/bootstrap-datepicker.min.js"></script>
         <script src="../assets/js/date-time/bootstrap-timepicker.min.js"></script>
 </body>
