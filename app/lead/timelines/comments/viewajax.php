@@ -18,12 +18,19 @@ while($r=mysql_fetch_array($com))
 {
 $c_id=$r['idSubComment'];
 $comment=$r['subComment'];
+
+
+
+
+
+
 ?>
 
 
 <div class="comment_ui" >
 <div class="comment_text">
-<div  class="comment_actual_text"><img src="profile.jpg" width="32" height="32" /><div id="sssss"><?php echo $comment; ?></div></div>
+<div  class="comment_actual_text">
+	<div id="sssss"><?php echo $comment; ?></div></div>
 </div>
 </div>
 
@@ -31,11 +38,19 @@ $comment=$r['subComment'];
 <?php } }?>
 <div class="dddd">
 <div>
-<img src="profile.jpg" width="32" height="32" />
-<form action="savecomment.php" method="post">
-<input name="mesgid" type="hidden" value="<?php echo $id ?>" />
-<input name="mcomment" type="text" placeholder="Write a comment..." style="height: 24px; border:1px solid #BDC7D8; padding:3px; border-width: 1px 0px 1px 1px; width:302px;" />
-<input id="buts" name="" type="submit" value="ENTER" />
-</form>
+<!-- <img src="profile.jpg" width="32" height="32" /> -->
+                            <form action="comments/savesubcomment.php" method="post">
+                              <div class="form-actions">
+                                <small><?php echo $nameUser.' '.$lastnameUser; ?></small>
+                                    <div class="input-group">
+                                      <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
+                                      <input name="mesgid" type="hidden" value="<?php echo $id ?>" />
+                                      <input placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
+                                      <span class="input-group-btn">
+                                        <input class="btn btn-sm btn-info no-radius" type="submit">
+                                      </span>
+                                    </div>
+                                  </div>
+                            </form>
 </div>
 </div>

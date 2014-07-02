@@ -9,12 +9,12 @@ include('../../../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../../../config/functions.php";
 
-$mcomment=$_POST['mcomment'];
-$mesgid=$_POST['mesgid'];
+$msgcon=$_POST['message'];
 $idProject=$_POST['idProject'];
-$fullnameUser=$_POST['fullnameUserSub'];
+$userComment=$_POST['userComment'];
 $date = date('r',time());
-mysql_query("INSERT INTO subComment (subComment, idComment, dateToday, userSubComment)
-VALUES ('$mcomment','$mesgid','$date','$fullnameUserSub')");
-header("location: ../timeline.php?id=".$idProject);
+mysql_query("INSERT INTO comment (bodycomment, idProject, dateToday, userComment)
+VALUES ('$msgcon','$idProject','$date','$userComment')");
+// header("location: ../timeline.php?id=".$idProject);
+unset($_POST['message']);
 ?>

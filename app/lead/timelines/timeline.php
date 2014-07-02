@@ -32,7 +32,7 @@ $json_id = $idProject;
   	                                                            888P              
   	 -->
   <head>
-    <title>Timeline JS Example</title>
+    <title>Timeline View | Postmorten</title>
     <meta charset="utf-8">
     <meta name="description" content="TimelineJS example">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,6 +51,10 @@ $json_id = $idProject;
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script type="text/javascript">
+
+
+
+ 
 
     </script>
     <?php
@@ -213,70 +217,35 @@ $json_id = $idProject;
                           <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
                             
 
-                            <form action="comments/savemessage.php" method="post">
+                            <form id="savecomment" method="post" action="">
+                            <!-- <form id="savecomment" action="comments/savecomment.php" method="post"> -->
                               <div class="form-actions">
                                 <small><?php echo $fullnameUser; ?></small>
                                 <div class="input-group">
                                   <?php $idProject=$_REQUEST['id']; ?>
                                   <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
-                                  <input name="userComment" type="hidden" value="<?php echo $fullnameUser ?>" />
-                                  <input placeholder="Type your message here ..." type="text" class="form-control" name="message">
+                                  <input name="userComment" type="hidden" value="<?php echo $uid ?>" />
+                                  <input placeholder="Type your message here ..." type="text" class="form-control" name="message" id="commentin">
                                   <span class="input-group-btn">
-                                     <input class="btn btn-sm btn-info no-radius" type="submit" />
+                                     <input class="btn btn-sm btn-info no-radius" type="submit" id="send-comment" />
                                   </span>
                                 </div>
                               </div>
                             </form>
 
-
-<!--                             <div class="itemdiv dialogdiv">
-                              <div class="user">
-                              </div>
-
-                              <div class="body">
-                                <div class="time">
-                                  <i class="icon-time"></i>
-                                  <span class="green">4 sec</span>
-                                </div>
-
-                                <div class="name">
-                                  <a href="#">Alexa</a>
-                                </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
-                                  <div class="form-actions">
-                                    <div class="input-group">
-                                      <input placeholder="Type your message here ..." type="text" class="form-control" name="message">
-                                      <span class="input-group-btn">
-                                        <input class="btn btn-sm btn-info no-radius" type="submit" />
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="tools">
-                                  <a href="#" class="btn btn-minier btn-info">
-                                    <i class="icon-only icon-share-alt"></i>
-                                  </a>
-                                </div>
-                              </div>
-                            </div> -->
-
-                           
-
-
-
-
-
                             <?php
-                            $msql=mysql_query("SELECT * FROM comment WHERE idProject='$idProject' ORDER BY id DESC");
-                            while($messagecount=mysql_fetch_array($msql))
-                            {
-                            $id=$messagecount['id'];
-                            $msgcontent=$messagecount['bodycomment'];
-                            $dateToday=$messagecount['dateToday'];
+                                $msql=mysql_query("SELECT * FROM comment WHERE idProject='$idProject' ORDER BY id DESC");
+                                while($messagecount=mysql_fetch_array($msql))
+                                {
+                                $id=$messagecount['id'];
+                                $msgcontent=$messagecount['bodycomment'];
+                                $dateToday=$messagecount['dateToday'];
                             ?>
 
                             <div class="egg_Body">
+                              <div class="name">
+                                  <a href=""><?php echo $nameUser.' '.$lastnameUser; ?></a>
+                                </div>
                               <div class="itemdiv dialogdiv">
                               <div class="itemdiv dialogdiv">
                                 <div class="body">
@@ -284,9 +253,7 @@ $json_id = $idProject;
                                   <i class="icon-time"></i>
                                   <span class="green"><?php echo $dateToday; ?></span>
                                 </div>
-                                <div class="name">
-                                  <a href=""><?php echo $nameUser.' '.$lastnameUser; ?></a>
-                                </div>
+                                
                      
                             <h3 class="text" >
                             <span><?php echo $msgcontent; ?></span>
@@ -339,9 +306,9 @@ $json_id = $idProject;
                             <div class="dddd">
                             <div>
                             
-                            <form action="comments/savecomment.php" method="post">
+                            <form action="comments/savesubcomment.php" method="post">
                               <div class="form-actions">
-                                <small><?php echo $nameUser.' '.$lastnameUser; ?></small>
+                                <!-- <small><?php echo $nameUser.' '.$lastnameUser; ?></small> -->
                                     <div class="input-group">
                                       <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
                                       <input name="mesgid" type="hidden" value="<?php echo $id ?>" />
@@ -403,6 +370,46 @@ $json_id = $idProject;
               return false;
           });
         });
+
+
+
+              $(function () {
+                $('#savecomment').on('submit', function (e) {
+                  
+                  e.preventDefault();
+                  $.ajax({
+                    type: 'post',
+                    url: 'comments/savecomment.php',
+                    data: $('#savecomment').serialize(),
+                    success: function (data) {
+                      // alert('form was submitted');
+                      $("#commentin").val("");
+                      // $("#commentin").val('').removeAttr('checked').removeAttr('selected');
+
+                      if($('.egg_Body').length > 0){
+                        $('.egg_Body').fadeOut(1000).load("# .egg_Body").fadeIn(1000);
+                          // $('.egg_Body').fadeOut(800);
+                          //   $('.egg_Body').fadeIn(800);
+                          // });
+                        } else {
+                          // $('.slimScrollDiv').fadeOut(1000).load("# .slimScrollDiv").fadeIn(1000).reset();
+                          // $('#savecomment')[0].reset();
+                           $('.widget-body').load("# .widget-body").html(data).fadeIn('fast');
+                        }
+
+                      
+                      
+
+
+                    }
+
+                  });
+                  return false;
+                });
+              });
+
+
+
       </script>
       <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
       <!-- END Timeline Embed-->
