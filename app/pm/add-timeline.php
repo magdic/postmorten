@@ -415,49 +415,6 @@ function clean($str)
 
 
 
-        <!-- <h1>Adding Timeline</h1>
-        <a href="pm-panel.php">PM Panel</a>
-        <h3>Your project is: <?php echo $prjctName; ?> </h3>
-        <p> <?php echo $prjctText; ?> </br> <?php echo $prjctStartDate; ?> </p>
-        <form action="../../controllers/addtimeline.php" method="post">
-          <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly></input>
-          <p>Timeline Start Date:<input type="text" placeholder="format yyyy,mm,dd" id="startDate" name="startDate"></input></p>
-          <p>Headline:<input type="text" name="headline" id="headline" placeholder="Headline for the timeline"></input></p>
-          <p>Text: <input type="text" placeholder="Reference Text" id="text" name="text"></input></p>
-          <p>Media URL:<input type="text" placeholder="Media Url" id="media" name="media"></input></p>
-          <p>Media Credit:<input type="text" placeholder="Credit" id="credit" name="credit"></input></p>
-          <p>Media Caption:<input type="text" placeholder="Caption" id="caption" name="caption"></input></p>
-          <p><input type="submit" name="submit" value="Add Timeline"></input></p>
-        </form> -->
-
-        <!-- Table -->
-       <!--  <table class="table">
-          <thead>
-            <tr>
-              <th>Start Date</th>
-              <th>Headline</th>
-              <th>Text</th>
-              <th>Media</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <?php $query = mysql_query("SELECT * FROM timelines WHERE idFromProject='$idProject'") or die(mysql_error());
-                while ($row = mysql_fetch_array($query)) {
-                    $id = $row['idtimelines']; ?>
-
-            <tr>
-                <td><?php echo $row['startDate']; ?></td>
-                <td><?php echo $row['headline']; ?></td>
-                <td><?php echo $row['text'];?></td>
-                <td><?php echo $row['media']; ?></td>
-            </tr>
-            <?php } ?>
-
-          </tbody>
-        </table> -->
-
-
 
 
        <!-- basic scripts -->

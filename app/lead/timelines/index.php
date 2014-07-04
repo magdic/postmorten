@@ -93,7 +93,7 @@ include "../../../config/functions.php";
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="../../../../logout.php">
+                                    <a href="../../../logout.php">
                                         <i class="icon-off"></i>
                                         Logout
                                     </a>

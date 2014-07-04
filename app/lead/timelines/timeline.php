@@ -111,7 +111,7 @@ $json_id = $idProject;
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="../../../../logout.php">
+                                    <a href="../../../logout.php">
                                         <i class="icon-off"></i>
                                         Logout
                                     </a>
@@ -242,7 +242,7 @@ $json_id = $idProject;
                                 $dateToday=$messagecount['dateToday'];
                             ?>
 
-                            <div class="egg_Body">
+                            <div class="comment">
                               <div class="name">
                                   <a href=""><?php echo $nameUser.' '.$lastnameUser; ?></a>
                                 </div>
@@ -259,7 +259,7 @@ $json_id = $idProject;
                             <span><?php echo $msgcontent; ?></span>
                               
 
-                            <div style="margin-top:10px; margin-left: 58px;">
+                            <div class="conversation" style="margin-top:10px; margin-left: 58px;">
                             <?php 
 
                             $sql=mysql_query("SELECT * FROM subComment WHERE idComment='$id' ORDER BY idSubComment");
@@ -306,13 +306,13 @@ $json_id = $idProject;
                             <div class="dddd">
                             <div>
                             
-                            <form action="comments/savesubcomment.php" method="post">
+                            <form id="subcomments" action="comments/savesubcomment.php" method="post">
                               <div class="form-actions">
                                 <!-- <small><?php echo $nameUser.' '.$lastnameUser; ?></small> -->
                                     <div class="input-group">
                                       <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
                                       <input name="mesgid" type="hidden" value="<?php echo $id ?>" />
-                                      <input placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
+                                      <input id="subcommentin" placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
                                       <span class="input-group-btn">
                                         <input class="btn btn-sm btn-info no-radius" type="submit">
                                       </span>
@@ -382,31 +382,42 @@ $json_id = $idProject;
                     url: 'comments/savecomment.php',
                     data: $('#savecomment').serialize(),
                     success: function (data) {
-                      // alert('form was submitted');
                       $("#commentin").val("");
-                      // $("#commentin").val('').removeAttr('checked').removeAttr('selected');
 
-                      if($('.egg_Body').length > 0){
-                        $('.egg_Body').fadeOut(1000).load("# .egg_Body").fadeIn(1000);
-                          // $('.egg_Body').fadeOut(800);
-                          //   $('.egg_Body').fadeIn(800);
-                          // });
+                      if($('.comment').length > 0){
+                        $('.comment').fadeOut(1000).load("# .comment").fadeIn(1000);
                         } else {
-                          // $('.slimScrollDiv').fadeOut(1000).load("# .slimScrollDiv").fadeIn(1000).reset();
-                          // $('#savecomment')[0].reset();
-                           $('.widget-body').load("# .widget-body").html(data).fadeIn('fast');
+                          location.reload();
                         }
-
-                      
-                      
-
-
-                    }
+                      }
 
                   });
                   return false;
                 });
               });
+
+              // $(function () {
+              //   $('#subcomments').on('submit', function (e) {
+                  
+              //     e.preventDefault();
+              //     $.ajax({
+              //       type: 'post',
+              //       url: 'comments/savesubcomment.php',
+              //       data: $('#subcomments').serialize(),
+              //       success: function (data) {
+              //         $("#subcommentin").val("");
+
+              //         // if($('.dddd').length > 0){
+              //           $('#ssss').fadeOut(1000).load("# #ssss").fadeIn(1000);
+              //         //   } else {
+              //         //     location.reload();
+              //         //   }
+              //         }
+
+              //     });
+              //     return false;
+              //   });
+              // });
 
 
 
