@@ -170,13 +170,12 @@ while($row = mysql_fetch_array($result))
       <!-- BEGIN Timeline Embed -->
 
       <div class="page-content">
-      	<?php echo'<h1>'.$idProject.'</h1>'; ?>
       	<div class="page-header">
                                 <h1>
-                                    Timelines assigned
+                                    Timelines 
                                     <small>
                                         <i class="icon-double-angle-right"></i>
-                                        Add timeline feedback
+                                        Editing Timeline <?php echo $idProject; ?>
                                     </small>
                                 </h1>
                             </div>
