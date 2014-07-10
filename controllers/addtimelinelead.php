@@ -55,7 +55,7 @@ while($rowf = mysql_fetch_array($resultf))
 	if($errflag) {
 	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 	session_write_close();
-	header("location: ../app/pm/add-timeline.php?id=$idFromProject?msg=error");
+	//header("location: login_ok.php");
 	echo "Error";
 	exit();
 	}
@@ -63,4 +63,4 @@ while($rowf = mysql_fetch_array($resultf))
 	}
 mysql_query("INSERT INTO timelines (startDate, headline, text, media, credit, caption, idFromProject)
 VALUES ('$startDate','$headline','$text','$media', '$credit', '$caption', '$idFromProject')");
-header("location: ../app/pm/add-timeline.php?id=$idFromProject");
+header("location: ../app/lead/timelines/edit.php?id=$idFromProject");

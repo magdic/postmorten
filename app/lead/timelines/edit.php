@@ -181,7 +181,7 @@ while($row = mysql_fetch_array($result))
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 center centered">
-                                    <h3>Your project is: <?php echo $prjctName; ?> </h3>
+                                    <h3>Project Name:</br> <?php echo $prjctName; ?> </h3>
                                     <p> Project Description: <?php echo $prjctText; ?> </br> Start Date: <?php echo $prjctStartDate; ?> </p>
                                 </div>
                             </div>
@@ -192,15 +192,15 @@ while($row = mysql_fetch_array($result))
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
                                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                            <i class="icon-angle-down bigger-110" data-icon-hide="icon-angle-down" data-icon-show="icon-angle-right"></i>
-                                                           Add timeline feedback
+                                                            <i class="icon-plus bigger-110" data-icon-hide="icon-angle-down" data-icon-show="icon-angle-right"></i>
+                                                           Add New Timeline Feedback
                                                         </a>
                                                     </h4>
                                                 </div>
 
                                                 <div class="panel-collapse collapse" id="collapseOne">
                                                     <div class="panel-body">
-                                                        <form action="../../controllers/addtimeline.php" method="post" class="form-horizontal" role="form">
+                                                        <form action="../../../controllers/addtimelinelead.php" method="post" class="form-horizontal" role="form">
                                                             <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly />
                                                             <fieldset>
                                                                 <div class="form-group">
@@ -280,7 +280,40 @@ while($row = mysql_fetch_array($result))
                                                             <td><?php echo $row['startDate']; ?></td>
                                                             <td><?php echo $row['headline']; ?></td>
                                                             <td><?php echo $row['text'];?></td>
-                                                            <td><a href="#" class="screenshot" rel="<?php echo $row['media']; ?>"><?php echo $row['media']; ?></a></td>
+                                                            <td> 
+                                                            <?php 
+                                                                // THIS SECTION IS FOR RECOGNIZE THE URL FROM VIDEOS,
+                                                                // BECAUSE THE PLUGIN FOR THE PREVIEW IMAGE LINK IS JUST FOR .IMAGES 
+                                                                // EXAMPLE: .JPG .PNG 
+
+                                                                $isvideo = $row['media']; 
+                                                                $youtube = 'youtube.com';
+                                                                $youtu_be = 'youtu.be';
+                                                                $vimeo = 'vimeo';
+                                                                $youtubeID = substr($isvideo,'-11:');
+                                                                $vimeoID = substr($isvideo,'-8:');
+
+                                                                $imgid = $vimeoID;
+
+                                                                
+
+                                                                if(strpos($isvideo,$youtube) !== false || strpos($isvideo,$youtu_be) !== false) {
+                                                                    echo '<a href="#" class="screenshot" rel="http://img.youtube.com/vi/'.$youtubeID.'/mqdefault.jpg">'.$row['media'].'</a>';
+                                                                } else
+                                                                if(strpos($isvideo,$vimeo) !== false){
+                                                                    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+
+                                                                    $vimeoimg = $hash[0]['thumbnail_medium'];  
+                                                                    echo '<a href="#" class="screenshot" rel="'.$vimeoimg.'">'.$row['media'].'</a>';
+
+                                                                } 
+                                                                else {
+                                                                    echo '<a href="#" class="screenshot" rel="'.$row['media'].'">'.$row['media'].'</a>';
+                                                                }
+
+
+                                                           ?>
+                                                            </td>
                                                         </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -296,6 +329,9 @@ while($row = mysql_fetch_array($result))
 
 
       </div>
+
+
+
 
       <!-- END Timeline Embed-->
           <?php include("down.php");
