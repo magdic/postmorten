@@ -2,15 +2,15 @@ var app = angular.module('myApp', ['ui.bootstrap']);
 
 app.filter('startFrom', function() {
     return function(input, start) {
-        if(input) {
+        if (input) {
             start = +start; //parse to int
             return input.slice(start);
         }
         return [];
     }
 });
-app.controller('customersCrtl', function ($scope, $http, $timeout) {
-    $http.get('ajax/getProjects.php').success(function(data){
+app.controller('customersCrtl', function($scope, $http, $timeout) {
+    $http.get('ajax/getProjects.php').success(function(data) {
         $scope.list = data;
         $scope.currentPage = 1; //current page
         $scope.entryLimit = 10; //max no of items to display in a page
@@ -21,7 +21,7 @@ app.controller('customersCrtl', function ($scope, $http, $timeout) {
         $scope.currentPage = pageNo;
     };
     $scope.filter = function() {
-        $timeout(function() { 
+        $timeout(function() {
             $scope.filteredItems = $scope.filtered.length;
         }, 10);
     };

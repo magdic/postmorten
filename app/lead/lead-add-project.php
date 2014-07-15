@@ -37,7 +37,9 @@ function clean($str)
 <html>
 <head>
 	<title>Lead Create a Project | my App</title>
-
+	<link rel="stylesheet" href="../assets/css/datepicker.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.css" />
 	<?php
 
 		include("header.php");
@@ -66,7 +68,7 @@ function clean($str)
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />
+                                <!-- <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
                                 <span class="user-info">
                                     <small>Welcome,</small>
                                     <?php echo $row['name'].' '.$row['lastname']; ?>
@@ -224,15 +226,30 @@ function clean($str)
 
 																<div class="space-8"></div>
 
-																<div class="form-group">
+<!-- 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="startdate">Start Date Project:</label>
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" name="startdate" id="startdate" class="col-xs-12 col-sm-6">
+																			<input type="text" id="id-date-picker-1 startDate" name="startdate" placeholder="YYYY,MM,DD" class="date-picker" data-date-format="yyyy,mm,dd" />
+																			<span class="input-group-addon  col-xs-1 col-sm-5">
+																				<i class="icon-calendar bigger-110"></i>
+																			</span>
 																		</div>
 																	</div>
-																</div>
+																</div> -->
+
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="startdate">Start Date Project:</label>
+																	<div class="col-xs-12 col-sm-3">
+																		<div class="input-group">
+																			<input class="form-control date-picker" id="id-date-picker-1" name="startdate" type="text" data-date-format="yyyy,mm,dd">
+																				<span class="input-group-addon">
+	                                                                      			<i class="icon-calendar bigger-110"></i>
+																				</span>
+	                                                              		</div>
+	  																</div>
+  																</div>
 
 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="media">Main Image/Video:</label>
@@ -311,5 +328,24 @@ function clean($str)
 		}
 		
 		?>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+
+                $('#timepicker1').timepicker({
+                    minuteStep: 1,
+                    showSeconds: true,
+                    showMeridian: false
+                }).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+            });
+
+
+		</script>
+		<script src="../assets/js/date-time/bootstrap-datepicker.min.js"></script>
+        <script src="../assets/js/date-time/bootstrap-timepicker.min.js"></script>
 </body>
 </html>

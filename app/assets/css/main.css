@@ -133,3 +133,28 @@
 /*.ace-nav li.light-blue a {
     background: #000;
 }*/
+
+#screenshot{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:5px;
+  display:none;
+  color:#fff;
+  }
+
+#sssss {
+        padding:20px 0 20px 0;
+}
+
+.itemdiv {
+padding-left: 140px;
+}
+
+#user-says {
+  margin-top: 7px;
+  position: absolute; 
+  margin-left: -5px;
+}
+
+

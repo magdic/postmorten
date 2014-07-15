@@ -28,7 +28,7 @@
         <!-- ace settings handler -->
 
         <script src="../assets/js/ace-extra.min.js"></script>
-        <script src='../assets/js/jquery-2.0.3.min.js'></script>
+        <script src="../assets/js/jquery-2.0.3.min.js"></script>
 
 </head>
 <body>
