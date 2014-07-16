@@ -37,9 +37,7 @@ function clean($str)
 <html>
 <head>
 	<title>Lead Create a Project | my App</title>
-	<link rel="stylesheet" href="../assets/css/datepicker.css" />
-    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.css" />
-    <link rel="stylesheet" href="../assets/css/daterangepicker.css" />
+	
 	<?php
 
 		include("header.php");
@@ -215,29 +213,21 @@ function clean($str)
 
 
 																<div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="reference">Reference text for the project</label>
+																	<label class="col-sm-3 control-label no-padding-right"  for="reference">Reference text for the project</label>
 
-																	<div class="col-xs-12 col-sm-9">
-																		<div class="clearfix">
-																			<textarea class="col-xs-12 col-sm-6" name="reference" id="reference"></textarea>
-																		</div>
+																	<div class="col-sm-7">
+																		<!-- <div class="clearfix"> -->
+																			<input type="hidden" id="form-field-3" name="reference"  />
+	                                                                        <!-- <div class="wysiwyg-toolbar btn-toolbar center wysiwyg-style2">  <div class="btn-group">  <a class="btn btn-sm  dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<i class="icon-angle-down icon-on-right"></i></a>  <ul class="dropdown-menu dropdown-light">  <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>  <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>  <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>  </ul>  </div> <div class="btn-group">  <a class="btn btn-sm btn-info" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>  <a class="btn btn-sm btn-info" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>  <a class="btn btn-sm btn-info" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>  <a class="btn btn-sm btn-info" data-edit="underline" title="" data-original-title="Underline"><i class="icon-underline"></i></a>  </div> <div class="btn-group">  <a class="btn btn-sm btn-success" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="icon-list-ul"></i></a>  <a class="btn btn-sm btn-success" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="icon-list-ol"></i></a>      </div> <div class="btn-group">  <a class="btn btn-sm btn-primary" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>  <a class="btn btn-sm btn-primary" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>  <a class="btn btn-sm btn-primary" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>  <a class="btn btn-sm btn-inverse" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>  </div> <div class="btn-group">  <div class="inline position-relative"> <a class="btn btn-sm btn-pink dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>  <div class="dropdown-menu dropdown-caret pull-right">                         <div class="input-group">                               <input class="form-control" placeholder="URL" type="text" data-edit="createLink">                               <span class="input-group-btn">                                  <button class="btn btn-sm btn-primary" type="button">Add</button>                               </span>                         </div>                      </div> </div> <a class="btn btn-sm btn-pink" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="icon-unlink"></i></a>  </div>   <div class="btn-group">  <a class="btn btn-sm btn-grey" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>  <a class="btn btn-sm btn-grey" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>  </div> <input type="text" data-edit="inserttext" x-webkit-speech="" class="wysiwyg-speech-input" style="position: absolute; top: 0px; left: -27px;"></div> -->
+	                                                                        <div class="wysiwyg-editor" id="reference" contenteditable="true" ></div>
+																			<!-- <textarea class="col-xs-12 col-sm-6" name="reference" id="reference"></textarea> -->
+																		<!-- </div> -->
 																	</div>
 																</div>
 
 																<div class="space-8"></div>
 
-<!-- 																<div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="startdate">Start Date Project:</label>
 
-																	<div class="col-xs-12 col-sm-9">
-																		<div class="clearfix">
-																			<input type="text" id="id-date-picker-1 startDate" name="startdate" placeholder="YYYY,MM,DD" class="date-picker" data-date-format="yyyy,mm,dd" />
-																			<span class="input-group-addon  col-xs-1 col-sm-5">
-																				<i class="icon-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>
-																</div> -->
 
 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="startdate">Start Date Project:</label>
@@ -306,18 +296,6 @@ function clean($str)
 						</div><!-- /.row -->
 					</div>
 
-<!-- 
-
-
-				<div class="main-content">
-			    <form class="form-horizontal" id="validation-form" action="../../controllers/addproject.php" method="post" novalidate="novalidate">
-                    <p>Project Name:   <input type="text" placeholder="This is the Headline" id="projectname" name="projectname"></input></p>
-                    <p>Type:           <input type="text" value="default" name="type" readonly></input></p>
-                    <p>Reference Text: <input type="text" placeholder="Reference Text" id="reference" name="reference"></input></p>
-                    <p>Start Date:     <input type="text" placeholder="yyyy,mm,dd" id="startdate" name="startdate"></input></p>
-                    <p><input type="submit" name="submit" value="Create Project"></input></p>
-                </form>				
-	  		</div> -->
 
 
 <?php
@@ -328,8 +306,42 @@ function clean($str)
 		}
 		
 		?>
+		<script src="../assets/js/markdown/markdown.min.js"></script>
+        <script src="../assets/js/markdown/bootstrap-markdown.min.js"></script>
+        <script src="../assets/js/jquery.hotkeys.min.js"></script>
 		<script type="text/javascript">
 			jQuery(function($) {
+
+				$("form").on("submit",function() {
+                    wysiwygText = $("#reference").html();
+                    $("#form-field-3").val(wysiwygText);
+                });
+
+
+                $('#id-disable-check').on('click', function() {
+                    var inp = $('#form-input-readonly').get(0);
+                    if(inp.hasAttribute('disabled')) {
+                        inp.setAttribute('readonly' , 'true');
+                        inp.removeAttribute('disabled');
+                        inp.value="This text field is readonly!";
+                    }
+                    else {
+                        inp.setAttribute('disabled' , 'disabled');
+                        inp.removeAttribute('readonly');
+                        inp.value="This text field is disabled!";
+                    }
+                });
+
+                // $(".chosen-select").chosen();
+                // $('#chosen-multiple-style').on('click', function(e){
+                //     var target = $(e.target).find('input[type=radio]');
+                //     var which = parseInt(target.val());
+                //     if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+                //      else $('#form-field-select-4').removeClass('tag-input-style');
+                // });
+
+
+
 				$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
                     $(this).prev().focus();
                 });
@@ -341,6 +353,60 @@ function clean($str)
                 }).next().on(ace.click_event, function(){
                     $(this).prev().focus();
                 });
+
+
+
+                //but we want to change a few buttons colors for the third style
+                    $('#reference').ace_wysiwyg({
+                        toolbar:
+                        [
+                            // 'font',
+                            null,
+                            'fontSize',
+                            null,
+                            {name:'bold', className:'btn-info'},
+                            {name:'italic', className:'btn-info'},
+                            {name:'strikethrough', className:'btn-info'},
+                            {name:'underline', className:'btn-info'},
+                            null,
+                            {name:'insertunorderedlist', className:'btn-success'},
+                            {name:'insertorderedlist', className:'btn-success'},
+                            // {name:'outdent', className:'btn-purple'},
+                            // {name:'indent', className:'btn-purple'},
+                            null,
+                            {name:'justifyleft', className:'btn-primary'},
+                            {name:'justifycenter', className:'btn-primary'},
+                            {name:'justifyright', className:'btn-primary'},
+                            {name:'justifyfull', className:'btn-inverse'},
+                            null,
+                            {name:'createLink', className:'btn-pink'},
+                            {name:'unlink', className:'btn-pink'},
+                            null,
+                            // {name:'insertImage', className:'btn-success'},
+                            null,
+                            // 'foreColor',
+                            null,
+                            {name:'undo', className:'btn-grey'},
+                            {name:'redo', className:'btn-grey'}
+                        ],
+                        'wysiwyg': {
+                            // fileUploadError: showErrorAlert
+                        }
+                    }).prev().addClass('wysiwyg-style3');
+
+                        $('[data-toggle="buttons"] .btn').on('click', function(e){
+                                var target = $(this).find('input[type=radio]');
+                                var which = parseInt(target.val());
+                                var toolbar = $('#reference').prev().get(0);
+                                if(which == 1 || which == 2 || which == 3) {
+                                    toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+                                    if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+                                    else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+                                }
+                            });
+
+
+
             });
 
 
