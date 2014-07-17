@@ -129,7 +129,7 @@ function clean($str)
             <script type="text/javascript">
                 try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 
-        
+
 
             </script>
 
@@ -191,7 +191,7 @@ function clean($str)
                         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
                     </script>
 
-                    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    <!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
                         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
                             <button class="btn btn-success">
                                 <i class="icon-signal"></i>
@@ -219,7 +219,7 @@ function clean($str)
 
                             <span class="btn btn-danger"></span>
                         </div>
-                    </div><!-- #sidebar-shortcuts -->
+                    </div> --><!-- #sidebar-shortcuts -->
 
                     <ul class="nav nav-list">
                         <li>
@@ -345,7 +345,7 @@ function clean($str)
                                                                         <!-- <div class="wysiwyg-toolbar btn-toolbar center wysiwyg-style2">  <div class="btn-group">  <a class="btn btn-sm  dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<i class="icon-angle-down icon-on-right"></i></a>  <ul class="dropdown-menu dropdown-light">  <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>  <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>  <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>  </ul>  </div> <div class="btn-group">  <a class="btn btn-sm btn-info" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>  <a class="btn btn-sm btn-info" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>  <a class="btn btn-sm btn-info" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>  <a class="btn btn-sm btn-info" data-edit="underline" title="" data-original-title="Underline"><i class="icon-underline"></i></a>  </div> <div class="btn-group">  <a class="btn btn-sm btn-success" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="icon-list-ul"></i></a>  <a class="btn btn-sm btn-success" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="icon-list-ol"></i></a>      </div> <div class="btn-group">  <a class="btn btn-sm btn-primary" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>  <a class="btn btn-sm btn-primary" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>  <a class="btn btn-sm btn-primary" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>  <a class="btn btn-sm btn-inverse" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>  </div> <div class="btn-group">  <div class="inline position-relative"> <a class="btn btn-sm btn-pink dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>  <div class="dropdown-menu dropdown-caret pull-right">                         <div class="input-group">                               <input class="form-control" placeholder="URL" type="text" data-edit="createLink">                               <span class="input-group-btn">                                  <button class="btn btn-sm btn-primary" type="button">Add</button>                               </span>                         </div>                      </div> </div> <a class="btn btn-sm btn-pink" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="icon-unlink"></i></a>  </div>   <div class="btn-group">  <a class="btn btn-sm btn-grey" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>  <a class="btn btn-sm btn-grey" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>  </div> <input type="text" data-edit="inserttext" x-webkit-speech="" class="wysiwyg-speech-input" style="position: absolute; top: 0px; left: -27px;"></div> -->
                                                                         <div class="wysiwyg-editor" id="editor1" contenteditable="true" ></div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                                  <div class="form-group">
                                                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> Media URL: </label>
@@ -706,7 +706,7 @@ function clean($str)
                     $(this).prev().focus();
                 });
 
-                
+
 
 
                 //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
