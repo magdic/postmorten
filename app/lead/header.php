@@ -1,8 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Lead Panel | My App</title> -->
- <!-- <script src="//localhost:35729/livereload.js"></script> -->
+
 
         <!-- basic styles -->
 
@@ -10,7 +6,17 @@
         <link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
         
 
+        <!--[if IE 7]>
+          <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+        <![endif]-->
+
         <!-- page specific plugin styles -->
+
+        <link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.custom.min.css" />
+        <link rel="stylesheet" href="../assets/css/chosen.css" />
+        <link rel="stylesheet" href="../assets/css/datepicker.css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.css" />
+        <link rel="stylesheet" href="../assets/css/daterangepicker.css" />
 
         <!-- fonts -->
 
