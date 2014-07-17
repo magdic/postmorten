@@ -26,56 +26,56 @@
         <!-- inline scripts related to this page -->
 
         <script type="text/javascript">
-            jQuery(function($) {
+            // jQuery(function($) {
 
-                        $('.btn-danger').click( function() {
+            //             $('.btn-danger').click( function() {
               
-                              var id = $(this).attr("id");
+            //                   var id = $(this).attr("id");
                
-                              if(confirm("Are you sure you want to delete this Member?")){
-                                      $.ajax({
-                                      type: "POST",
-                                      url: "delete_PM.php",
-                                      data: ({id: id}),
-                                      cache: true,
-                                    success: function(html){
-                                    $(".del"+id).fadeOut('slow'); 
-                                    } 
-                               }); 
-                        }else{
-                              return true;}
-                        }); 
+            //                   if(confirm("Are you sure you want to delete this Member?")){
+            //                           $.ajax({
+            //                           type: "POST",
+            //                           url: "delete_PM.php",
+            //                           data: ({id: id}),
+            //                           cache: true,
+            //                         success: function(html){
+            //                         $(".del"+id).fadeOut('slow'); 
+            //                         } 
+            //                    }); 
+            //             }else{
+            //                   return true;}
+            //             }); 
 
-                        $("#bootbox-confirm").on(ace.click_event, function() {
-                              bootbox.confirm("Are you sure?", function(result) {
-                                    if(result) {
-                                          //
-                                          window.location.href="delete_PM.php?id=";
-                                          console.log('yes');
-                                    }
-                              });
-                        });
-
-
-
-
-                // $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-                //     $(this).prev().focus();
-                // });
-
-                // $('#timepicker1').timepicker({
-                //     minuteStep: 1,
-                //     showSeconds: true,
-                //     showMeridian: false
-                // }).next().on(ace.click_event, function(){
-                //     $(this).prev().focus();
-                // });
+            //             $("#bootbox-confirm").on(ace.click_event, function() {
+            //                   bootbox.confirm("Are you sure?", function(result) {
+            //                         if(result) {
+            //                               //
+            //                               window.location.href="delete_PM.php?id=";
+            //                               console.log('yes');
+            //                         }
+            //                   });
+            //             });
 
 
 
 
+            //     // $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+            //     //     $(this).prev().focus();
+            //     // });
+
+            //     // $('#timepicker1').timepicker({
+            //     //     minuteStep: 1,
+            //     //     showSeconds: true,
+            //     //     showMeridian: false
+            //     // }).next().on(ace.click_event, function(){
+            //     //     $(this).prev().focus();
+            //     // });
 
 
-            });
+
+
+
+
+            // });
         </script>
 		
