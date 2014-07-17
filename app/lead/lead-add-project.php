@@ -392,7 +392,7 @@ function clean($str)
                         'wysiwyg': {
                             // fileUploadError: showErrorAlert
                         }
-                    }).prev().addClass('wysiwyg-style3');
+                    }).prev().addClass('wysiwyg-style2');
 
                         $('[data-toggle="buttons"] .btn').on('click', function(e){
                                 var target = $(this).find('input[type=radio]');

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../assets/css/datepicker.css" />
         <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.css" />
         <link rel="stylesheet" href="../assets/css/daterangepicker.css" />
+        <link rel="stylesheet" href="../assets/css/colorpicker.css" />
 
         <!-- fonts -->
 
@@ -32,6 +33,8 @@
         <link rel="stylesheet" href="../assets/css/main.css" />
 
         <!-- ace settings handler -->
+
+        <link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.custom.min.css" />
 
         <script src="../assets/js/ace-extra.min.js"></script>
         <script src="../assets/js/jquery-2.0.3.min.js"></script>
