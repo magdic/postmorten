@@ -403,7 +403,40 @@ function clean($str)
                                                             <td><?php echo $row['startDate']; ?></td>
                                                             <td><?php echo $row['headline']; ?></td>
                                                             <td><?php echo $row['text'];?></td>
-                                                            <td><?php echo $row['media']; ?></td>
+                                                            <td> 
+                                                            <?php 
+                                                                // THIS SECTION IS FOR RECOGNIZE THE URL FROM VIDEOS,
+                                                                // BECAUSE THE PLUGIN FOR THE PREVIEW IMAGE LINK IS JUST FOR .IMAGES 
+                                                                // EXAMPLE: .JPG .PNG 
+
+                                                                $isvideo = $row['media']; 
+                                                                $youtube = 'youtube.com';
+                                                                $youtu_be = 'youtu.be';
+                                                                $vimeo = 'vimeo';
+                                                                $youtubeID = substr($isvideo,'-11:');
+                                                                $vimeoID = substr($isvideo,'-8:');
+
+                                                                $imgid = $vimeoID;
+
+                                                                
+
+                                                                if(strpos($isvideo,$youtube) !== false || strpos($isvideo,$youtu_be) !== false) {
+                                                                    echo '<a href="#" class="screenshot" rel="http://img.youtube.com/vi/'.$youtubeID.'/mqdefault.jpg">'.$row['media'].'</a>';
+                                                                } else
+                                                                if(strpos($isvideo,$vimeo) !== false){
+                                                                    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+
+                                                                    $vimeoimg = $hash[0]['thumbnail_medium'];  
+                                                                    echo '<a href="#" class="screenshot" rel="'.$vimeoimg.'">'.$row['media'].'</a>';
+
+                                                                } 
+                                                                else {
+                                                                    echo '<a href="#" class="screenshot" rel="'.$row['media'].'">'.$row['media'].'</a>';
+                                                                }
+
+
+                                                           ?>
+                                                            </td>
                                                         </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -475,6 +508,8 @@ function clean($str)
 
         <script src="../assets/js/ace-elements.min.js"></script>
         <script src="../assets/js/ace.min.js"></script>
+
+        <script src="../assets/js/url-preview.js"></script>
 
 
         <!-- inline scripts related to this page -->
