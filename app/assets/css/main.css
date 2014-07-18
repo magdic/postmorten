@@ -135,5 +135,20 @@
 
 /* line 96, ../scss/main.scss */
 #sssss {
-   padding: 20px 0 20px 0;
+  padding: 20px 0 20px 0;
+}
+
+/* line 100, ../scss/main.scss */
+#screenshot {
+  position: absolute;
+  border: 1px solid #ccc;
+  background: #333;
+  padding: 5px;
+  display: none;
+  color: #fff;
+}
+
+/* line 109, ../scss/main.scss */
+#sssss {
+  padding: 20px 0 20px 0;
 }
