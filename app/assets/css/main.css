@@ -122,3 +122,18 @@
 .row:before, .row:after {
   display: none;
 }
+
+/* line 88, ../scss/main.scss */
+#screenshot {
+   position: absolute;
+   border: 1px solid #ccc;
+   background: #333;
+   padding: 5px;
+   display: none;
+   color: #fff;
+}
+
+/* line 96, ../scss/main.scss */
+#sssss {
+   padding: 20px 0 20px 0;
+}

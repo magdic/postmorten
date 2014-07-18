@@ -85,5 +85,16 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
 .row:before, .row:after {
     display: none;
 }
+#screenshot{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:5px;
+  display:none;
+  color:#fff;
+}
+#sssss{
+  padding:20px 0 20px 0;
+}
 
 
