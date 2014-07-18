@@ -33,21 +33,17 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
     background: #C4C4C4;
 }
 .ace-nav>li.open.light-blue>a{
-    background-color: #CA4646 !important;
+    background-color: #7A7777 !important;
     color: #fff !important;
     i{
         color: #fff;
     }
 }
-/*.ace-nav>li.light-blue>a:hover, .ace-nav>li.light-blue>a:focus{
-    background-color: #000 !important;
-}*/
+
 .menu-min .nav-list>li.active>a {
     color: #FFFFFF;
 }
-/*.menu-min .nav-list>li.focus>a {
-    color: #FFFFFF;
-}*/
+
 .menu-min .nav-list>li:hover>a{
     color: #000;
 }
@@ -87,10 +83,7 @@ $logo : url(../images/thi-logos.png) 0 -65px no-repeat;
     margin: 0 auto;
 }
 .row:before, .row:after {
-    /*display: none;*/
     display: none;
 }
-/*.ace-nav li.light-blue a {
-    background: #000;
-}*/
+
 
