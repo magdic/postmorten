@@ -3,6 +3,21 @@
             </div>
         </div>
                 
+
+         <!--[if !IE]> -->
+
+        <script type="text/javascript">
+            window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+        </script>
+
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+            <script type="text/javascript">
+                window.jQuery || document.write("<script src='../assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+            </script>
+        <![endif]-->
+
         <script type="text/javascript">
             if("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
         </script>
@@ -12,7 +27,7 @@
         <!-- page specific plugin scripts -->
 
         <!--[if lte IE 8]>
-          <script src="assets/js/excanvas.min.js"></script>
+          <script src="../assets/js/excanvas.min.js"></script>
         <![endif]-->
 
         <script src="../assets/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -41,57 +56,5 @@
 
         <!-- inline scripts related to this page -->
 
-        <script type="text/javascript">
-            // jQuery(function($) {
-
-            //             $('.btn-danger').click( function() {
-              
-            //                   var id = $(this).attr("id");
-               
-            //                   if(confirm("Are you sure you want to delete this Member?")){
-            //                           $.ajax({
-            //                           type: "POST",
-            //                           url: "delete_PM.php",
-            //                           data: ({id: id}),
-            //                           cache: true,
-            //                         success: function(html){
-            //                         $(".del"+id).fadeOut('slow'); 
-            //                         } 
-            //                    }); 
-            //             }else{
-            //                   return true;}
-            //             }); 
-
-            //             $("#bootbox-confirm").on(ace.click_event, function() {
-            //                   bootbox.confirm("Are you sure?", function(result) {
-            //                         if(result) {
-            //                               //
-            //                               window.location.href="delete_PM.php?id=";
-            //                               console.log('yes');
-            //                         }
-            //                   });
-            //             });
-
-
-
-
-            //     // $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-            //     //     $(this).prev().focus();
-            //     // });
-
-            //     // $('#timepicker1').timepicker({
-            //     //     minuteStep: 1,
-            //     //     showSeconds: true,
-            //     //     showMeridian: false
-            //     // }).next().on(ace.click_event, function(){
-            //     //     $(this).prev().focus();
-            //     // });
-
-
-
-
-
-
-            // });
-        </script>
-		
+    
+    

@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.custom.min.css" />
 
         <script src="../assets/js/ace-extra.min.js"></script>
-        <script src="../assets/js/jquery-2.0.3.min.js"></script>
+        
 
 </head>
 <body>
