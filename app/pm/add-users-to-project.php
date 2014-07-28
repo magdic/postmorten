@@ -68,6 +68,26 @@ function clean($str)
     <!-- ace settings handler -->
 
    <script src="../assets/js/ace-extra.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.js"></script>
+  <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"> -->
+
+    <!-- ui-select files -->
+  <script src="../assets/js/select.js"></script>
+  <link rel="stylesheet" href="../assets/css/select.css">
+
+   <?php include("../../controllers/demojs.php"); ?>
+
+     <!-- Select2 theme -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+  <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
 </head>
 <body>
     <?php
@@ -158,36 +178,6 @@ function clean($str)
                         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
                     </script>
 
-                    <!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                            <button class="btn btn-success">
-                                <i class="icon-signal"></i>
-                            </button>
-
-                            <button class="btn btn-info">
-                                <i class="icon-pencil"></i>
-                            </button>
-
-                            <button class="btn btn-warning">
-                                <i class="icon-group"></i>
-                            </button>
-
-                            <button class="btn btn-danger">
-                                <i class="icon-cogs"></i>
-                            </button>
-                        </div>
-
-                        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                            <span class="btn btn-success"></span>
-
-                            <span class="btn btn-info"></span>
-
-                            <span class="btn btn-warning"></span>
-
-                            <span class="btn btn-danger"></span>
-                        </div>
-                    </div> --><!-- #sidebar-shortcuts -->
-
                     <ul class="nav nav-list">
                         <li>
                             <a href="pm-panel.php">
@@ -263,76 +253,88 @@ function clean($str)
 
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.js"></script>
-    <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"> -->
-
-    <!-- ui-select files -->
-    <script src="plunk/select.js"></script>
-    <link rel="stylesheet" href="plunk/select.css">
-
-    <!--  IT'S THE SAME THAT YOU CALL AN EXTERNAL SCRIPT <script src="demo.js"></script> -->
-    <?php include("plunk/demojs.php"); ?>
-
-    <!-- Select2 theme -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
-
-  <!--
-    Selectize theme
-    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
-  -->
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
 
 
         <form action="../../controllers/hook-users-to-project.php" method="post" ng-controller="DemoCtrl">
        <!--  ANGULAR FORM WAY TO SEARCH AND SELECT PROJECTS AND USERS-->
-          <div class="form-group"><div class="col-sm-5">
-          <h3>User for the Project</h3>  <ui-select ng-model="user.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
-            <match placeholder="Select or search a username in the list...">{{$select.selected.name}}</match>
-            <choices repeat="user in users | filter: $select.search">
-              <span ng-bind-html="user.name | highlight: $select.search"></span>
-              <!-- <small ng-bind-html="user.id | highlight: $select.search"></small> -->
-            </choices></div></div>
-          </ui-select>
-           <div class="form-group">
-        <div class="col-sm-5">
+        <div class="form-group">
+            <div class="col-sm-5">
             <h3>Select Project</h3>  <ui-select ng-model="project.selected" theme="projects" ng-disabled="disabled" style="width: 300px;">
             <match  placeholder="Select or search a project in the list...">{{$select.selected.name}}</match>
             <choices repeat="project in projects | filter: $select.search">
               <span ng-bind-html="project.name | highlight: $select.search"></span>
               <!-- <small ng-bind-html="project.id | highlight: $select.search"></small> -->
             </choices>
-          </ui-select></div></div>
+          </ui-select></div>
+        </div>
+          
+        <div class="form-group"><div class="col-sm-5">
+          <h3>User for the Project</h3>  <ui-select ng-model="user.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
+            <match placeholder="Select or search a username in the list...">{{$select.selected.name}}</match>
+            <choices repeat="user in users | filter: $select.search">
+              <span ng-bind-html="user.name | highlight: $select.search"></span>
+              <!-- <small ng-bind-html="user.id | highlight: $select.search"></small> -->
+            </choices></div>
+            </ui-select>
+        </div>
+          
+
         <!-- </div> -->
         <!-- <p>Selected Project: {{project.selected.id}}</p> -->
         <input type="hidden" name="idUsernameJO" value="{{user.selected.id}}" required>
         <input type="hidden" name="idProjectJO" value="{{project.selected.id}}" required>
 
         <div class="form-group"><div class="col-sm-5"><p><input type="submit" class="btn btn-info" name="submit" value="Assign" /></p></div></div>
+        
+
+        <div ng-controller="customersCrtl">
+            <div class="container">
+                <div class="row">
+
+
+                      
+
+                </br> 
+                </br> 
+                </br> 
+                </br> 
+                <div class="row">
+                    <div class="col-md-12" data-ng-show="filteredItems > 0">
+                        <table class="table table-striped table-bordered">
+                        <thead>
+                        <th>Project&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
+                        <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-magic"></i></a></th>
+                        </thead>
+                        <tbody>
+                            <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:project.selected.id | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                                <td>{{data.headlineP}}</td>
+                                <td>{{data.name}}&nbsp;{{data.lastname}}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12" data-ng-show="filteredItems == 0">
+                        <div class="col-md-12">
+                            <h4>No users for this project</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Filtered {{ filtered.length }} of {{ totalItems}} total timeline projects</h5>
+                    </div>
+                    <div class="col-md-12" data-ng-show="filteredItems > 0">    
+                        <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
         </form>
 
-        <!-- Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>PM User</th>
-            </tr>
-          </thead>
-          <tbody>
 
-            <?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
-                while ($row = mysql_fetch_array($query)) {
-                    $id = $row['idtimeLine']; ?>
-
-            <tr>
-                <td><?php echo $row['headlineP']; ?></td>
-                <td><?php echo $row['name']; echo ' '.$row['lastname'];  ?></td>
-            </tr>
-            <?php } ?>
-
-          </tbody>
-        </table>
     </div>
 
 
@@ -349,22 +351,12 @@ function clean($str)
 
 
 
-         <!--    <div class="main-content">
-                <h1>Create a Project</h1>
-                    <a href="pm-panel.php">Lead Panel</a>
-                    <form action="../../controllers/addproject.php" method="post">
-                    <p>Project Name:   <input type="text" placeholder="This is the Headline" id="projectname" name="projectname"></input></p>
-                    <p>Type:           <input type="text" value="default" name="type" readonly></input></p>
-                    <p>Reference Text: <input type="text" placeholder="Reference Text" id="reference" name="reference"></input></p>
-                    <p>Start Date:     <input type="text" placeholder="yyyy,mm,dd" id="startdate" name="startdate"></input></p>
-                    <p><input type="submit" name="submit" value="Create Project"></input></p>
-                    </form>
-            </div> -->
-
         <script src='../assets/js/jquery-2.0.3.min.js'></script>
         <script src='../assets/js/jquery.mobile.custom.min.js'></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/typeahead-bs2.min.js"></script>
+
+        <script src="../assets/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
 
         <!-- page specific plugin scripts -->
 

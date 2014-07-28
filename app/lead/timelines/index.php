@@ -146,7 +146,7 @@ include "../../../config/functions.php";
         </a>
     </li>
     <li>
-        <a href="../../logout.php">
+        <a href="../../../logout.php">
             <i class="icon-mail-reply"></i>
             <span class="menu-text"> Log Out </span>
         </a>
@@ -185,9 +185,9 @@ include "../../../config/functions.php";
         <div class="col-md-12" data-ng-show="filteredItems > 0">
             <table class="table table-striped table-bordered">
             <thead>
-            <th>Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
-            <th>Description/Date&nbsp;<a ng-click="sort_by('textP');"><i class="icon-magic"></i></a></th>
-            <th>Options&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-magic"></i></a></th>
+            <th>Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
+            <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
+            <th>Options&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th>
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">

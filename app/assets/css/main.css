@@ -148,6 +148,10 @@
   color: #fff;
 }
 
+#screenshot img {
+  max-width:15em;
+}
+
 /* line 109, ../scss/main.scss */
 #sssss {
   padding: 20px 0 20px 0;

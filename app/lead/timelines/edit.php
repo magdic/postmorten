@@ -53,6 +53,8 @@ while($row = mysql_fetch_array($result))
 
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <link rel="stylesheet" href="../../assets/css/datepicker.css" />
     <?php
 
     include("header.php");
@@ -159,7 +161,7 @@ while($row = mysql_fetch_array($result))
         </a>
     </li>
     <li>
-        <a href="../../logout.php">
+        <a href="../../../logout.php">
             <i class="icon-mail-reply"></i>
             <span class="menu-text"> Log Out </span>
         </a>
@@ -330,6 +332,8 @@ while($row = mysql_fetch_array($result))
 
       </div>
 
+    <script src="../../assets/js/date-time/bootstrap-datepicker.min.js"></script>
+
 
 
 
@@ -337,6 +341,15 @@ while($row = mysql_fetch_array($result))
           <?php include("down.php");
     //make sure you close the check if their online
     } ?>
+
+    <script>
+    jQuery(function($) {
+        $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+    });
+
+    </script>
       
   </body>
   <script src="../../assets/js/url-preview.js"></script>

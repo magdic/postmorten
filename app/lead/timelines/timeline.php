@@ -164,7 +164,7 @@ $json_id = $idProject;
             </a>
           </li>
           <li>
-            <a href="../../logout.php">
+            <a href="../../../logout.php">
               <i class="icon-mail-reply"></i>
               <span class="menu-text"> Log Out </span>
             </a>

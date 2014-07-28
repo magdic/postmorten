@@ -222,8 +222,8 @@ function clean($str)
         <div class="col-md-12" data-ng-show="filteredItems > 0">
             <table class="table table-striped table-bordered">
             <thead>
-            <th>Project&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-magic"></i></a></th>
-            <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-magic"></i></a></th>
+            <th>Project&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-down"></i><i class="icon-angle-up"></i></a></th>
+            <th>Assigned User&nbsp;<a ng-click="sort_by('username');"><i class="icon-angle-down"></i><i class="icon-angle-up"></i></a></th>
             </thead>
             <tbody>
                 <tr class="del{{data.idJO}}" ng-repeat="data in filtered = (list | filter:project.selected.id | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
