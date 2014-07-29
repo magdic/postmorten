@@ -17,6 +17,7 @@ include "config/functions.php";
 
         <link href="app/assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="app/assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="app/assets/css/main.css">
 
         <!-- fonts -->
 
@@ -119,8 +120,23 @@ include "config/functions.php";
 						//split the row into an associative array
 						$row = mysql_fetch_assoc($res);
 
+            $pass = $row['password'];
+
+            $username = $row['username'];
+
+            // $temp_key = date('r',time()); 
+
+            $requestedTime = time();
+
+            $encrypted_key = md5($temp_key);
+
+            mysql_query('UPDATE users SET psswrdTime = "'.$requestedTime.'" WHERE  email = "'.$email.'"');
+
+
+
+
 						//send email containing their password to their email address
-						mail($email, 'Forgotten Password', "Here is your password: ".$row['password']."\n\nPlease try not too lose it again!", 'From: noreply@yourwebsitehere.co.uk');
+						mail($email, 'Forgotten Password at Postmorten App', "Here is your temporary password: ".$temp_key."\n\nPlease try to change it inmediatly! http://localhost:8888/phpcodes/postmorten/resetpass/?user=".$username."&&token=".$encrypted_key."", 'From: noreply@postmorten-hangar.cr');
 
 						//display success message
 
@@ -156,7 +172,7 @@ include "config/functions.php";
                                 <h1>
                                     <span class="white">PostMorten</span>
                                 </h1>
-                                <h4 class="blue">&copy; Hangar</h4>
+                                <h4 class="form-logo centered"></h4>
                             </div>
 
                             <div class="space-6"></div>
@@ -206,4 +222,65 @@ include "config/functions.php";
         </div>
 	</body>
 </html>
+
+<?php 
+
+
+
+function time_elapsed_A($secs){
+    $bit = array(
+        'y' => $secs / 31556926 % 12,
+        'w' => $secs / 604800 % 52,
+        'd' => $secs / 86400 % 7,
+        'h' => $secs / 3600 % 24,
+        'm' => $secs / 60 % 60,
+        's' => $secs % 60
+        );
+        
+    foreach($bit as $k => $v)
+        if($v > 0)$ret[] = $v . $k;
+        
+    return join(' ', $ret);
+    }
+    
+
+function time_elapsed_B($secs){
+    $bit = array(
+        ' year'        => $secs / 31556926 % 12,
+        ' week'        => $secs / 604800 % 52,
+        ' day'        => $secs / 86400 % 7,
+        ' hour'        => $secs / 3600 % 24,
+        ' minute'    => $secs / 60 % 60,
+        ' second'    => $secs % 60
+        );
+        
+    foreach($bit as $k => $v){
+        if($v > 1)$ret[] = $v . $k . 's';
+        if($v == 1)$ret[] = $v . $k;
+        }
+    array_splice($ret, count($ret)-1, 0, 'and');
+    $ret[] = 'ago.';
+    
+    return join(' ', $ret);
+    }
+    
+
+    
+    
+$nowtime = time();
+$oldtime = 1406571477;
+
+$time_exp = time_elapsed_B($nowtime-$oldtime);
+
+if (strpos($time_exp, 'minute') !== false) {
+    echo "found it";
+}
+
+echo "<span class=\"white\">time_elapsed_A: </span></br>".$nowtime."\n</br><span class=\"white\">time_elapsed_B: </span><h1>".$time_exp."</h1>\n";
+
+
+ ?>
+
+
+
 

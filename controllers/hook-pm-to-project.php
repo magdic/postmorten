@@ -34,10 +34,7 @@ function clean($str)
 $idP= clean($_POST['idProjectJO']);
 $idUser = clean($_POST['idUsernameJO']);
 
-if($idP == '' || $idUser == '0') {
-	displayError();
-	exit();
-} else if ($idP != '' && $idUser == '0') {
+if ($idP == '' || $idUser == 0) {
 	displayError();
 	exit();
 }
@@ -71,20 +68,7 @@ header("location: ../app/lead/add-pm-to-project.php");
 function displayError() {
 		echo '
 		<!DOCTYPE html>
-<html  lang="en"><!--
-  	 
-  	88888888888 d8b                        888 d8b                888888   d8888b  
-  	    888     Y8P                        888 Y8P                   88b d88P  Y88b 
-  	    888                                888                       888 Y88b
-  	    888     888 88888b d88b     d88b   888 888 88888b     d88b   888   Y888b
-  	    888     888 888  888  88b d8P  Y8b 888 888 888  88b d8P  Y8b 888      Y88b
-  	    888     888 888  888  888 88888888 888 888 888  888 88888888 888        888 
-  	    888     888 888  888  888 Y8b      888 888 888  888 Y8b      88P Y88b  d88P 
-  	    888     888 888  888  888   Y8888  888 888 888  888   Y8888  888   Y8888P
-  	                                                                d88P            
-  	                                                              d88P             
-  	                                                            888P              
-  	 -->
+<html  lang="en">
   <head>
     <title>Edit Timelines | Postmorten App</title>
     <meta charset="utf-8">
@@ -226,7 +210,7 @@ function displayError() {
 												Go Back
 											</a>
 
-											<a href="../app/pm/pm-panel.php" class="btn btn-primary">
+											<a href="../app/lead/lead-panel.php" class="btn btn-primary">
 												<i class="icon-dashboard"></i>
 												Dashboard
 											</a>
