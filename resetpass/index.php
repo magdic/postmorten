@@ -59,13 +59,14 @@ function time_elapsed_B($secs){
 $nowtime = time();
 $oldtime = $row['psswrdTime'];
 
-echo 'This is the old time '.$oldtime.' + User'.$idUser;
+// echo 'This is the old time '.$oldtime.' + User'.$idUser;
 
 $time_exp = time_elapsed_B($nowtime-$oldtime);
 
-if (strpos($time_exp, 'minute') !== false) {
+if (strpos($time_exp, 'hour') !== false) {
 
     echo '
+    <body class="login-layout">
 		<div class="main-container">
             <div class="main-content">
                 <div class="row">
@@ -81,38 +82,44 @@ if (strpos($time_exp, 'minute') !== false) {
                                 <h1>
                                     <span class="white">Your session has expired.</span>
                                     <span class="white">Remember that you have just one day to change your password, try again if you want change it.</span>
-
                                 </h1>
-                            <div class="center">
-                                <a href="../forgot.php" class="width-35 pull-right btn btn-sm btn-danger">Reset Password</a>
                             </div>
-                            <div class="center">
-                                <a href="../index.php" class="width-35 pull-right btn btn-sm btn-danger">Login Page</a>
-                            </div>
-                            </div>
-
-           
-
-                           <div class="position-relative">
-
+                           <div class="center">
+                              <a href="../forgot.php" class="btn btn-sm btn-danger">Reset Password</a>
+                           
+                              <a href="../index.php" class="btn btn-sm btn-danger">Login Page</a>
                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>  <!-- BODY EXPIRED -->
+        <link rel="stylesheet" type="text/css" href="../style.css" />
 
-	';
+        <link href="../app/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../app/assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="../app/assets/css/main.css">
+
+        <!-- fonts -->
+
+        <link rel="stylesheet" href="../app/assets/css/ace-fonts.css" />
+
+        <!-- ace styles -->
+
+        <link rel="stylesheet" href="../app/assets/css/ace.min.css" />
+        <link rel="stylesheet" href="../app/assets/css/ace-rtl.min.css" />
+	';exit();
 } else {
-	echo "found it";
+	// echo "found it";
 }
 
-echo "<span class=\"white\">time_elapsed_A: </span></br>".$nowtime."\n</br><span class=\"white\">time_elapsed_B: </span><h1>".$time_exp."</h1>\n";
+// echo "<span class=\"white\">time_elapsed_A: </span></br>".$nowtime."\n</br><span class=\"white\">time_elapsed_B: </span><h1>".$time_exp."</h1>\n";
 
 ?>
 <html>
 	<head>
-		<title>Login with Users Online Tutorial</title>
+		<title>Set a new password for your account | Postmorten App</title>
 		<link rel="stylesheet" type="text/css" href="../style.css" />
 
         <link href="../app/assets/css/bootstrap.min.css" rel="stylesheet" />

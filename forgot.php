@@ -11,7 +11,7 @@ include "config/functions.php";
 ?>
 <html>
 	<head>
-		<title>Login with Users Online Tutorial</title>
+		<title>Forgot Password | Postmorten App</title>
          <script src="//localhost:35729/livereload.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 
@@ -128,7 +128,7 @@ include "config/functions.php";
 
             $requestedTime = time();
 
-            $encrypted_key = md5($temp_key);
+            $encrypted_key = md5($requestedTime);
 
             mysql_query('UPDATE users SET psswrdTime = "'.$requestedTime.'" WHERE  email = "'.$email.'"');
 
