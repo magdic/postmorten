@@ -49,7 +49,7 @@ function time_elapsed_B($secs){
     return join(' ', $ret);
     }
     
-						$res = mysql_query("SELECT * FROM `users` WHERE `username` = '".$idUser."'");
+						$res = mysql_query("SELECT * FROM `users` WHERE `username` = '".$idUser."' AND `token` = '".$token."'");
 						$num = mysql_num_rows($res);
 
 						//split the row into an associative array

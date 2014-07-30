@@ -130,7 +130,7 @@ include "config/functions.php";
 
             $encrypted_key = md5($requestedTime);
 
-            mysql_query('UPDATE users SET psswrdTime = "'.$requestedTime.'" WHERE  email = "'.$email.'"');
+            mysql_query('UPDATE users SET psswrdTime = "'.$requestedTime.'", token = "'.$encrypted_key.'" WHERE  email = "'.$email.'"');
 
 
 
@@ -222,65 +222,4 @@ include "config/functions.php";
         </div>
 	</body>
 </html>
-
-<?php 
-
-
-
-function time_elapsed_A($secs){
-    $bit = array(
-        'y' => $secs / 31556926 % 12,
-        'w' => $secs / 604800 % 52,
-        'd' => $secs / 86400 % 7,
-        'h' => $secs / 3600 % 24,
-        'm' => $secs / 60 % 60,
-        's' => $secs % 60
-        );
-        
-    foreach($bit as $k => $v)
-        if($v > 0)$ret[] = $v . $k;
-        
-    return join(' ', $ret);
-    }
-    
-
-function time_elapsed_B($secs){
-    $bit = array(
-        ' year'        => $secs / 31556926 % 12,
-        ' week'        => $secs / 604800 % 52,
-        ' day'        => $secs / 86400 % 7,
-        ' hour'        => $secs / 3600 % 24,
-        ' minute'    => $secs / 60 % 60,
-        ' second'    => $secs % 60
-        );
-        
-    foreach($bit as $k => $v){
-        if($v > 1)$ret[] = $v . $k . 's';
-        if($v == 1)$ret[] = $v . $k;
-        }
-    array_splice($ret, count($ret)-1, 0, 'and');
-    $ret[] = 'ago.';
-    
-    return join(' ', $ret);
-    }
-    
-
-    
-    
-$nowtime = time();
-$oldtime = 1406571477;
-
-$time_exp = time_elapsed_B($nowtime-$oldtime);
-
-if (strpos($time_exp, 'minute') !== false) {
-    echo "found it";
-}
-
-echo "<span class=\"white\">time_elapsed_A: </span></br>".$nowtime."\n</br><span class=\"white\">time_elapsed_B: </span><h1>".$time_exp."</h1>\n";
-
-
- ?>
-
-
-
 
