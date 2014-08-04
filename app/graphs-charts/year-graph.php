@@ -32,7 +32,7 @@
 									                categories: [
 
 									                            <?php 
-									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
+									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM projectsTB GROUP BY year HAVING COUNT(*)");
 									                                //split all fields fom the correct row into an associative array
 									                                while($rowie = mysql_fetch_array($test)) {                    
 									                                echo "'".$rowie["year"]."',";
@@ -69,7 +69,7 @@
 									                data: [
 									                    <?php 
 
-									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM timeProject GROUP BY year HAVING COUNT(*)");
+									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 1, 4) AS year, COUNT(*) AS qty FROM projectsTB GROUP BY year HAVING COUNT(*)");
 									                    //split all fields fom the correct row into an associative array
 									                    while($rowie = mysql_fetch_array($test)) {
 									                    echo $rowie['qty'].',';

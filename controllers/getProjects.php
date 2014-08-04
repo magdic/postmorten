@@ -1,7 +1,7 @@
 <?php
 //connect to the database so we can check, edit, or insert data to our users table
 include('../config/dbconfig.php');
-$query=mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
+$query=mysql_query("SELECT * FROM projectsTB AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO") or die(mysql_error());
 
 # Collect the results
 while($obj = mysql_fetch_object($query)) {

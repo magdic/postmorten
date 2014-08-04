@@ -33,7 +33,7 @@
 									            xAxis: {
 									                categories: [
 									                            <?php 
-									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 6, 2) AS month, COUNT(*) AS qty FROM timeProject GROUP BY month HAVING COUNT(*)");
+									                                $test = mysql_query("SELECT SUBSTRING(startDateP, 6, 2) AS month, COUNT(*) AS qty FROM projectsTB GROUP BY month HAVING COUNT(*)");
 									                                //split all fields fom the correct row into an associative array
 									                                while($rowie = mysql_fetch_array($test)) {                
 									                                if($rowie["month"] == '01'){
@@ -105,7 +105,7 @@
 									                data: [
 									                    <?php 
 
-									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 6, 2) AS month, COUNT(*) AS qty FROM timeProject GROUP BY month HAVING COUNT(*)");
+									                    $test = mysql_query("SELECT SUBSTRING(startDateP, 6, 2) AS month, COUNT(*) AS qty FROM projectsTB GROUP BY month HAVING COUNT(*)");
 									                    //split all fields fom the correct row into an associative array
 									                    while($rowie = mysql_fetch_array($test)) {
 									                    echo $rowie['qty'].',';

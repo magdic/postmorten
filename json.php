@@ -5,7 +5,7 @@ include('config/dbconfig.php');
 include "config/functions.php";
 //THE QUERY FOR THE PROJECT
 $idProject=$_REQUEST['id'];
-$sql2 = "SELECT * FROM timeProject AS a, timelines AS b WHERE b.idFromProject = a.idtimeLine AND b.idFromProject='$idProject'"; 
+$sql2 = "SELECT * FROM projectsTB AS a, timelines AS b WHERE b.idFromProject = a.idtimeLine AND b.idFromProject='$idProject'"; 
 
 
     if(!$result = mysql_query($sql2)) die("ERROR"); //WITHOU CONNECTION CANCEL THE FILE

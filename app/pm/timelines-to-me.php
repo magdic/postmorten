@@ -16,7 +16,7 @@ session_start();
 }
 
 $pmuid = $_SESSION['uid'];
-$result = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$pmuid'");
+$result = mysql_query("SELECT * FROM projectsTB AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$pmuid'");
 
 
 
@@ -277,7 +277,7 @@ function clean($str)
 
                                                 <tbody>
 
-                                                <?php $query = mysql_query("SELECT * FROM timeProject AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$uid'") or die(mysql_error());
+                                                <?php $query = mysql_query("SELECT * FROM projectsTB AS a, users AS b, joinedTB AS c WHERE a.idtimeLine = c.idProjectJO AND b.id = c.idUsernameJO AND b.id='$uid'") or die(mysql_error());
                                                 while ($row = mysql_fetch_array($query)) {
                                                     $id = $row['idtimeLine']; ?>
 

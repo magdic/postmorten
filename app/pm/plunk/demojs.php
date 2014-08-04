@@ -66,7 +66,7 @@ app.controller('DemoCtrl', function($scope, $http) {
   $scope.project = {};
   $scope.projects = [
     <?php 
-		$test = mysql_query("SELECT * FROM timeProject");
+		$test = mysql_query("SELECT * FROM projectsTB");
 		//split all fields fom the correct row into an associative array
 		while($rowie = mysql_fetch_array($test)) {
 			echo '{name:\''.$rowie['headlineP'].'\', id:\''.$rowie['idtimeLine'].'\'},';

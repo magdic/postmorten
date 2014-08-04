@@ -9,7 +9,7 @@ include('../../config/dbconfig.php');
 include "../../config/functions.php";
 
 $idProject=$_REQUEST['id'];
-$result = mysql_query("SELECT * FROM timeProject where idtimeLine='$idProject'");
+$result = mysql_query("SELECT * FROM projectsTB where idtimeLine='$idProject'");
 
 while($row = mysql_fetch_array($result))
   {

@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="../../assets/css/main.css" />
 
         <!-- ace settings handler -->
-
+        <link rel="stylesheet" href="../../assets/css/datepicker.css" />
         <script src="../../assets/js/ace-extra.min.js"></script>
         <script src='../../assets/js/jquery-2.0.3.min.js'></script>
 

@@ -120,7 +120,7 @@
 
 /* line 85, ../scss/main.scss */
 .row:before, .row:after {
-  display: none;
+  /*display: none;*/
 }
 
 /* line 88, ../scss/main.scss */
@@ -156,3 +156,7 @@
 #sssss {
   padding: 20px 0 20px 0;
 }
+
+.tooltip img{
+    max-width:15em;
+  }

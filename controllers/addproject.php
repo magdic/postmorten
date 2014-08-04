@@ -46,7 +46,7 @@ if($projectname == '' || $startdate == '' || $reference == ''){
 $id = time() + (7 * 24 * 60 * 60);
 $idEncryped = md5($id);
 
-$resultf = mysql_query("SELECT * FROM timeProject where headlineP='$projectname' AND textP='$reference' AND startDateP='$startdate' AND mediaP='$mainmedia'");
+$resultf = mysql_query("SELECT * FROM projectsTB where headlineP='$projectname' AND textP='$reference' AND startDateP='$startdate' AND mediaP='$mainmedia'");
 while($rowf = mysql_fetch_array($resultf))
 	{
 	$cccvvv=$rowf['headlineP'];
@@ -63,7 +63,7 @@ while($rowf = mysql_fetch_array($resultf))
 	}
 	}
 	}
-mysql_query("INSERT INTO timeProject (idtimeLine, headlineP, textP, startDateP, mediaP, creditP, captionP)
+mysql_query("INSERT INTO projectsTB (idtimeLine, headlineP, textP, startDateP, mediaP, creditP, captionP)
 VALUES ('$idEncryped','$projectname','$reference','$startdate','$mainmedia','$creditmedia','$captionmedia')");
 header("location: ../app/lead/lead-panel.php");
 
