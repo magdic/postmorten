@@ -31,32 +31,26 @@ $json_id = $idProject;
   	                                                              d88P             
   	                                                            888P              
                                                               -->
-                                                              <head>
-                                                                <title>Timeline View | Postmorten</title>
-                                                                <meta charset="utf-8">
-                                                                <meta name="description" content="TimelineJS example">
-                                                                <meta name="apple-mobile-web-app-capable" content="yes">
-                                                                <meta name="apple-touch-fullscreen" content="yes">
-                                                                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-                                                                <!-- Style-->
-                                                                <style>
-                                                                html, body { 
-                                                                 height:100%;
-                                                                 padding: 0px;
-                                                                 margin: 0px;
-                                                               }
-                                                               #demo {width: 100%;height: 600px;}
+  <head>
+    <title>Timeline View | Postmorten</title>
+    <meta charset="utf-8">
+    <meta name="description" content="TimelineJS example">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Style-->
+    <style>
+    html, body { 
+     height:100%;
+     padding: 0px;
+     margin: 0px;
+   }
+   #demo {width: 100%;height: 600px;}
 
-                                                               </style>
+   </style>
     <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script type="text/javascript">
 
-
-
-
-
-    </script>
     <?php
 
     include("header.php");
@@ -80,6 +74,36 @@ $json_id = $idProject;
       $time = date('U')+50;
       $update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
       ?>
+
+
+    <script type="text/javascript">
+
+
+      $(function() {
+        $(".view_comments").click(function() 
+          {
+            var ID = $(this).attr("id");
+
+            $.ajax({
+                type: "POST",
+                url: "comments/viewajax.php?id=<?php echo $idProject; ?>",
+                data: "idComment="+ ID, 
+                cache: false,
+                success: function(html){
+                  $("#view_comments"+ID).prepend(html);
+                  $("#view"+ID).remove();
+                  $("#two_comments"+ID).remove();
+                }
+            });
+
+      return false;
+      });
+      });
+
+
+    </script>
+
+
       <div class="navbar-header pull-right" role="navigation">
         <ul class="nav ace-nav">
           <li class="light-blue">
@@ -217,7 +241,7 @@ $json_id = $idProject;
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
 
 
-                  <form id="savecomment" method="post" action="">
+                  <form id="savecomment" method="post" action="comments/savecomment.php">
                     <!-- <form id="savecomment" action="comments/savecomment.php" method="post"> -->
                     <div class="form-actions">
                       <small><?php echo $fullnameUser; ?></small>
@@ -247,8 +271,7 @@ $json_id = $idProject;
                   <div class="comment">
                     <div class="name">
                       <span id="user-says">
-                        <?php echo $user_name_comment .' '. $user_lastname_comment; ?>
-                        says:
+                        <?php echo '<span class="label label-success arrowed-in arrowed-in-right">'.$user_name_comment .' '. $user_lastname_comment.'</span>'; ?>
                       </span>
                     </div>
                     <!-- <div class="itemdiv dialogdiv"> -->
@@ -261,7 +284,7 @@ $json_id = $idProject;
 
                           <span>
                             <!-- THIS IS THE MESSAGE FOR START A CONVERSATION ON THE COMMENTS SECTION -->
-                            <?php echo $msgcontent; ?>
+                            <?php echo '<span class="">'.$msgcontent.'</span>'; ?>
                           </span>
 
 
@@ -277,7 +300,7 @@ $json_id = $idProject;
                               ?>
                               <div class="comment_ui" id="view<?php echo $idComment; ?>">
                                 <div>
-                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> <?php echo $comment_count; ?> comments.</a>
+                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> Read <?php echo $second_count; ?> more comments.</a>
                                 </div>
                               </div>
                               <?php 
@@ -292,18 +315,21 @@ $json_id = $idProject;
 
                             <div id="two_comments<?php echo $idComment; ?>">
                               <?php
-                              $listsql=mysql_query("SELECT * FROM subComment WHERE idFromComment='$idComment' ORDER BY idSubComment LIMIT $second_count,2 ");
+                              $listsql=mysql_query("SELECT * FROM subComment AS a, users AS b WHERE a.idFromComment='$idComment' AND a.userSubComment=b.id ORDER BY idSubComment LIMIT $second_count,2 ");
                               while($rowsmall=mysql_fetch_array($listsql))
                               { 
                                 $c_id=$rowsmall['idSubComment'];
                                 $comment=$rowsmall['subComment'];
+                                $nameSub=$rowsmall['name'];
+                                $lastnameSub=$rowsmall['lastname'];
+                                $dateSub=$rowsmall['dateSubComment'];
                                 ?>
 
                                 <div class="comment_ui">
 
                                   <div class="comment_text">
                                     <div  class="comment_actual_text">
-                                      <div id="sssss"><?php echo $comment; ?></div></div>
+                                      <div id="sssss"><?php echo '<span class="label label-success arrowed-in arrowed-in-right">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
                                     </div>
 
                                   </div>
@@ -318,6 +344,7 @@ $json_id = $idProject;
                                           <div class="input-group">
                                             <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
                                             <input name="mesgid" type="hidden" value="<?php echo $idComment ?>" />
+                                            <input name="idUserSub" type="hidden" value="<?php echo $uid ?>" />
                                             <input id="subcommentin" placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
                                             <span class="input-group-btn">
                                               <input class="btn btn-sm btn-info no-radius" type="submit">
@@ -359,48 +386,29 @@ $json_id = $idProject;
            source: "../../../json.php?id=<?php echo $json_id;?>",
            font: "PTSerif-PTSans"
          }
-         $(function() { 
-          $(".view_comments").click(function() {
-            var ID = $(this).attr("id");
-            $.ajax({
-              type: "POST",
-              url: "comments/viewajax.php",
-              data: "msg_id="+ ID, 
-              cache: false,
-              success: function(html){
-                $("#view_comments"+ID).prepend(html);
-                $("#view"+ID).remove();
-                $("#two_comments"+ID).remove();
-              }
-            }); 
-            return false;
-          });
-        });
 
+        //  $(function () {
+        //   $('#savecomment').on('submit', function (e) {
 
+        //     e.preventDefault();
+        //     $.ajax({
+        //       type: 'post',
+        //       url: 'comments/savecomment.php',
+        //       data: $('#savecomment').serialize(),
+        //       success: function (data) {
+        //         $("#commentin").val("");
 
-         $(function () {
-          $('#savecomment').on('submit', function (e) {
+        //         if($('.comment').length > 0){
+        //           $('.comment').fadeOut(1000).load("# .comment").fadeIn(1000);
+        //         } else {
+        //           location.reload();
+        //         }
+        //       }
 
-            e.preventDefault();
-            $.ajax({
-              type: 'post',
-              url: 'comments/savecomment.php',
-              data: $('#savecomment').serialize(),
-              success: function (data) {
-                $("#commentin").val("");
-
-                if($('.comment').length > 0){
-                  $('.comment').fadeOut(1000).load("# .comment").fadeIn(1000);
-                } else {
-                  location.reload();
-                }
-              }
-
-            });
-            return false;
-          });
-        });
+        //     });
+        //     return false;
+        //   });
+        // });
 
 
 

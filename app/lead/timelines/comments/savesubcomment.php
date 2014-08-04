@@ -12,9 +12,11 @@ include "../../../../config/functions.php";
 $mcomment=$_POST['mcomment'];
 $mesgid=$_POST['mesgid'];
 $idProject=$_POST['idProject'];
-$fullnameUser=$_POST['fullnameUserSub'];
+$idUserSub=$_POST['idUserSub'];
+
+// echo $mcomment.' + id= '.$mesgid.' + idUser: '.$idUserSub;die();
 $date = date('r',time());
-mysql_query("INSERT INTO subComment (subComment, idFromComment, dateToday, userSubComment)
-VALUES ('$mcomment','$mesgid','$date','$fullnameUserSub')");
+mysql_query("INSERT INTO subComment (subComment, idFromComment, dateSubComment, userSubComment)
+VALUES ('$mcomment','$mesgid','$date','$idUserSub')");
 header("location: ../timeline.php?id=".$idProject);
 ?>
