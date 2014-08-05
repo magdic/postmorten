@@ -57,7 +57,8 @@ while($row = mysql_fetch_array($result))
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
     <link href="../../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
-
+    <link rel="stylesheet" href="../../assets/css/chosen.css">
+    <link rel="stylesheet" href="../../assets/css/jquery-ui-1.10.3.custom.min.css">
     <?php
 
     include("header.php");
@@ -221,11 +222,11 @@ while($row = mysql_fetch_array($result))
       <div class="page-content">
       	<div class="page-header">
             <h1>
-                Timelines 
-                <small>
-                    <i class="icon-double-angle-right"></i>
-                    Editing Timeline <?php echo $idProject; ?>
-                </small>
+                <a href="timeline.php?id=<?php echo $idProject; ?>">Go to the Timeline </a> 
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        <a href="">Edit Project</a>
+                    </small>
             </h1>
         </div>
         <div class="row">
@@ -270,7 +271,8 @@ while($row = mysql_fetch_array($result))
                                              <div class="form-group">
                                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> Text: </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="form-field-3 text" name="text" placeholder="Reference text" class="col-xs-12 col-sm-10" />
+                                                    <input type="hidden" id="form-field-3" name="text" placeholder="Reference text" class="col-xs-12 col-sm-10" />
+                                                    <div class="wysiwyg-editor" id="editor1" contenteditable="true" ></div>
                                                 </div>
                                             </div>
                                              <div class="form-group">
@@ -465,9 +467,17 @@ while($row = mysql_fetch_array($result))
 
     <script src="../../assets/js/url-preview.js"></script>
 
-            <script src="../../assets/js/jquery.fs.boxer.js"></script>
+    <script src="../../assets/js/jquery.fs.boxer.js"></script>
+
     <script>
     jQuery(function($) {
+
+        $("form").on("submit",function() {
+                    wysiwygText = $("#editor1").html();
+                    $("#form-field-3").val(wysiwygText);
+        });
+
+
         $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
                     $(this).prev().focus();
                 });
@@ -502,6 +512,59 @@ while($row = mysql_fetch_array($result))
                         if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
                         return 'left';
                 }
+
+
+
+
+                    //but we want to change a few buttons colors for the third style
+                    $('#editor1').ace_wysiwyg({
+                        toolbar:
+                        [
+                            // 'font',
+                            null,
+                            'fontSize',
+                            null,
+                            {name:'bold', className:'btn-info'},
+                            {name:'italic', className:'btn-info'},
+                            {name:'strikethrough', className:'btn-info'},
+                            {name:'underline', className:'btn-info'},
+                            null,
+                            {name:'insertunorderedlist', className:'btn-success'},
+                            {name:'insertorderedlist', className:'btn-success'},
+                            // {name:'outdent', className:'btn-purple'},
+                            // {name:'indent', className:'btn-purple'},
+                            null,
+                            {name:'justifyleft', className:'btn-primary'},
+                            {name:'justifycenter', className:'btn-primary'},
+                            {name:'justifyright', className:'btn-primary'},
+                            {name:'justifyfull', className:'btn-inverse'},
+                            null,
+                            {name:'createLink', className:'btn-pink'},
+                            {name:'unlink', className:'btn-pink'},
+                            null,
+                            // {name:'insertImage', className:'btn-success'},
+                            null,
+                            // 'foreColor',
+                            null,
+                            {name:'undo', className:'btn-grey'},
+                            {name:'redo', className:'btn-grey'}
+                        ],
+                        'wysiwyg': {
+                            // fileUploadError: showErrorAlert
+                        }
+                    }).prev().addClass('wysiwyg-style2');
+
+                        $('[data-toggle="buttons"] .btn').on('click', function(e){
+                                var target = $(this).find('input[type=radio]');
+                                var which = parseInt(target.val());
+                                var toolbar = $('#editor1').prev().get(0);
+                                if(which == 1 || which == 2 || which == 3) {
+                                    toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+                                    if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+                                    else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+                                }
+                            });
+
 
     });
 

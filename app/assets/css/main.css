@@ -157,3 +157,19 @@
 .tooltip img{
     max-width:15em;
   }
+
+  .dialogs {
+    height: 35em !important;
+  }
+/*
+  .widget-body {
+    height: 35em;
+  }*/
+
+  .slimScrollDiv {
+    height: 35em !important;
+  }
+
+  .widget-box {
+    margin-bottom: 5em;
+  }

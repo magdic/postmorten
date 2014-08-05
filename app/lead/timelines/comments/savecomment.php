@@ -15,6 +15,6 @@ $userComment=$_POST['userComment'];
 $date = date('r',time());
 mysql_query("INSERT INTO comment (bodycomment, idProject, dateToday, userComment)
 VALUES ('$msgcon','$idProject','$date','$userComment')");
-// header("location: ../timeline.php?id=".$idProject);
+header("location: ../timeline.php?id=".$idProject);
 unset($_POST['message']);
 ?>

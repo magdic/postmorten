@@ -184,7 +184,7 @@ $json_id = $idProject;
           <li class="active">
             <a href="../timelines">
               <i class="icon-eye-open"></i>
-              <span class="menu-text"> See Timelines </span>
+              <span class="menu-text"> Projects </span>
             </a>
           </li>
           <li>
