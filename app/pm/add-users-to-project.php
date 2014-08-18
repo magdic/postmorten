@@ -268,13 +268,16 @@ function clean($str)
           </ui-select></div>
         </div>
           
-        <div class="form-group"><div class="col-sm-5">
-          <h3>User for the Project</h3>  <ui-select ng-model="user.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
-            <match placeholder="Select or search a username in the list...">{{$select.selected.name}}</match>
-            <choices repeat="user in users | filter: $select.search">
-              <span ng-bind-html="user.name | highlight: $select.search"></span>
-              <!-- <small ng-bind-html="user.id | highlight: $select.search"></small> -->
-            </choices></div>
+        <div class="form-group">
+            <div class="col-sm-5">
+                <h3>User for the Project</h3>  
+            <ui-select ng-model="user.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
+                <match placeholder="Select or search a username in the list...">{{$select.selected.name}}</match>
+                <choices repeat="user in users | filter: $select.search">
+                <span ng-bind-html="user.name | highlight: $select.search"></span>
+                 <!-- <small ng-bind-html="user.id | highlight: $select.search"></small> -->
+                </choices>
+            </div>
             </ui-select>
         </div>
           

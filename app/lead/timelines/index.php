@@ -185,15 +185,15 @@ include "../../../config/functions.php";
         <div class="col-md-12" data-ng-show="filteredItems > 0">
             <table class="table table-striped table-bordered">
             <thead>
-            <th>Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
+            <th>Project Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
             <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
             <th>Options&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th>
             </thead>
             <tbody>
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td><a href="timeline.php?id={{data.idtimeLine}}">{{data.headlineP}}</a></td>
+                    <td>{{data.headlineP}}</td>
                     <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td>
-                    <td><a href="edit.php?id={{data.idtimeLine}}">Edit</a></td>
+                    <td><a href="timeline.php?id={{data.idtimeLine}}">See Timeline</a> - <a href="edit.php?id={{data.idtimeLine}}"><i class="icon-pencil bigger-130"></i></a></td>
                 </tr>
             </tbody>
             </table>

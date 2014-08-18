@@ -11,13 +11,13 @@ include "../../../config/functions.php";
 $id=$_REQUEST['id'];
 $idProject=$_REQUEST['project'];
 
-// echo 'The id is: '.$id;
+// echo 'The id is: '.$id. ' + '.$idProject;
 // die();
 
  ?>
 <html>
 <head>
-	<title>Deleteing Timeline | POstmorten App</title>
+	<title>Deleteing Timeline | Postmorten App</title>
 
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
@@ -67,7 +67,7 @@ $idProject=$_REQUEST['project'];
 	</div>
 	<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
 		<div class="center">
-			<a href="../../../controllers/deleteTimeline.php?id=<?php echo $id.'&&project='.$idProject; ?>" class="btn btn-danger btn-xs ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-trash bigger-110"></i>&nbsp; Delete</span></a>
+			<a href="../../../controllers/deleteProject.php?id=<?php echo $id; ?>" class="btn btn-danger btn-xs ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-trash bigger-110"></i>&nbsp; Delete</span></a>
 			<!-- <a id="close-modal-tl" href="" class="btn btn-xs ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; Cancel</span></a> -->
 		</div>
 	</div>

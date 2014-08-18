@@ -59,8 +59,8 @@ app.controller('DemoCtrl', function($scope, $http) {
 
   $scope.clear = function() {
     $scope.project.selected = undefined;
-    $scope.address.selected = undefined;
-    $scope.country.selected = undefined;
+    $scope.user.selected = undefined;
+    // $scope.country.selected = undefined;
   };
 
   $scope.project = {};
@@ -75,9 +75,9 @@ app.controller('DemoCtrl', function($scope, $http) {
   ];
 
   $scope.user = {};
-  $scope.users = [ // Taken from https://gist.github.com/unceus/6501985
+  $scope.users = [ 
     <?php 
-		$users = mysql_query("SELECT * FROM users");
+		$users = mysql_query("SELECT * FROM users WHERE role=3");
 		//split all fields fom the correct row into an associative array
 		while($rowU = mysql_fetch_array($users)) {
 			echo '{name:\''.$rowU['name'].' '.$rowU['lastname'].'\', id:\''.$rowU['id'].'\'},';

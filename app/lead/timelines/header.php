@@ -1,8 +1,5 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Lead Panel | My App</title> -->
- <!-- <script src="//localhost:35729/livereload.js"></script> -->
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../assets/images/favicon.ico" />
+
 
         <!-- basic styles -->
 

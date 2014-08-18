@@ -1,4 +1,4 @@
-
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../assets/images/favicon.ico" />
 
         <!-- basic styles -->
 

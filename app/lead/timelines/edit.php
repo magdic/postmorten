@@ -24,6 +24,9 @@ while($row = mysql_fetch_array($result))
     $prjctStartDate=$row['startDateP'];
 }
 
+if($idproject==null){
+    echo '<script>window.location.href="../../lead/lead-panel.php"</script>';
+} 
 
 ?>
 
@@ -222,10 +225,18 @@ while($row = mysql_fetch_array($result))
       <div class="page-content">
       	<div class="page-header">
             <h1>
-                <a href="timeline.php?id=<?php echo $idProject; ?>">Go to the Timeline </a> 
+                Project Options 
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        <a href="">Edit Project</a>
+                        <a href="timeline.php?id=<?php echo $idProject; ?>" class="btn btn-xs btn-success">See the Timeline</a>
+                    </small>
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        <a href="timeline.php?id=<?php echo $idProject; ?>" class="btn btn-xs btn-info">Edit Project</a>
+                    </small>
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        <a href="<?php echo $BASE_URL; ?>lead-delete-project.php?id=<?php echo $idProject;?>" class="btn btn-xs btn-danger boxer button small" data-boxer-height="206" data-boxer-width="305">Delete Project</a>
                     </small>
             </h1>
         </div>
@@ -388,7 +399,7 @@ while($row = mysql_fetch_array($result))
 
                                 <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="#">
+                                        <a class="green boxer button small" href="<?php echo $BASE_URL; ?>lead-edit-timeline.php?id=<?php echo $row['idtimelines'].'&&project='.$idProject; ?>">
                                             <i class="icon-pencil bigger-130"></i>
                                         </a>
 
