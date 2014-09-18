@@ -193,7 +193,7 @@ include "../../../config/functions.php";
                 <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                     <td>{{data.headlineP}}</td>
                     <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td>
-                    <td><a href="timeline.php?id={{data.idtimeLine}}">See Timeline</a> - <a href="edit.php?id={{data.idtimeLine}}"><i class="icon-pencil bigger-130"></i></a></td>
+                    <td><a href="timeline.php?id={{data.idtimeLine}}"><i class="icon-external-link bigger-130"></i></a> - <a href="edit.php?id={{data.idtimeLine}}"><i class="icon-pencil bigger-130"></i></a></td>
                 </tr>
             </tbody>
             </table>

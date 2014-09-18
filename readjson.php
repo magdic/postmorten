@@ -1,46 +1,5 @@
  <?php 
 
-// //connect to the database so we can check, edit, or insert data to our users table
-// include('config/dbconfig.php');
-
-// $result = mysql_query("SELECT * from users") or die('Could not query');
-
-// if(mysql_num_rows($result)){
-//     echo '{"timeline":{';
-
-//     $first = true;
-//     $row=mysql_fetch_assoc($result);
-//     while($row=mysql_fetch_row($result)){
-//         //  cast results to specific data types
-
-//         if($first) {
-//             $first = false;
-//         } else {
-//             echo ',';
-//         }
-//         echo json_encode($row);
-//     }
-//     echo ']}';
-// } else {
-//     echo '[]';
-// } 
-
-
-
-// // Returns: ["Apple","Banana","Pear"]
-// echo json_encode(array("Apple", "Banana", "Pear"));
- 
-// // Returns: {"4":"four","8":"eight"}
-// echo json_encode(array(4 => "four", 8 => "eight"));
- 
-// // Returns: {"apples":true,"bananas":null}
-// echo json_encode(array("apples" => true, "bananas" => null));
-
-/******************************************************
-*******************************************************
-*******************************************************
-******************************************************/
-
 
 class MySql_To_Json
 {

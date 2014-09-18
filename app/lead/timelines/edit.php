@@ -31,7 +31,7 @@ if($idproject==null){
 ?>
 
 <!DOCTYPE html>
-<html data-ng-app="myApp" lang="en"><!--
+<html  lang="en"><!--
   	 
   	88888888888 d8b                        888 d8b                888888   d8888b  
   	    888     Y8P                        888 Y8P                   88b d88P  Y88b 
@@ -232,7 +232,7 @@ if($idproject==null){
                     </small>
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        <a href="timeline.php?id=<?php echo $idProject; ?>" class="btn btn-xs btn-info">Edit Project</a>
+                        <a href="<?php echo $BASE_URL; ?>lead-edit-project.php?id=<?php echo $idProject;?>" class="btn btn-xs btn-info boxer button small">Edit Project</a>
                     </small>
                     <small>
                         <i class="icon-double-angle-right"></i>

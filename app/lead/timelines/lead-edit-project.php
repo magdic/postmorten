@@ -12,19 +12,20 @@ include "../../../config/functions.php";
 
 
 $id=$_REQUEST['id'];
-$idProject=$_REQUEST['project'];
 
 
-$query = mysql_query("SELECT * FROM timelines WHERE idtimelines = '".$id."' AND idFromProject='".$idProject."'") or die(mysql_error());
+
+
+$query = mysql_query("SELECT * FROM projectsTB WHERE idtimeLine = '".$id."'") or die(mysql_error());
 
 while ($row = mysql_fetch_array($query)) {
-	$id = $row['idtimelines'];
-	$date = $row['startDate'];
-	$headline = $row['headline'];
-	$text = $row['text'];
-	$media = $row['media'];
-	$credit = $row['credit'];
-	$caption = $row['caption'];
+	$id = $row['idtimeLine'];
+	$date = $row['startDateP'];
+	$headline = $row['headlineP'];
+	$text = $row['textP'];
+	$media = $row['mediaP'];
+	$credit = $row['creditP'];
+	$caption = $row['captionP'];
 
 }
 
@@ -32,7 +33,7 @@ while ($row = mysql_fetch_array($query)) {
  ?>
 <html>
 <head>
-	<title>Deleteing Timeline | Postmorten App</title>
+	<title>Editing Timeline | Postmorten App</title>
 
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
@@ -62,12 +63,12 @@ while ($row = mysql_fetch_array($query)) {
 </head>
 <body>
 <div class="panel-body">
-<form action="../../../controllers/lead-edit-timeline.php" method="post" class="form-horizontal" role="form">
+<form action="../../../controllers/lead-edit-project.php" method="post" class="form-horizontal" role="form">
     <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idProject; ?>" readonly="">
     <input type="hidden" id="idFromProject" name="id" value="<?php echo $id; ?>" readonly="">
     <fieldset>
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Timeline Start Date: </label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Project Start Date: </label>
             <div class="col-sm-8">
                 <input value="<?php echo $date; ?>" type="text" id="id-date-picker-1 startDate" name="startDate" placeholder="YYYY,MM,DD" class="col-xs-12 col-sm-10 date-picker" data-date-format="yyyy,mm,dd">
                 <span class="input-group-addon">
@@ -76,13 +77,13 @@ while ($row = mysql_fetch_array($query)) {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Timeline Name:  </label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Project Name:  </label>
             <div class="col-sm-8">
                 <input value="<?php echo $headline; ?>" type="text" id="form-field-2 headline" name="headline" placeholder="Headline for the timeline" class="col-xs-12 col-sm-10">
             </div>
         </div>
          <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> Timeline Description: </label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> Project Description: </label>
             <div class="col-sm-8">
                 <input  type="hidden" id="form-field-3" name="text" placeholder="Reference text" class="col-xs-12 col-sm-10">
                  <div class="wysiwyg-editor" id="editor1" contenteditable="true"><?php echo $text; ?></div>

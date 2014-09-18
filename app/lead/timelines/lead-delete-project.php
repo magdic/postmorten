@@ -17,7 +17,7 @@ $idProject=$_REQUEST['project'];
  ?>
 <html>
 <head>
-	<title>Deleteing Timeline | Postmorten App</title>
+	<title>Deleteing Project | Postmorten App</title>
 
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
@@ -49,7 +49,7 @@ $idProject=$_REQUEST['project'];
 		<span id="ui-id-27" class="ui-dialog-title">
 			<div class="widget-header">
 				<h4 class="smaller"><i class="icon-warning-sign red">
-				</i> Deleting Timeline?</h4>
+				</i> Deleting Project?</h4>
 			</div>
 		</span>
 	</div>
