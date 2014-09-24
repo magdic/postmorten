@@ -10,6 +10,27 @@ include('../../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../../config/functions.php";
 
+//Array to store validation errors
+$errmsg_arr = array();
+if (!isset($_SESSION)) {
+session_start();
+
+}
+
+
+ 
+//Validacion de bandera de error
+$errflag = false;
+//Funcion para recibir valores del form. Previene SQL injection
+function clean($str)
+  {
+    $str = @trim($str);
+    if(get_magic_quotes_gpc())
+      {
+      $str = stripslashes($str);
+      }
+    return mysql_real_escape_string($str);
+  }
 
 //SET JSON NAME TO CALL TIMELINE 
 $idProject=$_REQUEST['id'];
@@ -241,7 +262,7 @@ $json_id = $idProject;
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
 
 
-                  <form id="savecomment" method="post" action="comments/savecomment.php">
+                  <form role="form" method="post" action="comments/savecomment.php">
                     <!-- <form id="savecomment" action="comments/savecomment.php" method="post"> -->
                     <div class="form-actions">
                       <small><?php echo $fullnameUser; ?></small>
@@ -251,7 +272,7 @@ $json_id = $idProject;
                         <input name="userComment" type="hidden" value="<?php echo $uid ?>" />
                         <input placeholder="Type your message here ..." type="text" class="form-control" name="message" id="commentin">
                         <span class="input-group-btn">
-                         <input class="btn btn-sm btn-info no-radius" type="submit" id="send-comment" />
+                         <input class="btn btn-sm btn-info no-radius" type="submit" name="submit" id="send-comment" />
                        </span>
                      </div>
                    </div>

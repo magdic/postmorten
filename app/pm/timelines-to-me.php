@@ -71,6 +71,8 @@ function clean($str)
     <!-- ace settings handler -->
 
    <script src="../assets/js/ace-extra.min.js"></script>
+
+    <script src='../assets/js/jquery-2.0.3.min.js'></script>
 </head>
 <body>
 	<?php
@@ -269,7 +271,7 @@ function clean($str)
         </div>
 
 
-        <script src='../assets/js/jquery-2.0.3.min.js'></script>
+
         <script src='../assets/js/jquery.mobile.custom.min.js'></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/typeahead-bs2.min.js"></script>

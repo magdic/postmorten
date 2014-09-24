@@ -24,9 +24,9 @@ while($row = mysql_fetch_array($result))
     $prjctStartDate=$row['startDateP'];
 }
 
-if($idproject==null){
-    echo '<script>window.location.href="../../lead/lead-panel.php"</script>';
-} 
+// if($idproject==null){
+//     echo '<script>window.location.href="../../lead/lead-panel.php"</script>';
+// } 
 
 ?>
 
@@ -116,16 +116,6 @@ if($idproject==null){
                 $(".boxer.boxer_mobile").boxer({
                     mobile: true
                 });
-
-                /*
-                $("body").on("click", ".resize_modal", function() {
-                    $("#boxer").trigger("resize", [500, 500]);
-                    return false;
-                }).on("click", ".close_modal", function() {
-                    $("#boxer").trigger("close");
-                    return false;
-                });
-                */
             });
         </script>
 <div class="navbar-header pull-right" role="navigation">

@@ -15,8 +15,8 @@ $idProject=$_POST['idProject'];
 $idUserSub=$_POST['idUserSub'];
 
 // echo $mcomment.' + id= '.$mesgid.' + idUser: '.$idUserSub;die();
-$date = date('r',time());
-mysql_query("INSERT INTO subComment (subComment, idFromComment, dateSubComment, userSubComment)
-VALUES ('$mcomment','$mesgid','$date','$idUserSub')");
+
+mysql_query("INSERT INTO subComment (subComment, idFromComment, userSubComment)
+VALUES ('".$mcomment."','".$mesgid."',".$idUserSub.")");
 header("location: ../timeline.php?id=".$idProject);
 ?>

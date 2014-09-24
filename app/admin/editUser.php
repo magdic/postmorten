@@ -16,9 +16,9 @@ $BASE_URL = 'http://localhost:8888/phpcodes/postmorten/app/admin/';
 <html data-ng-app="myApp" lang="en">
 <head>
 	<title>Admin Managing Users | Postmorten App</title>
-    <link href="../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
+
 	<?php include('header.php'); ?>
-    
+    <link href="../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 <body>
@@ -215,68 +215,32 @@ $(document).ready(function() {
 		<div class="page-content">
 			<div class="page-header">
             <h1>
-                Admin Panel | Users
+                Admin | Editing Users
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        <a href="<?php echo $BASE_URL; ?>newUser.php" class="btn btn-xs btn-info boxer button small">New User</a>
+                        <a href="<?php echo $BASE_URL; ?>deleteUser.php" class="btn btn-xs btn-danger boxer button small">Delete User</a>
                     </small>
             </h1>
 			</div><!-- /.page-header -->
 
+            <form action="" method="post" class="form-horizontal" role="form">
+                <input type="hidden" id="idFromProject" name="idFromProject" value="<?php echo $idproject; ?>" readonly />
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Timeline Start Date: </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="id-date-picker-1 startDate" name="startDate" placeholder="YYYY,MM,DD" class="col-xs-12 col-sm-10 date-picker" data-date-format="yyyy,mm,dd" />
+                            <span class="input-group-addon">
+                                <i class="icon-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
 
-			<div ng-controller="customersCrtl">
-				<div class="container">
-    				<div class="row">
-        				<div class="col-md-2">Qty of Results:
-				            <select data-ng-model="entryLimit" class="form-control">
-				                <option>5</option>
-				                <option>10</option>
-				                <option>20</option>
-				                <option>50</option>
-				                <option>100</option>
-				            </select>
-        				</div>
-        <div class="col-md-3">Filter:
-            <input type="text" ng-model="search" ng-change="filter()" placeholder="Search an User..." class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} users total</h5>
-        </div>
-    </br> 
-    </br> 
-    </br> 
-    </br> 
-    <div class="row">
-        <div class="col-md-12" data-ng-show="filteredItems > 0">
-            <table class="table table-striped table-bordered">
-            <thead>
-            <th>User&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
-            <!-- <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th> -->
-            <th>Actions&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.nameFDB}} {{data.lastNameFDB}}</td>
-                    <!-- <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td> -->
-                    <td><a href="<?php echo $BASE_URL; ?>editUser.php" class="btn btn-xs btn-info boxer button small"><i class="icon-external-link bigger-130"></i></a> </td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col-md-12" data-ng-show="filteredItems == 0">
-            <div class="col-md-12">
-                <h4>User not found</h4>
-            </div>
-        </div>
-        <div class="col-md-12" data-ng-show="filteredItems > 0">    
-            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
-            
-            
-			        		</div>
-			    		</div>
-					</div>
-				</div>
-			</div>
+                </fieldset>
+                    <div class="form-actions center">
+                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" />
+                    </div>
+            </form>
 
 		</div>	
 
@@ -289,9 +253,6 @@ $(document).ready(function() {
 include("down.php");
 	}
 ?>
-    <script src="../assets/js/jquery.fs.boxer.js"></script>
-    <script src="../assets/angularjs/angular.min.js"></script>
-    <script src="../assets/angularjs/ui-bootstrap-tpls-0.10.0.min.js"></script>
-    <script src="../assets/angularjs/app.js"></script>    
+    <script src="../assets/js/jquery.fs.boxer.js"></script>   
 </body>
 </html>
