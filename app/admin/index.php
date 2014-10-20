@@ -73,9 +73,9 @@ include "../../config/functions.php";
 
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="#">
+                                    <a href="change-pass.php">
                                         <i class="icon-cog"></i>
-                                        Settings
+                                        Change Password
                                     </a>
                                 </li>
 
@@ -130,23 +130,12 @@ include "../../config/functions.php";
 		        </a>
 		    </li>
 		    <li>
-		        <a href="#">
+		        <a href="projects.php">
 		            <i class="icon-save"></i>
-		            <span class="menu-text"> Projects Comments </span>
-		        </a>
-		    </li>
-<!-- 		    <li>
-		        <a href="add-pm-to-project.php">
-		            <i class="icon-group"></i>
-		            <span class="menu-text"> Add PM to project </span>
-		        </a>
-		    </li> -->
-<!-- 		    <li>
-		        <a href="./timelines">
-		            <i class="icon-eye-open"></i>
 		            <span class="menu-text"> Projects </span>
 		        </a>
-		    </li> -->
+		    </li>
+
 		    <li>
 		        <a href="../../logout.php">
 		            <i class="icon-mail-reply"></i>

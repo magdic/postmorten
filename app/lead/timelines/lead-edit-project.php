@@ -1,6 +1,6 @@
 <?php 
 //allow sessions to be passed so we can see if the user is logged in
-//session_start();
+session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
 include('../../../config/dbconfig.php');

@@ -140,10 +140,10 @@ $json_id = $idProject;
 
             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
               <li>
-                <a href="#">
-                  <i class="icon-cog"></i>
-                  Settings
-                </a>
+                  <a href="../change-pass.php">
+                      <i class="icon-key"></i>
+                      Change Password
+                  </a>
               </li>
 
               <li>
@@ -292,7 +292,7 @@ $json_id = $idProject;
                   <div class="comment">
                     <div class="name">
                       <span id="user-says">
-                        <?php echo '<span class="label label-success arrowed-in arrowed-in-right">'.$user_name_comment .' '. $user_lastname_comment.'</span>'; ?>
+                        <?php echo '<span class="label">'.$user_name_comment .' '. $user_lastname_comment.'</span>'; ?>
                       </span>
                     </div>
                     <!-- <div class="itemdiv dialogdiv"> -->
@@ -350,7 +350,7 @@ $json_id = $idProject;
 
                                   <div class="comment_text">
                                     <div  class="comment_actual_text">
-                                      <div id="sssss"><?php echo '<span class="label label-success arrowed-in arrowed-in-right">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
+                                      <div id="sssss"><?php echo '<span class="label">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
                                     </div>
 
                                   </div>

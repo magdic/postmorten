@@ -1,82 +1,104 @@
-
 <?php
-
 //allow sessions to be passed so we can see if the user is logged in
 session_start();
 
 //connect to the database so we can check, edit, or insert data to our users table
-include('../../../config/dbconfig.php');
+include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
-include "../../../config/functions.php";
+include "../../config/functions.php";
 
-
-//SET JSON NAME TO CALL TIMELINE
+//SET JSON NAME TO CALL TIMELINE 
 $idProject=$_REQUEST['id'];
-$json_id = $idProject;
+$json_id = $idProject; 
+
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en"><!--
+<html lang="en">
+<head>
+	<title>Welcome Admin | Postmorten App</title>
 
-  	88888888888 d8b                        888 d8b                888888   d8888b
-  	    888     Y8P                        888 Y8P                   88b d88P  Y88b
-  	    888                                888                       888 Y88b
-  	    888     888 88888b d88b     d88b   888 888 88888b     d88b   888   Y888b
-  	    888     888 888  888  88b d8P  Y8b 888 888 888  88b d8P  Y8b 888      Y88b
-  	    888     888 888  888  888 88888888 888 888 888  888 88888888 888        888
-  	    888     888 888  888  888 Y8b      888 888 888  888 Y8b      88P Y88b  d88P
-  	    888     888 888  888  888   Y8888  888 888 888  888   Y8888  888   Y8888P
-  	                                                                d88P
-  	                                                              d88P
-  	                                                            888P
-  	 -->
-  <head>
-    <title>Timeline JS Example</title>
-    <meta charset="utf-8">
-    <meta name="description" content="TimelineJS example">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <!-- Style-->
-    <style>
-      html, body {
-       height:100%;
-       padding: 0px;
-       margin: 0px;
-      }
-      #demo {width: 100%;height: 600px;}
+	<style>
+		html, body { 
+		height:100%;
+		padding: 0px;
+		margin: 0px;
+		}
+		#demo {width: 100%;height: 600px;}
 
-    </style>
-    <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <?php
+	</style>
 
-    include("header.php");
+	<?php include('header.php'); ?>
 
-      $uid = $_SESSION['uid'];
-    $res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
-    //split all fields fom the correct row into an associative array
-    $row = mysql_fetch_assoc($res);
-    $nameUser = $row['name'];
-    $lastnameUser = $row['lastname'];
-    $fullnameUser = $nameUser.' '.$lastnameUser;
-    //if the login session does not exist therefore meaning the user is not logged in
-    if(!$_SESSION['uid']){
-      //display and error message
-      include("error-login.php");
-    }else {
-      //otherwise continue the page
 
-      //this is out update script which should be used in each page to update the users online time
-      $time = date('U')+50;
-      $update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-      ?>
-        <div class="navbar-header pull-right" role="navigation">
+</head>
+<body>
+
+	<div class="navbar navbar-default" id="navbar">
+            <script type="text/javascript">
+                try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+            </script>
+
+            <div class="navbar-container" id="navbar-container">
+                <div class="navbar-header pull-left">
+                    <a href="./" class="navbar-brand">
+                    </a><!-- /.brand -->
+                </div><!-- /.navbar-header -->
+	<?php
+	    $uid = $_SESSION['uid'];
+		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
+		//split all fields fom the correct row into an associative array
+		$row = mysql_fetch_assoc($res);
+
+		//if the login session does not exist therefore meaning the user is not logged in
+		if(!$_SESSION['uid']){
+			//display and error message
+			echo "<center>You need to be logged in to user this feature!</center>";
+		}else if ($row['role'] != 4){
+			echo "<center>You are not an <b>admin</b> site!</center>";
+		} else {
+			//otherwise continue the page
+
+			//this is out update script which should be used in each page to update the users online time
+			$time = date('U')+50;
+			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+			
+			?>
+
+<script type="text/javascript">
+
+
+  $(function() {
+    $(".view_comments").click(function() 
+      {
+        var ID = $(this).attr("id");
+
+        $.ajax({
+            type: "POST",
+            url: "comments/viewajax.php?id=<?php echo $idProject; ?>",
+            data: "idComment="+ ID, 
+            cache: false,
+            success: function(html){
+              $("#view_comments"+ID).prepend(html);
+              $("#view"+ID).remove();
+              $("#two_comments"+ID).remove();
+            }
+        });
+
+  return false;
+  });
+  });
+
+
+</script>
+
+			<div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                               <!--  <img class="nav-user-photo" src="../../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
+                                <!-- <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
                                 <span class="user-info">
                                     <small>Welcome,</small>
                                     <?php echo $row['name'].' '.$row['lastname']; ?>
@@ -87,7 +109,7 @@ $json_id = $idProject;
 
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="../change-pass.php">
+                                    <a href="change-pass.php">
                                         <i class="icon-key"></i>
                                         Change Password
                                     </a>
@@ -103,7 +125,7 @@ $json_id = $idProject;
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="../../../logout.php">
+                                    <a href="../../logout.php">
                                         <i class="icon-off"></i>
                                         Logout
                                     </a>
@@ -123,63 +145,103 @@ $json_id = $idProject;
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
-        <div class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar">
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+
+
+
+		 <ul class="nav nav-list">
+		    <li>
+		        <a href="./">
+		            <i class="icon-dashboard"></i>
+		            <span class="menu-text"> Panel </span>
+		        </a>
+		    </li>
+		    <li class="active">
+		        <a href="projects.php">
+		            <i class="icon-save"></i>
+		            <span class="menu-text"> Projects </span>
+		        </a>
+		    </li>
+
+		    <li>
+		        <a href="../../logout.php">
+		            <i class="icon-mail-reply"></i>
+		            <span class="menu-text"> Log Out </span>
+		        </a>
+		    </li>
+		</ul><!-- /.nav-list -->
+
+
+<div class="sidebar-collapse" id="sidebar-collapse">
+    <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+</div>
+
+<script type="text/javascript">
+    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+</script>
+    </div>
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
-                try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+                try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
             </script>
 
-
-
-
- <ul class="nav nav-list">
-    <li>
-        <a href="../pm-panel.php">
-            <i class="icon-dashboard"></i>
-            <span class="menu-text"> PM Dashboard </span>
-        </a>
-    </li>
-    <li>
-        <a href="../timelines-to-me.php">
-            <i class="icon-sitemap"></i>
-            <span class="menu-text"> Timelines Assigned </span>
-        </a>
-
-            <ul style="display: block;" class="submenu">
-                <li class="active">
-                    <a href="#">
-                        <i class="icon-plus"></i>
-                        <span class="menu-text"> Timeline </span>
-                    </a>
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home home-icon"></i>
+                    <a href="./">Home</a>
                 </li>
-            </ul>
-    </li>
-    <li>
-        <a href="../add-users-to-project.php">
-            <i class="icon-plus"></i>
-            <span class="menu-text"> Add user </span>
-        </a>
-    </li>
-    <li>
-        <a href="../../../logout.php">
-            <i class="icon-mail-reply"></i>
-            <span class="menu-text"> Log Out </span>
-        </a>
-    </li>
-</ul><!-- /.nav-list -->
+                <!-- <li class="active">Dashboard</li> -->
+            </ul><!-- .breadcrumb -->
 
-<?php include("header-succes.php"); ?>
-      <!-- BEGIN Timeline Embed -->
-     <!--  <div><h1>Timeline App</h1>
-        <a href="./?id=<?php echo $idProject;?>">Back</a>
-      </div> -->
-      <div class="page-content">
-          <div class="page-header">
-            <h1>Time Line</h1>
-        </div><!-- /.page-header -->
-          <div id="demo">
-              <div id="timeline-embed"></div>
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+                        <span class="input-icon">
+                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="icon-search nav-search-icon"></i>
+                        </span>
+                    </form>
+                </div><!-- #nav-search -->
+    	</div>	
+
+<?php 
+    $res = mysql_query("SELECT * FROM timelines where idFromProject = '$json_id'");
+      //split all fields fom the correct row into an associative array
+    $row = mysql_fetch_assoc($res);
+    if(empty($row['idtimelines'])){
+      echo '
+	      <div class="alert alert-danger">
+	      <button type="button" class="close" data-dismiss="alert">
+	      <i class="icon-remove"></i>
+	      </button>
+
+	      <strong>
+	      <i class="icon-remove"></i>
+	      This is not an error!
+	      </strong>
+
+	      The timeline still haven\'t been created.
+	      <br>
+	      </div>';die();
+    } 
+
+?>
+
+		<div class="page-content">
+			<div class="page-header">
+				<h1>
+					Admin | Timelines
+				</h1>
+			</div><!-- /.page-header -->
+
+
+<div id="demo">
+            <div id="timeline-embed"></div>
           </div>
-                    <div class="hr hr32 hr-dotted"></div>
+          <div class="hr hr32 hr-dotted"></div>
           <!-- COMMENTS -->
           <div class="widget-box ">
             <div class="widget-header">
@@ -194,7 +256,7 @@ $json_id = $idProject;
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
 
 
-                  <form id="savecomment" method="post" action="">
+                  <form role="form" method="post" action="comments/savecomment.php">
                     <!-- <form id="savecomment" action="comments/savecomment.php" method="post"> -->
                     <div class="form-actions">
                       <small><?php echo $fullnameUser; ?></small>
@@ -204,7 +266,7 @@ $json_id = $idProject;
                         <input name="userComment" type="hidden" value="<?php echo $uid ?>" />
                         <input placeholder="Type your message here ..." type="text" class="form-control" name="message" id="commentin">
                         <span class="input-group-btn">
-                         <input class="btn btn-sm btn-info no-radius" type="submit" id="send-comment" />
+                         <input class="btn btn-sm btn-info no-radius" type="submit" name="submit" id="send-comment" />
                        </span>
                      </div>
                    </div>
@@ -221,11 +283,10 @@ $json_id = $idProject;
                   $user_lastname_comment=$messagecount['lastname'];
                   ?>
 
-                  <div class="comment">
+                  <div class="del<?php echo $idComment; ?> comment">
                     <div class="name">
                       <span id="user-says">
-                        <?php echo '<span class="label">'.$user_name_comment .' '. $user_lastname_comment.'</span'; ?>
-                        says:
+                        <?php echo '<span class="label">'.$user_name_comment .' '. $user_lastname_comment.'</span>'; ?>
                       </span>
                     </div>
                     <!-- <div class="itemdiv dialogdiv"> -->
@@ -238,7 +299,7 @@ $json_id = $idProject;
 
                           <span>
                             <!-- THIS IS THE MESSAGE FOR START A CONVERSATION ON THE COMMENTS SECTION -->
-                            <?php echo $msgcontent; ?>
+                            <?php echo '<span class="">'.$msgcontent.'</span>'; ?>
                           </span>
 
 
@@ -254,7 +315,7 @@ $json_id = $idProject;
                               ?>
                               <div class="comment_ui" id="view<?php echo $idComment; ?>">
                                 <div>
-                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> <?php echo $comment_count; ?> comments.</a>
+                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> Read <?php echo $second_count; ?> more comments.</a>
                                 </div>
                               </div>
                               <?php 
@@ -282,8 +343,9 @@ $json_id = $idProject;
                                 <div class="comment_ui">
 
                                   <div class="comment_text">
-                                    <div  class="comment_actual_text">
-                                      <div id="sssss"><?php echo '<span class="label">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
+                                    <div  class="del<?php echo $c_id; ?> comment_actual_text">
+                                      <div id="sssss">
+                                      	<?php echo '<span class="label">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
                                     </div>
 
                                   </div>
@@ -294,9 +356,11 @@ $json_id = $idProject;
 
                                       <form id="subcomments" action="comments/savesubcomment.php" method="post">
                                         <div class="form-actions">
+                                          <!-- <small><?php echo $nameUser.' '.$lastnameUser; ?></small> -->
                                           <div class="input-group">
                                             <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
                                             <input name="mesgid" type="hidden" value="<?php echo $idComment ?>" />
+                                            <input name="idUserSub" type="hidden" value="<?php echo $uid ?>" />
                                             <input id="subcommentin" placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
                                             <span class="input-group-btn">
                                               <input class="btn btn-sm btn-info no-radius" type="submit">
@@ -330,18 +394,29 @@ $json_id = $idProject;
               </div><!-- /widget-body -->
             </div><!-- END FOR COMMENTS -->
 
-      </div>
-      <script type="text/javascript">
-        var timeline_config = {
-         width: "100%",
-         height: "80%",
-         source: "../../../json.php?id=<?php echo $json_id;?>"
-        }
-      </script>
-      <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
-      <!-- END Timeline Embed-->
-          <?php include("down.php");
-    //make sure you close the check if their online
-    } ?>
-  </body>
+          </div>
+          <script type="text/javascript">
+          var timeline_config = {
+           width: "100%",
+           height: "80%",
+           source: "../../json.php?id=<?php echo $json_id;?>",
+           font: "PTSerif-PTSans"
+         }
+		     </script>
+         <script type="text/javascript" src="build/js/storyjs-embed.js"></script>
+         <!-- END Timeline Embed-->
+
+
+		</div>	<!-- end page content -->
+
+        </div>
+    </div>
+</div>
+                
+
+<?php //make sure you close the check if their online
+include("down.php");
+	}
+?>
+</body>
 </html>

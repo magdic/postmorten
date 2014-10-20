@@ -170,7 +170,13 @@ include "config/functions.php";
 							$time = date('U')+50;
 							mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 							echo '<script>window.location.href="app/lead/lead-panel.php"</script>';
-						}
+						} else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 4) {
+                            $_SESSION['uid'] = $row['id'];
+                            //update the online field to 50 seconds into the future
+                            $time = date('U')+50;
+                            mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+                            echo '<script>window.location.href="app/user/"</script>';
+                        }
 						else {
 							$_SESSION['uid'] = $row['id'];
 							//update the online field to 50 seconds into the future

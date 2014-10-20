@@ -8,74 +8,20 @@ include('../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
 
-$BASE_URL = 'http://localhost:8888/phpcodes/postmorten/app/admin/';
-
-$idUser = $_REQUEST['id'];
- 
-$user_query = "SELECT * FROM usersFromDB WHERE idDB = ".$idUser." ";
-$result = mysql_query($user_query);
-
-while($row = mysql_fetch_array($result))
-  {
-    $idUserTable=$row['idDB'];
-    $name=$row['nameFDB'];
-    $lastname=$row['lastNameFDB'];
-    $position=$row['position'];
-    $department=$row['department'];
-}
-
-if ($idUserTable == '') {
-    header("location: ./");
-}
-
 ?>
 
 
 <!DOCTYPE html>
 <html data-ng-app="myApp" lang="en">
 <head>
-	<title>Admin Managing Users | Postmorten App</title>
+	<title>Welcome Admin | Postmorten App</title>
 
 	<?php include('header.php'); ?>
-    <link href="../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="../assets/charts/highcharts.js"></script>
+	<script src="../assets/charts/exporting.js"></script>	
 
 </head>
 <body>
-
-<script>
-$(document).ready(function() {
-    $(".boxer").not(".retina, .boxer_fixed, .boxer_top, .boxer_format, .boxer_mobile, .boxer_object").boxer();
-
-    $(".boxer.boxer_fixed").boxer({
-        fixed: true
-    });
-
-    $(".boxer.boxer_top").boxer({
-        top: 50
-    });
-
-    $(".boxer.retina").boxer({
-        retina: true
-    });
-
-    $(".boxer.boxer_format").boxer({
-        formatter: function($target) {
-            return '<h3>' + $target.attr("title") + "</h3>";
-        }
-    });
-
-    $(".boxer.boxer_object").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        $.boxer( $('<div class="inline_content"><h2>More Content!</h2><p>This was created by jQuery and loaded into the new Boxer instance.</p></div>') );
-    });
-
-    $(".boxer.boxer_mobile").boxer({
-        mobile: true
-    });
-});
-</script>
 
 	<div class="navbar navbar-default" id="navbar">
             <script type="text/javascript">
@@ -85,10 +31,6 @@ $(document).ready(function() {
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
                     <a href="./" class="navbar-brand">
-                        <!-- <small>
-                            <i class="icon-leaf"></i>
-                            Hangar
-                        </small> -->
                     </a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 	<?php
@@ -177,14 +119,14 @@ $(document).ready(function() {
 		            <span class="menu-text"> Admin Panel </span>
 		        </a>
 		    </li>
-		    <li class="active">
+		    <li >
 		        <a href="users.php">
 		            <i class="icon-group"></i>
 		            <span class="menu-text"> Users </span>
 		        </a>
 		    </li>
-		    <li>
-		        <a href="projects.php">
+		    <li class="active">
+		        <a href="#">
 		            <i class="icon-save"></i>
 		            <span class="menu-text"> Projects </span>
 		        </a>
@@ -233,80 +175,75 @@ $(document).ready(function() {
 
 		<div class="page-content">
 			<div class="page-header">
-            <h1>
-                Admin | Editing Users
-                    <small>
-                        <i class="icon-double-angle-right"></i>
-                        <a href="<?php echo $BASE_URL; ?>deleteUser.php?id=<?php echo $idUser ?>" class="btn btn-xs btn-danger boxer button small">Delete User</a>
-                    </small>
-            </h1>
+				<h1>
+					Projects
+				</h1>
 			</div><!-- /.page-header -->
-
-            <form action="../../controllers/admin-edit-user.php" method="post" class="form-horizontal" role="form">
-                <input type="hidden" name="idUser" value="<?php echo $idUser; ?>" readonly />
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name: </label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="name" placeholder="<?php echo $name; ?>" value="<?php echo $name; ?>" class="col-xs-12 col-sm-8" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Last Name: </label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="lastname" placeholder="<?php echo $lastname; ?>" value="<?php echo $lastname; ?>" class="col-xs-12 col-sm-8" />
-                        </div>
-                    </div>
-<!--                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Position: </label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="position" placeholder="<?php echo $position; ?>" value="<?php echo $position; ?>" class="col-xs-12 col-sm-8" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Department: </label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="department" placeholder="<?php echo $department; ?>" value="<?php echo $department; ?>" class="col-xs-12 col-sm-8" />
-                        </div>
-                    </div> -->
-
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Position:  </label>
-            <div class="col-sm-8">
-                <select name="position" class="col-xs-12 col-sm-10">
-                    <option default value="<?php echo $position; ?>"><?php echo $position; ?></option>
-                    <option value="1">Admin</option>
-                    <option value="2">Lead</option>
-                    <option value="3">Project Manager</option>
-                    <option value="4">Developer/Designer/QA</option>
-                </select>
-                <!-- <input  type="select" id="form-field-2 headline" name="position" placeholder="Position" class="col-xs-12 col-sm-10"> -->
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Department:  </label>
-            <div class="col-sm-8">
-                <select name="department" class="col-xs-12 col-sm-10">
-                    <option default value="<?php echo $department; ?>"><?php echo $department; ?></option>
-                    <option value="1">Administrative</option>
-                    <option value="2">IT Support</option>
-                    <option value="3">Technology</option>
-                    <option value="4">Creative</option>
-                    <option value="5">QA</option>
-                </select>
-                <!-- <input  type="text" id="form-field-2 headline" name="department" placeholder="User Id like CM email" class="col-xs-12 col-sm-10"> -->
-            </div>
-        </div>
-
-
-                </fieldset>
-                    <div class="form-actions center">
-                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" value="Edit" />
-                    </div>
-            </form>
-
 		</div>	
+
+		<!-- Table for projects -->
+
+		<div class="page-content"  >
+			<div ng-controller="customersCrtl">
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-2">Qty of Results:
+			            <select data-ng-model="entryLimit" class="form-control">
+			                <option>5</option>
+			                <option>10</option>
+			                <option>20</option>
+			                <option>50</option>
+			                <option>100</option>
+			            </select>
+			        </div>
+			        <div class="col-md-3">Filter:
+			            <input type="text" ng-model="search" ng-change="filter()" placeholder="Search a Project..." class="form-control" />
+			        </div>
+			        <div class="col-md-4">
+			            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total projects</h5>
+			        </div>
+			    </br> 
+			    </br> 
+			    </br> 
+			    </br> 
+			    <div class="row">
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">
+			            <table class="table table-striped table-bordered">
+			            <thead>
+			            <th>Project Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
+			            <!-- <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th> -->
+			            <!-- <th>Options&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th> -->
+			            </thead>
+			            <tbody>
+			                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			                    <td><a href="timeline.php?id={{data.idtimeLine}}">{{data.headlineP}}</a></td>
+			                    <!-- <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td> -->
+			                    <!-- <td><a href="timeline.php?id={{data.idtimeLine}}"><i class="icon-external-link bigger-130"></i></a> - <a href="edit.php?id={{data.idtimeLine}}"><i class="icon-pencil bigger-130"></i></a></td> -->
+			                </tr>
+			            </tbody>
+			            </table>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems == 0">
+			            <div class="col-md-12">
+			                <h4>Project not found</h4>
+			            </div>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+			            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+			            
+			            
+			        </div>
+			    </div>
+			</div>
+			</div>
+			</div>
+      </div>
+
+		<!-- end table for projects  -->
+
+
+
+	
 
         </div>
     </div>
@@ -317,6 +254,8 @@ $(document).ready(function() {
 include("down.php");
 	}
 ?>
-    <script src="../assets/js/jquery.fs.boxer.js"></script>   
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script src="js/app.js"></script>   
 </body>
 </html>

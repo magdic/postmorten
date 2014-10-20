@@ -121,9 +121,9 @@ function clean($str)
 
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        Settings
+                                    <a href="change-pass.php">
+                                        <i class="icon-key"></i>
+                                        Change Password
                                     </a>
                                 </li>
 
@@ -270,8 +270,6 @@ function clean($str)
             </div>
         </div>
 
-
-
         <script src='../assets/js/jquery.mobile.custom.min.js'></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/typeahead-bs2.min.js"></script>
@@ -289,25 +287,6 @@ function clean($str)
 
         <script src="../assets/js/ace-elements.min.js"></script>
         <script src="../assets/js/ace.min.js"></script>
-
-	<!-- <h1>PostMorten Timeline App</h1>
-	<h2>Assign PM to Project</h2>
-		<a href="pm-panel.php">PM Panel</a>
-
-		<ul>
-			<li><a href="">My Profile</a></li>
-			<li><a href="timelines-to-me.php">Timelines Added to Me</a></li>
-			<li><a href="">Hook User to Project</a></li>
-			<li><a href="../../logout.php">Log Out</a></li>
-		</ul>
-		</form> -->
-
-
-
-
-
-
-
 
 <?php
 

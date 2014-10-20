@@ -76,9 +76,9 @@ function clean($str)
 
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        Settings
+                                    <a href="change-pass.php">
+                                        <i class="icon-key"></i>
+                                        Change Password
                                     </a>
                                 </li>
 

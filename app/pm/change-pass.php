@@ -196,15 +196,41 @@ include "../../config/functions.php";
                             <div class="page-content">
                                 <div class="page-header">
                                     <h1>
-                                        Project Manager Panel
+                                        PM Panel | Change Password
                                     </h1>
                                 </div><!-- /.page-header -->
-                                        
-                                    <?php include("../graphs-charts/year-graph.php"); ?>        
 
-                                    <?php include("../graphs-charts/months-graph.php"); ?>  
+									<form action="../../controllers/change-password.php" method="post" class="form-horizontal" role="form">
+						                <input type="hidden" name="idUser" value="<?php echo $uid; ?>" readonly />
+						                <fieldset>
+						                    <div class="form-group">
+						                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Old Password: </label>
+						                        <div class="col-sm-8">
+						                            <input type="password"  name="oldPassword" placeholder="" class="col-xs-12 col-sm-8" />
+						                        </div>
+						                    </div>
+						                    <div class="form-group">
+						                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> New Password: </label>
+						                        <div class="col-sm-8">
+						                            <input type="password"  name="newPassword" placeholder=""  class="col-xs-12 col-sm-8" />
+						                        </div>
+						                    </div>
+						                    <div class="form-group">
+						                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Re-Entry new Password: </label>
+						                        <div class="col-sm-8">
+						                            <input type="password"  name="reNewPassword" placeholder="" class="col-xs-12 col-sm-8" />
+						                        </div>
+						                    </div>
 
-                                    <?php include("../graphs-charts/users-pie.php"); ?>  
+
+
+
+						                </fieldset>
+						                    <div class="form-actions center">
+						                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" value="Change Password" />
+						                    </div>
+						            </form> 
+
 
                             </div>  
 
@@ -237,77 +263,7 @@ include "../../config/functions.php";
 
         <!-- inline scripts related to this page -->
 
-        <script type="text/javascript">
-            jQuery(function($) {
-
-                $('.sparkline').each(function(){
-                    var $box = $(this).closest('.infobox');
-                    var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-                    $(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
-                });
-
-
-
-
-
-              var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-              var previousPoint = null;
-
-  
-
-
-                $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-                function tooltip_placement(context, source) {
-                    var $source = $(source);
-                    var $parent = $source.closest('.tab-content')
-                    var off1 = $parent.offset();
-                    var w1 = $parent.width();
-
-                    var off2 = $source.offset();
-                    var w2 = $source.width();
-
-                    if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-                    return 'left';
-                }
-
-
-                $('.dialogs,.comments').slimScroll({
-                    height: '300px'
-                });
-
-
-                //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-                //so disable dragging when clicking on label
-                var agent = navigator.userAgent.toLowerCase();
-                if("ontouchstart" in document && /applewebkit/.test(agent) && /android/.test(agent))
-                  $('#tasks').on('touchstart', function(e){
-                    var li = $(e.target).closest('#tasks li');
-                    if(li.length == 0)return;
-                    var label = li.find('label.inline').get(0);
-                    if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
-                });
-
-                $('#tasks').sortable({
-                    opacity:0.8,
-                    revert:true,
-                    forceHelperSize:true,
-                    placeholder: 'draggable-placeholder',
-                    forcePlaceholderSize:true,
-                    tolerance:'pointer',
-                    stop: function( event, ui ) {//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
-                        $(ui.item).css('z-index', 'auto');
-                    }
-                    }
-                );
-                $('#tasks').disableSelection();
-                $('#tasks input:checkbox').removeAttr('checked').on('click', function(){
-                    if(this.checked) $(this).closest('li').addClass('selected');
-                    else $(this).closest('li').removeClass('selected');
-                });
-
-
-            })
-        </script>
+      
 		 <?php
 
 		//make sure you close the check if their online

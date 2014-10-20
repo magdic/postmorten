@@ -8,74 +8,22 @@ include('../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
 
-$BASE_URL = 'http://localhost:8888/phpcodes/postmorten/app/admin/';
 
-$idUser = $_REQUEST['id'];
- 
-$user_query = "SELECT * FROM usersFromDB WHERE idDB = ".$idUser." ";
-$result = mysql_query($user_query);
-
-while($row = mysql_fetch_array($result))
-  {
-    $idUserTable=$row['idDB'];
-    $name=$row['nameFDB'];
-    $lastname=$row['lastNameFDB'];
-    $position=$row['position'];
-    $department=$row['department'];
-}
-
-if ($idUserTable == '') {
-    header("location: ./");
-}
 
 ?>
 
 
 <!DOCTYPE html>
-<html data-ng-app="myApp" lang="en">
+<html lang="en">
 <head>
-	<title>Admin Managing Users | Postmorten App</title>
+	<title> Change my Password | User Postmorten App</title>
 
 	<?php include('header.php'); ?>
-    <link href="../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 <body>
 
-<script>
-$(document).ready(function() {
-    $(".boxer").not(".retina, .boxer_fixed, .boxer_top, .boxer_format, .boxer_mobile, .boxer_object").boxer();
 
-    $(".boxer.boxer_fixed").boxer({
-        fixed: true
-    });
-
-    $(".boxer.boxer_top").boxer({
-        top: 50
-    });
-
-    $(".boxer.retina").boxer({
-        retina: true
-    });
-
-    $(".boxer.boxer_format").boxer({
-        formatter: function($target) {
-            return '<h3>' + $target.attr("title") + "</h3>";
-        }
-    });
-
-    $(".boxer.boxer_object").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        $.boxer( $('<div class="inline_content"><h2>More Content!</h2><p>This was created by jQuery and loaded into the new Boxer instance.</p></div>') );
-    });
-
-    $(".boxer.boxer_mobile").boxer({
-        mobile: true
-    });
-});
-</script>
 
 	<div class="navbar navbar-default" id="navbar">
             <script type="text/javascript">
@@ -101,7 +49,7 @@ $(document).ready(function() {
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 1){
+		}else if ($row['role'] != 4){
 			echo "<center>You are not an <b>admin</b> site!</center>";
 		} else {
 			//otherwise continue the page
@@ -127,7 +75,7 @@ $(document).ready(function() {
 
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="change-pass.php">
+                                    <a href="#">
                                         <i class="icon-key"></i>
                                         Change Password
                                     </a>
@@ -174,10 +122,10 @@ $(document).ready(function() {
 		    <li>
 		        <a href="./">
 		            <i class="icon-dashboard"></i>
-		            <span class="menu-text"> Admin Panel </span>
+		            <span class="menu-text"> User Panel </span>
 		        </a>
 		    </li>
-		    <li class="active">
+		    <li>
 		        <a href="users.php">
 		            <i class="icon-group"></i>
 		            <span class="menu-text"> Users </span>
@@ -189,13 +137,19 @@ $(document).ready(function() {
 		            <span class="menu-text"> Projects </span>
 		        </a>
 		    </li>
-
+		    <li class="active">
+		        <a href="">
+		            <i class="icon-key"></i>
+		            <span class="menu-text"> Change Pass </span>
+		        </a>
+		    </li>
 		    <li>
 		        <a href="../../logout.php">
 		            <i class="icon-mail-reply"></i>
 		            <span class="menu-text"> Log Out </span>
 		        </a>
 		    </li>
+
 		</ul><!-- /.nav-list -->
 
 
@@ -234,75 +188,41 @@ $(document).ready(function() {
 		<div class="page-content">
 			<div class="page-header">
             <h1>
-                Admin | Editing Users
+                User | Change Password
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        <a href="<?php echo $BASE_URL; ?>deleteUser.php?id=<?php echo $idUser ?>" class="btn btn-xs btn-danger boxer button small">Delete User</a>
                     </small>
             </h1>
 			</div><!-- /.page-header -->
 
-            <form action="../../controllers/admin-edit-user.php" method="post" class="form-horizontal" role="form">
-                <input type="hidden" name="idUser" value="<?php echo $idUser; ?>" readonly />
+            <form action="../../controllers/change-password.php" method="post" class="form-horizontal" role="form">
+                <input type="hidden" name="idUser" value="<?php echo $uid; ?>" readonly />
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name: </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Old Password: </label>
                         <div class="col-sm-8">
-                            <input type="text"  name="name" placeholder="<?php echo $name; ?>" value="<?php echo $name; ?>" class="col-xs-12 col-sm-8" />
+                            <input type="password"  name="oldPassword" placeholder="" class="col-xs-12 col-sm-8" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Last Name: </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> New Password: </label>
                         <div class="col-sm-8">
-                            <input type="text"  name="lastname" placeholder="<?php echo $lastname; ?>" value="<?php echo $lastname; ?>" class="col-xs-12 col-sm-8" />
-                        </div>
-                    </div>
-<!--                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Position: </label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="position" placeholder="<?php echo $position; ?>" value="<?php echo $position; ?>" class="col-xs-12 col-sm-8" />
+                            <input type="password"  name="newPassword" placeholder=""  class="col-xs-12 col-sm-8" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Department: </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Re-Entry new Password: </label>
                         <div class="col-sm-8">
-                            <input type="text"  name="department" placeholder="<?php echo $department; ?>" value="<?php echo $department; ?>" class="col-xs-12 col-sm-8" />
+                            <input type="password"  name="reNewPassword" placeholder="" class="col-xs-12 col-sm-8" />
                         </div>
-                    </div> -->
+                    </div>
 
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Position:  </label>
-            <div class="col-sm-8">
-                <select name="position" class="col-xs-12 col-sm-10">
-                    <option default value="<?php echo $position; ?>"><?php echo $position; ?></option>
-                    <option value="1">Admin</option>
-                    <option value="2">Lead</option>
-                    <option value="3">Project Manager</option>
-                    <option value="4">Developer/Designer/QA</option>
-                </select>
-                <!-- <input  type="select" id="form-field-2 headline" name="position" placeholder="Position" class="col-xs-12 col-sm-10"> -->
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Department:  </label>
-            <div class="col-sm-8">
-                <select name="department" class="col-xs-12 col-sm-10">
-                    <option default value="<?php echo $department; ?>"><?php echo $department; ?></option>
-                    <option value="1">Administrative</option>
-                    <option value="2">IT Support</option>
-                    <option value="3">Technology</option>
-                    <option value="4">Creative</option>
-                    <option value="5">QA</option>
-                </select>
-                <!-- <input  type="text" id="form-field-2 headline" name="department" placeholder="User Id like CM email" class="col-xs-12 col-sm-10"> -->
-            </div>
-        </div>
 
 
                 </fieldset>
                     <div class="form-actions center">
-                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" value="Edit" />
+                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" value="Change Password" />
                     </div>
             </form>
 

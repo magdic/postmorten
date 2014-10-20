@@ -8,55 +8,20 @@ include('../../config/dbconfig.php');
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
 
-$BASE_URL = 'http://localhost:8888/phpcodes/postmorten/app/admin/';
 ?>
 
 
 <!DOCTYPE html>
 <html data-ng-app="myApp" lang="en">
 <head>
-	<title>Admin Managing Users | Postmorten App</title>
-    <link href="../assets/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css" media="all" />
+	<title>Welcome Admin | Postmorten App</title>
+
 	<?php include('header.php'); ?>
-    
+	<script src="../assets/charts/highcharts.js"></script>
+	<script src="../assets/charts/exporting.js"></script>	
 
 </head>
 <body>
-
-<script>
-$(document).ready(function() {
-    $(".boxer").not(".retina, .boxer_fixed, .boxer_top, .boxer_format, .boxer_mobile, .boxer_object").boxer();
-
-    $(".boxer.boxer_fixed").boxer({
-        fixed: true
-    });
-
-    $(".boxer.boxer_top").boxer({
-        top: 50
-    });
-
-    $(".boxer.retina").boxer({
-        retina: true
-    });
-
-    $(".boxer.boxer_format").boxer({
-        formatter: function($target) {
-            return '<h3>' + $target.attr("title") + "</h3>";
-        }
-    });
-
-    $(".boxer.boxer_object").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        $.boxer( $('<div class="inline_content"><h2>More Content!</h2><p>This was created by jQuery and loaded into the new Boxer instance.</p></div>') );
-    });
-
-    $(".boxer.boxer_mobile").boxer({
-        mobile: true
-    });
-});
-</script>
 
 	<div class="navbar navbar-default" id="navbar">
             <script type="text/javascript">
@@ -66,10 +31,6 @@ $(document).ready(function() {
             <div class="navbar-container" id="navbar-container">
                 <div class="navbar-header pull-left">
                     <a href="./" class="navbar-brand">
-                        <!-- <small>
-                            <i class="icon-leaf"></i>
-                            Hangar
-                        </small> -->
                     </a><!-- /.brand -->
                 </div><!-- /.navbar-header -->
 	<?php
@@ -82,7 +43,7 @@ $(document).ready(function() {
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 1){
+		}else if ($row['role'] != 4){
 			echo "<center>You are not an <b>admin</b> site!</center>";
 		} else {
 			//otherwise continue the page
@@ -155,17 +116,11 @@ $(document).ready(function() {
 		    <li>
 		        <a href="./">
 		            <i class="icon-dashboard"></i>
-		            <span class="menu-text"> Admin Panel </span>
+		            <span class="menu-text"> Panel </span>
 		        </a>
 		    </li>
 		    <li class="active">
 		        <a href="#">
-		            <i class="icon-group"></i>
-		            <span class="menu-text"> Users </span>
-		        </a>
-		    </li>
-		    <li>
-		        <a href="projects.php">
 		            <i class="icon-save"></i>
 		            <span class="menu-text"> Projects </span>
 		        </a>
@@ -214,71 +169,75 @@ $(document).ready(function() {
 
 		<div class="page-content">
 			<div class="page-header">
-            <h1>
-                Admin Panel | Users
-                    <small>
-                        <i class="icon-double-angle-right"></i>
-                        <a href="<?php echo $BASE_URL; ?>newUser.php" class="btn btn-xs btn-info boxer button small">New User</a>
-                    </small>
-            </h1>
+				<h1>
+					Projects
+				</h1>
 			</div><!-- /.page-header -->
-
-
-			<div ng-controller="customersCrtl">
-				<div class="container">
-    				<div class="row">
-        				<div class="col-md-2">Qty of Results:
-				            <select data-ng-model="entryLimit" class="form-control">
-				                <option>5</option>
-				                <option>10</option>
-				                <option>20</option>
-				                <option>50</option>
-				                <option>100</option>
-				            </select>
-        				</div>
-        <div class="col-md-3">Filter:
-            <input type="text" ng-model="search" ng-change="filter()" placeholder="Search an User..." class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <h5>Filtered {{ filtered.length }} of {{ totalItems}} users total</h5>
-        </div>
-    </br> 
-    </br> 
-    </br> 
-    </br> 
-    <div class="row">
-        <div class="col-md-12" data-ng-show="filteredItems > 0">
-            <table class="table table-striped table-bordered">
-            <thead>
-            <th>User&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
-            <!-- <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th> -->
-            <th>Actions&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-                    <td>{{data.nameFDB}} {{data.lastNameFDB}}</td>
-                    <!-- <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td> -->
-                    <td><a href="<?php echo $BASE_URL; ?>editUser.php?id={{data.idDB}}" class="btn btn-xs btn-info boxer button small"><i class="icon-pencil bigger-130"> Edit</i></a> </td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col-md-12" data-ng-show="filteredItems == 0">
-            <div class="col-md-12">
-                <h4>User not found</h4>
-            </div>
-        </div>
-        <div class="col-md-12" data-ng-show="filteredItems > 0">    
-            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
-            
-            
-			        		</div>
-			    		</div>
-					</div>
-				</div>
-			</div>
-
 		</div>	
+
+		<!-- Table for projects -->
+
+		<div class="page-content"  >
+			<div ng-controller="customersCrtl">
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-2">Qty of Results:
+			            <select data-ng-model="entryLimit" class="form-control">
+			                <option>5</option>
+			                <option>10</option>
+			                <option>20</option>
+			                <option>50</option>
+			                <option>100</option>
+			            </select>
+			        </div>
+			        <div class="col-md-3">Filter:
+			            <input type="text" ng-model="search" ng-change="filter()" placeholder="Search a Project..." class="form-control" />
+			        </div>
+			        <div class="col-md-4">
+			            <h5>Filtered {{ filtered.length }} of {{ totalItems}} total projects</h5>
+			        </div>
+			    </br> 
+			    </br> 
+			    </br> 
+			    </br> 
+			    <div class="row">
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">
+			            <table class="table table-striped table-bordered">
+			            <thead>
+			            <th>Project Name&nbsp;<a ng-click="sort_by('headlineP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th>
+			            <!-- <th>Description/Date&nbsp;<a ng-click="sort_by('startDateP');"><i class="icon-angle-up"></i><i class="icon-angle-down"></i></a></th> -->
+			            <!-- <th>Options&nbsp;<a ng-click="sort_by('startDateP');"></i></a></th> -->
+			            </thead>
+			            <tbody>
+			                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			                    <td><a href="timeline.php?id={{data.idtimeLine}}">{{data.headlineP}}</a></td>
+			                    <!-- <td>{{data.textP}}&nbsp;/&nbsp;<b>{{data.startDateP}}</b></td> -->
+			                    <!-- <td><a href="timeline.php?id={{data.idtimeLine}}"><i class="icon-external-link bigger-130"></i></a> - <a href="edit.php?id={{data.idtimeLine}}"><i class="icon-pencil bigger-130"></i></a></td> -->
+			                </tr>
+			            </tbody>
+			            </table>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems == 0">
+			            <div class="col-md-12">
+			                <h4>Project not found</h4>
+			            </div>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+			            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+			            
+			            
+			        </div>
+			    </div>
+			</div>
+			</div>
+			</div>
+      </div>
+
+		<!-- end table for projects  -->
+
+
+
+	
 
         </div>
     </div>
@@ -289,9 +248,8 @@ $(document).ready(function() {
 include("down.php");
 	}
 ?>
-    <script src="../assets/js/jquery.fs.boxer.js"></script>
-    <script src="../assets/angularjs/angular.min.js"></script>
-    <script src="../assets/angularjs/ui-bootstrap-tpls-0.10.0.min.js"></script>
-    <script src="../assets/angularjs/app-getUsers.js"></script>    
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script src="js/app.js"></script>   
 </body>
 </html>

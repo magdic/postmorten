@@ -12,7 +12,7 @@ include "../../config/functions.php";
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lead Panel | my App</title>
+	<title>Lead Change Password | Postmorten App</title>
 	<?php
 
 		include("header.php");
@@ -35,9 +35,7 @@ include "../../config/functions.php";
 			$time = date('U')+50;
 			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 			?>
-
-			<script src="../assets/charts/highcharts.js"></script>
-			<script src="../assets/charts/exporting.js"></script>		 
+	 
 <div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
@@ -97,7 +95,7 @@ include "../../config/functions.php";
 
 
  <ul class="nav nav-list">
-    <li class="active">
+    <li>
         <a href="lead-panel.php">
             <i class="icon-dashboard"></i>
             <span class="menu-text"> Lead Panel </span>
@@ -121,6 +119,12 @@ include "../../config/functions.php";
             <span class="menu-text"> Projects </span>
         </a>
     </li>
+    <li class="active">
+        <a href="">
+            <i class="icon-key"></i>
+            <span class="menu-text"> Change Pass </span>
+        </a>
+    </li>
     <li>
         <a href="../../logout.php">
             <i class="icon-mail-reply"></i>
@@ -135,12 +139,38 @@ include "../../config/functions.php";
 					Lead Panel
 				</h1>
 			</div><!-- /.page-header -->
-					
-				<?php include("../graphs-charts/year-graph.php"); ?>		
 
-				<?php include("../graphs-charts/months-graph.php"); ?>	
+			 <form action="../../controllers/change-password.php" method="post" class="form-horizontal" role="form">
+                <input type="hidden" name="idUser" value="<?php echo $uid; ?>" readonly />
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Old Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password"  name="oldPassword" placeholder="" class="col-xs-12 col-sm-8" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> New Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password"  name="newPassword" placeholder=""  class="col-xs-12 col-sm-8" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Re-Entry new Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password"  name="reNewPassword" placeholder="" class="col-xs-12 col-sm-8" />
+                        </div>
+                    </div>
 
-                <?php include("../graphs-charts/users-pie.php"); ?>  
+
+
+
+                </fieldset>
+                    <div class="form-actions center">
+                        <input type="submit" name="submit" class="btn btn-sm btn-success btn-block" value="Change Password" />
+                    </div>
+            </form>
+
 
 
 		</div>						
