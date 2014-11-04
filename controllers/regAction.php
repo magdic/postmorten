@@ -8,8 +8,16 @@
 		//include out functions file giving us access to the protect() function
 		include "../config/functions.php";
 
+		    // Include the Autoloader
+		    require '../vendor/autoload.php';
+		    use Mailgun\Mailgun;
+
 		//Check to see if the form has been submitted
 		if(isset($_POST['submit'])){
+
+	      // Create error array
+	      // Errors we catch will be added to this array
+	      $error = array();
 
 			//protect and then add the posted data to variables
 			$username = protect($_POST['username']);
@@ -62,10 +70,8 @@
 								//otherwise continue checking
 
 								//Set the format we want to check out email address against
-								// $checkemail = "/^[a-z0-9]+([_\\.-][a-z0-9]+)*@(thehang)+\\.net$/i";
-								// $checkemailCM = "/^[a-z0-9]+([_\\.-][a-z0-9]+)*@(soup)+\\.com$/i";
 
-								$acceptedDomains = array('thehangar.cr', 'soup.com');
+								$acceptedDomains = array('thehangar.cr', 'criticalmass.com');
 								//check if the formats match
 					            if(!in_array(substr($email, strrpos($email, '@') + 1), $acceptedDomains)){
 					            	//if not display error message
@@ -92,12 +98,53 @@
 						            	//make a code for our activation key
 						            	$code = md5($username).$registerTime;
 
+						            	// echo $username.' '.$password.' '.$email.' '.$registerTime;die();
+
 						            	//insert the row into the database
-										$res2 = mysql_query("INSERT INTO `users` (`username`, `password`, `email`, `rtime`) VALUES('".$username."','".md5($password)."','".$email."','".$registerTime."')");
+										// $res2 = mysql_query("INSERT INTO users ('username, `password`, `email`, `rtime`) VALUES('".$username."','".md5($password)."','".$email."','".$registerTime."')");
+										mysql_query("INSERT INTO users (username, password, email, rtime)
+										VALUES ('".$username."','".md5($password)."','".$email."',".$registerTime.")");
+			
+			                // Check to make sure a name was entered
+                if($email == ""){
+                    $error[] = "Please enter an Email.";
+                }
+
+                // Check to make sure the email is valid
+                if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $error[] = "Please enter a valid email address.";
+                }
+
+                // If there are no errors, send the email
+                // Else, output the errors and don't send the email
+                if ( ! $error) {
+
+                    // Instantiate the client
+                    // You can create a free account and get your own API key here: http://www.mailgun.com/
+                    $mgClient = new Mailgun('key-23bbe53903e531c713c72ea6d71421f6');
+                    $domain = "sandboxb660f7be4ebe4a3690536a76acbce6b6.mailgun.org";
+
+                    // Make the call to the client to send email.
+                    $result = $mgClient->sendMessage("$domain",
+                                          array(
+                                                'from'    => "No Reply <no-reply@postmortem-hngr.com>",
+                                                'to'      => "<$email>",
+                                                'subject' => 'Registration on Postmortem App',
+                                                'html'    => "<html><p><h3>Registration on Postmortem App</h3></br>Thank you for registering to us ".$username.",\n\nHere is your activation link. If the link doesn't work copy and paste it into your browser address bar.\n\nhttp://localhost:8888/phpcodes/postmorten/activate.php?code=".$code."</p></html>"));
+                } else {
+                    // Output any errors
+                    foreach ($error as $line) {
+                        echo "<p class='error'>$line</p>";
+                    }
+                }
+
+
+
+
 
 										//send the email with an email containing the activation link to the supplied email address
-										mail($email, $INFO['chatName'].
-											' registration confirmation', "Thank you for registering to us ".$username.",\n\nHere is your activation link. If the link doesn't work copy and paste it into your browser address bar.\n\nhttp://localhost:8888/postmorten/activate.php?code=".$code,'From: noreply@thehang.net');
+										// mail($email, $INFO['chatName'].
+											// 'Registration on Postmortem App', "Thank you for registering to us ".$username.",\n\nHere is your activation link. If the link doesn't work copy and paste it into your browser address bar.\n\nhttp://localhost:8888/phpcodes/postmorten/activate.php?code=".$code,'From: noreply@thehang.net');
 
 										//display the success message
 										$msg =md5("You have successfully registered, please visit you inbox to activate your account!");

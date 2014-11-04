@@ -77,7 +77,7 @@ function clean($str)
   <script src="../assets/js/select.js"></script>
   <link rel="stylesheet" href="../assets/css/select.css">
 
-   <?php include("../../controllers/demojs.php"); ?>
+   <?php include("../../controllers/pm-add-users.php"); ?>
 
      <!-- Select2 theme -->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">

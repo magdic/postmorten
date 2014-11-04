@@ -172,7 +172,7 @@ function clean($str)
   <link rel="stylesheet" href="select.css">
 
   <!--  IT'S THE SAME THAT YOU CALL AN EXTERNAL SCRIPT <script src="demo.js"></script> -->
-   <?php include("../../controllers/demojs.php"); ?>
+   <?php include("../../controllers/lead-add-pm.php"); ?>
 
   <!-- Select2 theme -->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">

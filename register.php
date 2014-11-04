@@ -12,7 +12,6 @@ include "config/functions.php";
 <html>
 	<head>
 		<title>Register on this Page | My App</title>
-        <script src="//localhost:35729/livereload.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 
          <link href="app/assets/css/bootstrap.min.css" rel="stylesheet" />

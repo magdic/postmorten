@@ -7,6 +7,7 @@ include('../../config/dbconfig.php');
 
 //include out functions file giving us access to the protect() function made earlier
 include "../../config/functions.php";
+
 ?>
 
 <!DOCTYPE html>

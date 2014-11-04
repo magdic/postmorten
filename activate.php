@@ -34,7 +34,6 @@ include "config/functions.php";
 	<body>
 		<?php
 
-		//echo md5('other');
 		//get the code that is being checked and protect it before assigning it to a variable
 		$code = protect($_GET['code']);
 
@@ -55,25 +54,23 @@ include "config/functions.php";
 				//check if the code from the row in the database matches the one from the user
 				if($code == md5($row['username']).$row['rtime']){
 					//if it does then activate there account and display success message
-					$res1 = mysql_query("UPDATE `users` SET `active` = '1', `name` = '".$row['nameFDB']."', `lastname` = '".$row['lastNameFDB']."', `role` = '".$row['position']."' WHERE `id` = '".$row['id']."'");
+					$res1 = mysql_query("UPDATE `users` SET `active` = '1', `name` = '".$row['nameFDB']."', `lastname` = '".$row['lastNameFDB']."', `role` = '".$row['position']."', `department` = '".$row['department']."' WHERE `id` = '".$row['id']."'");
 
-                    echo "<div class='row'>
-                               <div class='col-sm-6 col-sm-offset-3'>
-                                  <div class='alert alert-success'>
-                                      <button type='button' class='close' data-dismiss='alert'>
-                                          <i class='icon-remove'></i>
+                    echo '<div class="row">
+                               <div class="col-sm-6 col-sm-offset-3">
+                                  <div class="alert alert-success">
+                                      <button type="button" class="close" data-dismiss="alert">
+                                          <i class="icon-remove"></i>
                                       </button>
-                                        <p>
-                                            <strong><i class='icon-ok'></i></strong>
-                                            You have successfully activated your account!
+                                        <p> Thanks for trust in us!
+                                            <strong><i class="icon-ok"></i></strong>
+                                            You have successfully activated your account!</br>
+                                            You can proceed to use our awesome app.
                                         </p>
+                                        <a href="./" class="button info">Login</a>
                                   </div>
                                </div>
-                          </div>";
-					// echo $row['username'];
-					// echo $row['nameFDB'];
-					// echo $row['lastNameFDB'];
-					// echo $row['lastname'];
+                          </div>';
 				}
 			}
 		}

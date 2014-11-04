@@ -34,7 +34,6 @@ $dateSub=$r['dateSubComment'];
 <div class="comment_text" >
   <div  class="del<?php echo $c_id; ?> comment_actual_text" >
   	<div id="sssss" >
-      <a type="button" class="btn btn-sm btn-danger no-radius" id="<?php echo $c_id; ?>"> Delete </a> 
       <?php echo '<span class="label">'.$name.' '.$lastnameUser.'</div><div class="itemdiv dialogdiv"><div class="body">
       <div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?>
     </div>
@@ -65,29 +64,5 @@ $dateSub=$r['dateSubComment'];
 </div>
 </div>
 
-<script>
 
-$(document).ready( function() {
-
-
-
-    $('.btn-danger').click( function() {
-
-        var id = $(this).attr("id");
- 
-        if(confirm("Are you sure you want to delete this Sub Comment?")){
-            $.ajax({
-                type: "POST",
-                url: "comments/deleteSubComment.php",
-                data: ({id: id}),
-                cache: true,
-                success: function(html){
-                    $(".del"+id).fadeOut('slow'); 
-                } 
-            }); 
-        }else{
-            return true;}
-    });       
-});
-</script>
 

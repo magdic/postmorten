@@ -72,6 +72,32 @@ $json_id = $idProject;
       $time = date('U')+50;
       $update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
       ?>
+<script type="text/javascript">
+
+
+  $(function() {
+    $(".view_comments").click(function() 
+      {
+        var ID = $(this).attr("id");
+
+        $.ajax({
+            type: "POST",
+            url: "comments/viewajax.php?id=<?php echo $idProject; ?>",
+            data: "idComment="+ ID, 
+            cache: false,
+            success: function(html){
+              $("#view_comments"+ID).prepend(html);
+              $("#view"+ID).remove();
+              $("#two_comments"+ID).remove();
+            }
+        });
+
+  return false;
+  });
+  });
+
+
+</script>
         <div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
@@ -180,8 +206,7 @@ $json_id = $idProject;
               <div id="timeline-embed"></div>
           </div>
                     <div class="hr hr32 hr-dotted"></div>
-          <!-- COMMENTS -->
-          <div class="widget-box ">
+           <div class="widget-box ">
             <div class="widget-header">
               <h4 class="lighter smaller">
                 <i class="icon-comment blue"></i>
@@ -194,7 +219,7 @@ $json_id = $idProject;
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="dialogs" style="overflow: hidden; width: auto; height: 300px;">
 
 
-                  <form id="savecomment" method="post" action="">
+                  <form role="form" method="post" action="comments/savecomment.php">
                     <!-- <form id="savecomment" action="comments/savecomment.php" method="post"> -->
                     <div class="form-actions">
                       <small><?php echo $fullnameUser; ?></small>
@@ -204,7 +229,7 @@ $json_id = $idProject;
                         <input name="userComment" type="hidden" value="<?php echo $uid ?>" />
                         <input placeholder="Type your message here ..." type="text" class="form-control" name="message" id="commentin">
                         <span class="input-group-btn">
-                         <input class="btn btn-sm btn-info no-radius" type="submit" id="send-comment" />
+                         <input class="btn btn-sm btn-info no-radius" type="submit" name="submit" id="send-comment" />
                        </span>
                      </div>
                    </div>
@@ -221,11 +246,10 @@ $json_id = $idProject;
                   $user_lastname_comment=$messagecount['lastname'];
                   ?>
 
-                  <div class="comment">
+                  <div class="del<?php echo $idComment; ?> comment">
                     <div class="name">
                       <span id="user-says">
-                        <?php echo '<span class="label">'.$user_name_comment .' '. $user_lastname_comment.'</span'; ?>
-                        says:
+                        <?php echo '<span class="label">'.$user_name_comment .' '. $user_lastname_comment.'</span>'; ?>
                       </span>
                     </div>
                     <!-- <div class="itemdiv dialogdiv"> -->
@@ -238,7 +262,7 @@ $json_id = $idProject;
 
                           <span>
                             <!-- THIS IS THE MESSAGE FOR START A CONVERSATION ON THE COMMENTS SECTION -->
-                            <?php echo $msgcontent; ?>
+                            <?php echo '<span class="">'.$msgcontent.'</span>'; ?>
                           </span>
 
 
@@ -254,7 +278,7 @@ $json_id = $idProject;
                               ?>
                               <div class="comment_ui" id="view<?php echo $idComment; ?>">
                                 <div>
-                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> <?php echo $comment_count; ?> comments.</a>
+                                  <a href="#" class="view_comments" id="<?php echo $idComment; ?>"><i class="icon-comments"></i> Read <?php echo $second_count; ?> more comments.</a>
                                 </div>
                               </div>
                               <?php 
@@ -282,8 +306,9 @@ $json_id = $idProject;
                                 <div class="comment_ui">
 
                                   <div class="comment_text">
-                                    <div  class="comment_actual_text">
-                                      <div id="sssss"><?php echo '<span class="label">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
+                                    <div  class="del<?php echo $c_id; ?> comment_actual_text">
+                                      <div id="sssss">
+                                        <?php echo '<span class="label">'.$nameSub.' '.$lastnameSub.'</span><div class="itemdiv dialogdiv"><div class="body"><div class="time"><i class="icon-time"></i><span class="green">'.$dateSub.'</span></div>'.$comment.'</div></div>'; ?></div></div>
                                     </div>
 
                                   </div>
@@ -294,9 +319,11 @@ $json_id = $idProject;
 
                                       <form id="subcomments" action="comments/savesubcomment.php" method="post">
                                         <div class="form-actions">
+                                          <!-- <small><?php echo $nameUser.' '.$lastnameUser; ?></small> -->
                                           <div class="input-group">
                                             <input name="idProject" type="hidden" value="<?php echo $idProject ?>" />
                                             <input name="mesgid" type="hidden" value="<?php echo $idComment ?>" />
+                                            <input name="idUserSub" type="hidden" value="<?php echo $uid ?>" />
                                             <input id="subcommentin" placeholder="Type your message here ..." type="text" class="form-control" name="mcomment">
                                             <span class="input-group-btn">
                                               <input class="btn btn-sm btn-info no-radius" type="submit">

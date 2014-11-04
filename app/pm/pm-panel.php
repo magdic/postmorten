@@ -15,7 +15,6 @@ include "../../config/functions.php";
 <html>
 <head>
 	<title>Welcome PM User | my App</title>
-     <script src="//localhost:35729/livereload.js"></script>
 
         <!-- basic styles -->
 
