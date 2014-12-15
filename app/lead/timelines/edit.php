@@ -24,9 +24,13 @@ while($row = mysql_fetch_array($result))
     $prjctStartDate=$row['startDateP'];
 }
 
-// if($idproject==null){
-//     echo '<script>window.location.href="../../lead/lead-panel.php"</script>';
-// } 
+        $uid = $_SESSION['uid'];
+        $res2 = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
+        //split all fields fom the correct row into an associative array
+        $row2 = mysql_fetch_assoc($res2);
+
+        $themail = $row2['email'];
+        $username = str_replace('@thehangar.cr', '', $themail);
 
 ?>
 
@@ -122,7 +126,7 @@ while($row = mysql_fetch_array($result))
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <!-- <img class="nav-user-photo" src="../../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
+                                <img class="nav-user-photo" src="https://cm1.criticalmass.com/people/<?php echo $username; ?>/avatar/68.png?a=2991" alt="Jason's Photo" />
                                 <span class="user-info">
                                     <small>Welcome,</small>
                                     <?php echo $row['name'].' '.$row['lastname']; ?>

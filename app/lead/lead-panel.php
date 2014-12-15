@@ -23,6 +23,9 @@ include "../../config/functions.php";
 		//split all fields fom the correct row into an associative array
 		$row = mysql_fetch_assoc($res);
 
+        $themail = $row['email'];
+        $username = str_replace('@thehangar.cr', '', $themail);
+
 		//if the login session does not exist therefore meaning the user is not logged in
 		if(!$_SESSION['uid']){
 			//display and error message
@@ -43,7 +46,7 @@ include "../../config/functions.php";
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <!-- <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> -->
+                                <img class="nav-user-photo" src="https://cm1.criticalmass.com/people/<?php echo $username; ?>/avatar/68.png?a=2991" alt="Jason's Photo" />
                                 <span class="user-info">
                                     <small>Welcome,</small>
                                     <?php echo $row['name'].' '.$row['lastname']; ?>
@@ -61,7 +64,7 @@ include "../../config/functions.php";
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="profile.php">
                                         <i class="icon-user"></i>
                                         Profile
                                     </a>
